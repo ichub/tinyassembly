@@ -10,11 +10,11 @@ export class Computer {
         this._cpu = new CPU(this._ram);
     }
 
-    run() {
+    public run() {
         this._cpu.run();
     }
 
-    get cpu():CPU {
+    public get cpu():CPU {
         return this._cpu;
     }
 }

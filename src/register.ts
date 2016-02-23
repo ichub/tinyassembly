@@ -1,5 +1,3 @@
-import {RAM} from "./ram";
-import {toHex} from "./bits";
 import {listToHex} from "./bits";
 
 export class Register {
@@ -12,8 +10,8 @@ export class Register {
         return this._value;
     }
 
-    private ensureOverflow() {
-        this._value = Math.abs(this._value) % (Register.maxValue + 1);
+    public static get maxValue() {
+        return Math.pow(2, 32) - 1;
     }
 
     public getBytes():number[] {
@@ -42,7 +40,7 @@ export class Register {
         this.ensureOverflow();
     }
 
-    public static get maxValue() {
-        return Math.pow(2, 32) - 1;
+    private ensureOverflow() {
+        this._value = Math.abs(this._value) % (Register.maxValue + 1);
     }
 }

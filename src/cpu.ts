@@ -1,4 +1,3 @@
-import {Register} from "./register";
 import {Registers} from "./registers";
 import {RAM} from "./ram";
 import {Logger} from "./logger";
@@ -28,7 +27,7 @@ export class CPU {
     }
 
     private executeInstruction(instruction:number) {
-        Logger.log(`executing instruction ${instruction}`)
+        Logger.log(`executing instruction ${instruction}`);
     }
 
     get registers():Registers {
