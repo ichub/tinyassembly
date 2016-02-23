@@ -1,14 +1,14 @@
 import {Register} from "./register";
 
 export class Registers {
-    private _A:Register = new Register();
-    private _B:Register = new Register();
-    private _C:Register = new Register();
-    private _D:Register = new Register();
-    private _E:Register = new Register();
-    private _F:Register = new Register();
-    private _G:Register = new Register();
-    private _IP:Register = new Register();
+    private _A:Register = new Register("A");
+    private _B:Register = new Register("B");
+    private _C:Register = new Register("C");
+    private _D:Register = new Register("D");
+    private _E:Register = new Register("E");
+    private _F:Register = new Register("F");
+    private _G:Register = new Register("G");
+    private _IP:Register = new Register("IP");
     private _registerMap:{[index:number]:Register};
 
     constructor() {

@@ -18,4 +18,8 @@ export class RAM {
     public setCellValue(index:number, value:number) {
         this._memory[index] = value;
     }
+
+    public getMemorySlice(index:number, count:number) {
+        return this._memory.slice(index, index + count);
+    }
 }

@@ -1,7 +1,12 @@
 import {listToHex} from "./bits";
 
 export class Register {
+    private _name:string;
     private _value:number = 0;
+
+    constructor(name:string) {
+        this._name = name;
+    }
 
     public increment():number {
         return this.incrementBy(1);
