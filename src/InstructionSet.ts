@@ -18,6 +18,12 @@ export class InstructionSet {
                 0x00000000,
                 (reg:Registers, flags:Flags, ram:RAM) => {
                     flags.halt = true;
+                }),
+            new Instruction(
+                "halt",
+                0x00000001,
+                (reg:Registers, flags:Flags, ram:RAM) => {
+                    flags.halt = true;
                 })
         ];
     }

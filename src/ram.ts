@@ -1,4 +1,5 @@
 import {Register} from "./register";
+
 export class RAM {
     private _memory:number[] = Array.from(new Array(RAM.size), () => 0);
 

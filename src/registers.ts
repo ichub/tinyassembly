@@ -9,6 +9,19 @@ export class Registers {
     private _F:Register = new Register();
     private _G:Register = new Register();
     private _IP:Register = new Register();
+    private _registerMap:{[index:number]:Register};
+
+    constructor() {
+        this._registerMap = Object.freeze([
+            this._A,
+            this._B,
+            this._C,
+            this._D,
+            this._E,
+            this._F,
+            this._G
+        ]);
+    }
 
     get A():Register {
         return this._A;
@@ -40,5 +53,9 @@ export class Registers {
 
     get IP():Register {
         return this._IP;
+    }
+
+    get registerMap():{} {
+        return this._registerMap;
     }
 }
