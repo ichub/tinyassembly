@@ -1,4 +1,7 @@
 import {Computer} from "./computer";
+import {Interface} from "./Interface";
 
 const computer = new Computer();
-computer.run();
+const webInterface = new Interface(computer);
+
+webInterface.bind();
