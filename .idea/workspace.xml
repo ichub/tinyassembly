@@ -2,26 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="07b75bf5-abd5-49ba-bb4e-1c8932de803e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/bundle/computer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/bundle/ram.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/bundle/register.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/bundle/registers.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/computer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/ram.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/register.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/registers.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/computer.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ram.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/register.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/registers.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/bundle/cpu.js" afterPath="$PROJECT_DIR$/dist/bundle/cpu.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/bundle/main.js" afterPath="$PROJECT_DIR$/dist/bundle/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/cpu.js" afterPath="$PROJECT_DIR$/dist/cpu.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/main.js" afterPath="$PROJECT_DIR$/dist/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cpu.ts" afterPath="$PROJECT_DIR$/src/cpu.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.ts" afterPath="$PROJECT_DIR$/src/main.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ram.ts" afterPath="$PROJECT_DIR$/src/ram.ts" />
     </list>
     <ignored path="webchip.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,6 +23,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="cpu.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/cpu.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.1361465">
+              <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="computer.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/computer.ts">
           <provider selected="true" editor-type-id="text-editor">
@@ -52,11 +43,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ram.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ram.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ram.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.030254778">
-              <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -83,9 +84,9 @@
         <option value="$PROJECT_DIR$/src/register.ts" />
         <option value="$PROJECT_DIR$/src/registers.ts" />
         <option value="$PROJECT_DIR$/src/main.ts" />
-        <option value="$PROJECT_DIR$/src/ram.ts" />
         <option value="$PROJECT_DIR$/src/computer.ts" />
         <option value="$PROJECT_DIR$/src/cpu.ts" />
+        <option value="$PROJECT_DIR$/src/ram.ts" />
       </list>
     </option>
   </component>
@@ -379,14 +380,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cpu.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1361465">
-          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/registers.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16640127">
@@ -403,10 +396,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.ts">
+    <entry file="file://$PROJECT_DIR$/src/ram.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.015127389">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -419,10 +412,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ram.ts">
+    <entry file="file://$PROJECT_DIR$/src/main.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.030254778">
-          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cpu.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1361465">
+          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
           <folding />
         </state>
       </provider>
