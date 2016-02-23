@@ -25,7 +25,6 @@ let cli = commandLineArgs([
 
 let options = cli.parse();
 
-
 let sassGlob = './sass/**/*.scss';
 let tsGlob = "./src/**/*.ts";
 
@@ -36,30 +35,21 @@ let htmlGlob = './index.html';
 gulp.task("default", ["serve"]);
 
 gulp.task('ts', function () {
-    var tsResult = gulp.src('src/**/*.ts')
+    return gulp.src('src/**/*.ts')
         .pipe(ts({
-            declaration: true,
-            noExternalResolve: true,
+            declaration: false,
             module: "commonjs",
-            target: "es6"
-        }));
-
-    return merge([
-        tsResult.dts.pipe(gulp.dest('dist')),
-        tsResult.js
-            .pipe(babel({
-                presets: ['es2015']
-            }))
-            .pipe(browserify({
-                insertGlobals: false
-            }))
-            .pipe(gulp.dest('dist'))
-            .pipe(uglify())
-            .pipe(rename(function (path) {
-                path.basename += ".min"
-            }))
-            .pipe(gulp.dest('dist'))
-    ]);
+            target: "es6",
+        }))
+        .js
+        .pipe(babel({
+            presets: ['es2015']
+        }))
+        .pipe(gulp.dest('dist'))
+        .pipe(browserify({
+            insertGlobals: false
+        }))
+        .pipe(gulp.dest("dist/bundle"))
 });
 
 gulp.task('sass', function () {
