@@ -1,4 +1,3 @@
-import {CPU} from "./cpu";
+import {Computer} from "./computer";
 
-const cpu = new CPU();
-cpu.name = "asdf";
+const computer = new Computer();

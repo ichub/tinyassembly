@@ -5,6 +5,32 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var CPU = function () {
+    function CPU(ram) {
+        _classCallCheck(this, CPU);
+
+        this._ram = ram;
+    }
+
+    _createClass(CPU, [{
+        key: "registers",
+        get: function get() {
+            return this._registers;
+        }
+    }]);
+
+    return CPU;
+}();
+
+exports.CPU = CPU;
+console.log("it works!");
+},{}],2:[function(require,module,exports){
+"use strict";
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 var cpu_1 = require("./cpu");
 var ram_1 = require("./ram");
 
@@ -27,38 +53,7 @@ var Computer = function () {
 }();
 
 exports.Computer = Computer;
-},{"./cpu":2,"./ram":4}],2:[function(require,module,exports){
-"use strict";
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var CPU = function () {
-    function CPU(ram) {
-        _classCallCheck(this, CPU);
-
-        this._ram = ram;
-    }
-
-    _createClass(CPU, [{
-        key: "registers",
-        get: function get() {
-            return this._registers;
-        }
-    }]);
-
-    return CPU;
-}();
-
-exports.CPU = CPU;
-console.log("it works!");
-},{}],3:[function(require,module,exports){
-"use strict";
-
-var computer_1 = require("./computer");
-var computer = new computer_1.Computer();
-},{"./computer":1}],4:[function(require,module,exports){
+},{"./cpu":1,"./ram":3}],3:[function(require,module,exports){
 "use strict";
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -68,4 +63,4 @@ var RAM = function RAM() {
 };
 
 exports.RAM = RAM;
-},{}]},{},[3])
+},{}]},{},[2])

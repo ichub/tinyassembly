@@ -1,5 +1,4 @@
 "use strict";
 
-var cpu_1 = require("./cpu");
-var cpu = new cpu_1.CPU();
-cpu.name = "asdf";
+var computer_1 = require("./computer");
+var computer = new computer_1.Computer();
