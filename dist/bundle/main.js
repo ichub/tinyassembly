@@ -144,7 +144,7 @@ var RAM = function () {
     }], [{
         key: "size",
         get: function get() {
-            return Math.pow(2, 10);
+            return register_1.Register.maxValue + 1;
         }
     }, {
         key: "memoryCellSize",

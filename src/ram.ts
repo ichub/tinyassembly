@@ -3,7 +3,7 @@ export class RAM {
     private _memory:number[] = Array.from(new Array(RAM.size), () => 0);
 
     public static get size() {
-        return Math.pow(2, 10);
+        return Register.maxValue + 1;
     }
 
     public static get memoryCellSize() {
