@@ -13,6 +13,14 @@ var CPU = function () {
     }
 
     _createClass(CPU, [{
+        key: "step",
+        value: function step() {
+            var currentInstruction = this._registers.IP.value;
+        }
+    }, {
+        key: "executeInstruction",
+        value: function executeInstruction(instruction) {}
+    }, {
         key: "registers",
         get: function get() {
             return this._registers;

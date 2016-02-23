@@ -10,6 +10,14 @@ export class CPU {
         this._ram = ram;
     }
 
+    public step() {
+        const currentInstruction = this._registers.IP.value;
+    }
+
+    private executeInstruction(instruction:number) {
+
+    }
+
     get registers():Registers {
         return this._registers;
     }
