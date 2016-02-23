@@ -29,7 +29,7 @@ let sassGlob = './sass/**/*.scss';
 let tsGlob = "./src/**/*.ts";
 
 let sassOutputGlob = './css/**/*.css';
-let tsOutputGlob = './dist/**/*.ts';
+let tsOutputGlob = './dist/**/*.js';
 let htmlGlob = './index.html';
 
 gulp.task("default", ["serve"]);
@@ -39,7 +39,7 @@ gulp.task('ts', function () {
         .pipe(ts({
             declaration: false,
             module: "commonjs",
-            target: "es6",
+            target: "es6"
         }))
         .js
         .pipe(babel({
