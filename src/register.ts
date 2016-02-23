@@ -3,8 +3,12 @@ import {listToHex} from "./bits";
 export class Register {
     private _value:number = 0;
 
-    public incrementAndReturn():number {
-        this._value += 1;
+    public increment():number {
+        return this.incrementBy(1);
+    }
+
+    public incrementBy(by:number):number {
+        this._value += by;
         this.ensureOverflow();
 
         return this._value;
