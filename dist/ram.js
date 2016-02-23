@@ -4,6 +4,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var register_1 = require("./register");
+
 var RAM = function () {
     function RAM() {
         _classCallCheck(this, RAM);
@@ -14,14 +16,24 @@ var RAM = function () {
     }
 
     _createClass(RAM, [{
-        key: "memory",
-        get: function get() {
-            return this._memory;
+        key: "getCellValue",
+        value: function getCellValue(index) {
+            return this._memory[index];
+        }
+    }, {
+        key: "setCellValue",
+        value: function setCellValue(index, value) {
+            this._memory[index] = value;
         }
     }], [{
         key: "size",
         get: function get() {
             return Math.pow(2, 10);
+        }
+    }, {
+        key: "memoryCellSize",
+        get: function get() {
+            return register_1.Register.maxValue;
         }
     }]);
 

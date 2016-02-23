@@ -4,21 +4,39 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var registers_1 = require("./registers");
+var logger_1 = require("./logger");
+
 var CPU = function () {
     function CPU(ram) {
         _classCallCheck(this, CPU);
 
+        this._stepInterval = 100;
+        this._registers = new registers_1.Registers();
         this._ram = ram;
     }
 
     _createClass(CPU, [{
         key: "step",
         value: function step() {
-            var currentInstruction = this._registers.IP.value;
+            var currentInstructionIndex = this._registers.IP.value;
+            this._registers.IP.incrementAndReturn();
+            this.executeInstruction(this._ram.getCellValue(currentInstructionIndex));
+        }
+    }, {
+        key: "run",
+        value: function run() {
+            var _this = this;
+
+            setInterval(function () {
+                _this.step();
+            }, this._stepInterval);
         }
     }, {
         key: "executeInstruction",
-        value: function executeInstruction(instruction) {}
+        value: function executeInstruction(instruction) {
+            logger_1.Logger.log("executing instruction " + instruction);
+        }
     }, {
         key: "registers",
         get: function get() {

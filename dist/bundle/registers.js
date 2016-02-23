@@ -70,13 +70,43 @@ exports.Registers = Registers;
 },{"./register":2}],2:[function(require,module,exports){
 "use strict";
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Register = function Register() {
-    _classCallCheck(this, Register);
+var Register = function () {
+    function Register() {
+        _classCallCheck(this, Register);
 
-    this.value = 0;
-};
+        this._value = 0;
+    }
+
+    _createClass(Register, [{
+        key: "incrementAndReturn",
+        value: function incrementAndReturn() {
+            this._value += 1;
+            this.ensureOverflow();
+            return this._value;
+        }
+    }, {
+        key: "ensureOverflow",
+        value: function ensureOverflow() {
+            this._value = Math.abs(this._value) % (Register.maxValue + 1);
+        }
+    }, {
+        key: "value",
+        get: function get() {
+            return this._value;
+        }
+    }], [{
+        key: "maxValue",
+        get: function get() {
+            return Math.pow(2, 16) - 1;
+        }
+    }]);
+
+    return Register;
+}();
 
 exports.Register = Register;
 },{}]},{},[1])

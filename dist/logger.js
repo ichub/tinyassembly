@@ -4,30 +4,19 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var cpu_1 = require("./cpu");
-var ram_1 = require("./ram");
-
-var Computer = function () {
-    function Computer() {
-        _classCallCheck(this, Computer);
-
-        this._ram = new ram_1.RAM();
-        this._cpu = new cpu_1.CPU(this._ram);
+var Logger = function () {
+    function Logger() {
+        _classCallCheck(this, Logger);
     }
 
-    _createClass(Computer, [{
-        key: "run",
-        value: function run() {
-            this._cpu.run();
-        }
-    }, {
-        key: "cpu",
-        get: function get() {
-            return this._cpu;
+    _createClass(Logger, null, [{
+        key: "log",
+        value: function log(value) {
+            console.log(value);
         }
     }]);
 
-    return Computer;
+    return Logger;
 }();
 
-exports.Computer = Computer;
+exports.Logger = Logger;

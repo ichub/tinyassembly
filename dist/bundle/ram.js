@@ -5,6 +5,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var register_1 = require("./register");
+
 var RAM = function () {
     function RAM() {
         _classCallCheck(this, RAM);
@@ -15,14 +17,24 @@ var RAM = function () {
     }
 
     _createClass(RAM, [{
-        key: "memory",
-        get: function get() {
-            return this._memory;
+        key: "getCellValue",
+        value: function getCellValue(index) {
+            return this._memory[index];
+        }
+    }, {
+        key: "setCellValue",
+        value: function setCellValue(index, value) {
+            this._memory[index] = value;
         }
     }], [{
         key: "size",
         get: function get() {
             return Math.pow(2, 10);
+        }
+    }, {
+        key: "memoryCellSize",
+        get: function get() {
+            return register_1.Register.maxValue;
         }
     }]);
 
@@ -30,4 +42,46 @@ var RAM = function () {
 }();
 
 exports.RAM = RAM;
+},{"./register":2}],2:[function(require,module,exports){
+"use strict";
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Register = function () {
+    function Register() {
+        _classCallCheck(this, Register);
+
+        this._value = 0;
+    }
+
+    _createClass(Register, [{
+        key: "incrementAndReturn",
+        value: function incrementAndReturn() {
+            this._value += 1;
+            this.ensureOverflow();
+            return this._value;
+        }
+    }, {
+        key: "ensureOverflow",
+        value: function ensureOverflow() {
+            this._value = Math.abs(this._value) % (Register.maxValue + 1);
+        }
+    }, {
+        key: "value",
+        get: function get() {
+            return this._value;
+        }
+    }], [{
+        key: "maxValue",
+        get: function get() {
+            return Math.pow(2, 16) - 1;
+        }
+    }]);
+
+    return Register;
+}();
+
+exports.Register = Register;
 },{}]},{},[1])

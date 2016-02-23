@@ -21,7 +21,3 @@ export class Register {
         return Math.pow(2, 16) - 1;
     }
 }
-
-if (RAM.size > Register.maxValue) {
-    throw "size of RAM cannot exceed max value of a register";
-}
