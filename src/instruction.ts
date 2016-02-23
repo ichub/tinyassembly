@@ -1,20 +1,26 @@
 import {IInstructionOperation} from "./IInstructionOperation";
 
 export class Instruction {
+    private _name:string;
     private _opcode:number;
     private _operation:IInstructionOperation;
 
 
-    constructor(opcode:number, operation:IInstructionOperation) {
+    constructor(name:string, opcode:number, operation:IInstructionOperation) {
+        this._name = name;
         this._opcode = opcode;
         this._operation = operation;
     }
 
-    get opcode():number {
+    public get opcode():number {
         return this._opcode;
     }
 
-    get operation():IInstructionOperation {
+    public get operation():IInstructionOperation {
         return this._operation;
+    }
+
+    get name():string {
+        return this._name;
     }
 }

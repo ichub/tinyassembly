@@ -2,6 +2,7 @@ import {Instruction} from "./instruction";
 import {Registers} from "./registers";
 import {RAM} from "./ram";
 import {Logger} from "./logger";
+import {Flags} from "./Flags";
 
 export class InstructionSet {
     private _instructions:Instruction[];
@@ -12,9 +13,12 @@ export class InstructionSet {
 
     private initInstructions() {
         this._instructions = [
-            new Instruction(0x00000000, (reg:Registers, ram:RAM) => {
-                Logger.log("no op");
-            })
+            new Instruction(
+                "halt",
+                0x00000000,
+                (reg:Registers, flags:Flags, ram:RAM) => {
+                    flags.halt = true;
+                })
         ];
     }
 

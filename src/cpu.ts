@@ -3,9 +3,11 @@ import {RAM} from "./ram";
 import {Logger} from "./logger";
 import {InstructionSet} from "./InstructionSet";
 import {Instruction} from "./instruction";
+import {Flags} from "./Flags";
 
 export class CPU {
     private _registers:Registers;
+    private _flags:Flags;
     private _ram:RAM;
     private _stepInterval = 100;
     private _instructionSet:InstructionSet;
@@ -14,6 +16,7 @@ export class CPU {
         this._registers = new Registers();
         this._ram = ram;
         this._instructionSet = new InstructionSet();
+        this._flags = new Flags();
     }
 
     public step() {
@@ -25,8 +28,15 @@ export class CPU {
     }
 
     public run() {
-        setInterval(() => {
-            this.step();
+        this.step();
+
+        if (this._flags.halt) {
+            Logger.log(`halt instruction encountered`);
+            return;
+        }
+
+        setTimeout(() => {
+            this.run();
         }, this._stepInterval);
     }
 
@@ -35,11 +45,15 @@ export class CPU {
 
         const instruction = this._instructionSet.findInstruction(opcode);
 
-        instruction.operation(this._registers, this._ram);
+        instruction.operation(this._registers, this._flags, this._ram);
     }
 
     get registers():Registers {
         return this._registers;
+    }
+
+    get flags():Flags {
+        return this._flags;
     }
 }
 
