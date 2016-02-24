@@ -18,6 +18,8 @@ const tsfmt = require("gulp-tsfmt");
 const changedInPlace = require("gulp-changed-in-place");
 const babel = require('gulp-babel');
 const rename = require("gulp-rename");
+const fs = require("fs");
+const jasmine = require('gulp-jasmine');
 
 let cli = commandLineArgs([
     {name: 'production', alias: 'p', type: Boolean, defaultOption: false}
@@ -95,9 +97,10 @@ gulp.task("watch", ['sass', 'browserfiy'], function () {
     gulp.watch(tsGlob, ['browserfiy']);
 });
 
-const jasmine = require('gulp-jasmine');
 
 gulp.task("test", ["browserfiy"], function () {
-    gulp.src('spec/tests/test.js')
-        .pipe(jasmine())
+    gulp.src("")
+        .pipe(jasmine({
+            config: JSON.parse(fs.readFileSync("./spec/support/jasmine.json", "utf8"))
+        }));
 });
