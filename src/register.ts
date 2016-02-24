@@ -54,6 +54,10 @@ export class Register {
     }
 
     private ensureOverflow() {
-        this._value = Math.abs(this._value) % (Register.maxValue + 1);
+        while (this._value < 0) {
+            this._value += Register.maxValue;
+        }
+
+        this._value = this._value % (Register.maxValue + 1);
     }
 }

@@ -8,7 +8,7 @@ describe("cpu register", function () {
 
         reg.value = bigValue;
 
-        expect(reg.value).toBe(bigValue % (Register.maxValue ));
+        expect(reg.value).toBe(bigValue % (Register.maxValue + 1));
     });
 
     it("should handle underflows gracefully", function () {
@@ -19,6 +19,5 @@ describe("cpu register", function () {
         reg.value = negativeValue;
 
         expect(reg.value).toBe(Register.maxValue + negativeValue);
-        expect(1).toBe(2);
     });
 });
