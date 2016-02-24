@@ -34,6 +34,14 @@ let htmlGlob = './index.html';
 
 gulp.task("default", ["serve"]);
 
+gulp.task("browserfiy", ["ts"], function () {
+    gulp.src("./dist/*.js")
+        .pipe(browserify({
+            insertGlobals: false
+        }))
+        .pipe(gulp.dest("dist/bundle"))
+});
+
 gulp.task('ts', function () {
     return gulp.src('src/**/*.ts')
         .pipe(ts({
@@ -46,10 +54,7 @@ gulp.task('ts', function () {
             presets: ['es2015']
         }))
         .pipe(gulp.dest('dist'))
-        .pipe(browserify({
-            insertGlobals: false
-        }))
-        .pipe(gulp.dest("dist/bundle"))
+
 });
 
 gulp.task('sass', function () {
@@ -85,7 +90,14 @@ gulp.task('lint', function () {
         }))
 });
 
-gulp.task("watch", ['sass', 'ts'], function () {
+gulp.task("watch", ['sass', 'browserfiy'], function () {
     gulp.watch(sassGlob, ['sass']);
-    gulp.watch(tsGlob, ['ts']);
+    gulp.watch(tsGlob, ['browserfiy']);
+});
+
+const jasmine = require('gulp-jasmine');
+
+gulp.task("test", ["browserfiy"], function () {
+    gulp.src('spec/tests/test.js')
+        .pipe(jasmine())
 });
