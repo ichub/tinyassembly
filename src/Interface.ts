@@ -10,5 +10,7 @@ export class Interface {
 
     public bind() {
         Logger.log("bound interface");
+
+        this._computer.run();
     }
 }

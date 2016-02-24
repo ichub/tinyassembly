@@ -22,4 +22,10 @@ export class RAM {
     public getMemorySlice(index:number, count:number) {
         return this._memory.slice(index, index + count);
     }
+
+    public setMemory(offset:number, values:number[]) {
+        for (let i = 0; i < values.length; i++) {
+            this._memory[i + offset] = values[i];
+        }
+    }
 }

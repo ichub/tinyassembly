@@ -20,11 +20,13 @@ export class CPU {
     }
 
     public step() {
-        const currentInstructionIndex = this._registers.IP.value;
+        this.executeInstruction(this._ram.getCellValue(this._registers.IP.value));
 
-        this._registers.IP.incrementBy(4);
-
-        this.executeInstruction(this._ram.getCellValue(currentInstructionIndex));
+        if (this._flags.jumped) {
+            this._flags.jumped = false;
+        } else {
+            this._registers.IP.incrementBy(4);
+        }
     }
 
     public run() {

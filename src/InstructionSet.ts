@@ -49,8 +49,8 @@ export class InstructionSet {
                 (reg:Registers, flags:Flags, ram:RAM) => {
                     const params = ram.getMemorySlice(reg.IP.value + 1, 3);
 
-                    const value = params[0];
-                    const register = reg.registerMap[params[1]];
+                    const value = params[1];
+                    const register = reg.registerMap[params[0]];
 
                     register.value = value;
 

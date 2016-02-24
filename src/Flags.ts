@@ -1,3 +1,4 @@
 export class Flags {
-    public halt:boolean;
+    public halt:boolean = false;
+    public jumped:boolean = false;
 }

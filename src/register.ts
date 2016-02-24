@@ -49,6 +49,10 @@ export class Register {
         this.ensureOverflow();
     }
 
+    get name():string {
+        return this._name;
+    }
+
     private ensureOverflow() {
         this._value = Math.abs(this._value) % (Register.maxValue + 1);
     }

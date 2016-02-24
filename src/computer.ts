@@ -17,4 +17,8 @@ export class Computer {
     public get cpu():CPU {
         return this._cpu;
     }
+
+    get ram():RAM {
+        return this._ram;
+    }
 }
