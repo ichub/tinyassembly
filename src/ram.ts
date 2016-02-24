@@ -28,4 +28,8 @@ export class RAM {
             this._memory[i + offset] = values[i];
         }
     }
+
+    public get size() {
+        return this._memory.length;
+    }
 }
