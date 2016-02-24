@@ -21,6 +21,7 @@
     "gulp-typescript": "^2.11.0",
     "gulp-uglify": "^1.5.3",
     "gulp-watch": "^4.3.5",
+    "jasmine-spec-reporter": "^2.4.0",
     "merge2": "^1.0.1",
     "multi-glob": "^1.0.1",
     "tslint": "^3.4.0"

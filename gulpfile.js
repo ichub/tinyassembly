@@ -20,6 +20,7 @@ const babel = require('gulp-babel');
 const rename = require("gulp-rename");
 const fs = require("fs");
 const jasmine = require('gulp-jasmine');
+const reporter = require("jasmine-spec-reporter");
 
 let cli = commandLineArgs([
     {name: 'production', alias: 'p', type: Boolean, defaultOption: false}
@@ -101,6 +102,7 @@ gulp.task("watch", ['sass', 'browserfiy'], function () {
 gulp.task("test", ["browserfiy"], function () {
     gulp.src("")
         .pipe(jasmine({
-            config: JSON.parse(fs.readFileSync("./spec/support/jasmine.json", "utf8"))
+            config: JSON.parse(fs.readFileSync("./spec/support/jasmine.json", "utf8")),
+            reporter: new reporter()
         }));
 });
