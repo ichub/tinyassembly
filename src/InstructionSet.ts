@@ -15,13 +15,13 @@ export class InstructionSet {
     private initInstructions() {
         this._instructions = [
             new Instruction(
-                "halt",
+                "HALT",
                 0x00000000,
                 (reg:Registers, flags:Flags, ram:RAM) => {
                     flags.halt = true;
                 }),
             new Instruction(
-                "r_load",
+                "R_LOAD",
                 0x00000001,
                 /**
                  * load value at at register position 1 into register position 2
@@ -41,7 +41,7 @@ export class InstructionSet {
                                 ${firstRegister.name} into register ${secondRegister.name} `);
                 }),
             new Instruction(
-                "v_load",
+                "V_LOAD",
                 0x00000002,
                 /**
                  * load value at position 1 into register position 2

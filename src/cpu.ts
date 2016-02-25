@@ -50,11 +50,11 @@ export class CPU {
         instruction.operation(this._registers, this._flags, this._ram);
     }
 
-    get registers():Registers {
+    public get registers():Registers {
         return this._registers;
     }
 
-    get flags():Flags {
+    public get flags():Flags {
         return this._flags;
     }
 }
