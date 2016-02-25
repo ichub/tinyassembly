@@ -8,6 +8,9 @@ module.exports = function(config) {
         preprocessors: {
             'dist/tests/**/*.js': [ 'browserify' ]
         },
+        browserify: {
+            debug: true
+        },
         browsers: ['Chrome']
     });
 };
