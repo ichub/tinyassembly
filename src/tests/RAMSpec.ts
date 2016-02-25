@@ -1,4 +1,5 @@
 import {RAM} from "../ram";
+
 describe("RAM", function () {
     it("should be initialized with zeroes", function () {
         const ram = new RAM();

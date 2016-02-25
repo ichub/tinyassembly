@@ -13,3 +13,11 @@ export function listToHex(nums:number[], desiredLength:number):string[] {
         return toHex(num, desiredLength);
     });
 }
+
+export function clamp(value:number, max: number) {
+    while (value < 0) {
+        value += max + 1;
+    }
+
+    return value % (max + 1);
+}
