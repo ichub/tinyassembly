@@ -16,13 +16,13 @@ export class InstructionSet {
         this._instructions = [
             new Instruction(
                 "HALT",
-                0x00000000,
+                0,
                 (reg:Registers, flags:Flags, ram:RAM) => {
                     flags.halt = true;
                 }),
             new Instruction(
                 "R_LOAD",
-                0x00000001,
+                1,
                 /**
                  * load value at at register position 1 into register position 2
                  */
@@ -36,13 +36,10 @@ export class InstructionSet {
                     const secondRegister = reg.registerMap[second];
 
                     secondRegister.value = firstRegister.value;
-
-                    Logger.log(`loaded value ${firstRegister.value} at register
-                                ${firstRegister.name} into register ${secondRegister.name} `);
                 }),
             new Instruction(
                 "V_LOAD",
-                0x00000002,
+                2,
                 /**
                  * load value at position 1 into register position 2
                  */
@@ -53,8 +50,22 @@ export class InstructionSet {
                     const register = reg.registerMap[params[1]];
 
                     register.value = value;
+                }
+            ),
+            new Instruction(
+                "R_ADD",
+                3,
+                /**
+                 *  add registers param1 and param2 and put result in param3
+                 */
+                (reg:Registers, flags:Flags, ram:RAM) => {
+                    const params = ram.getMemorySlice(reg.IP.value + 1, 3);
 
-                    Logger.log(`Loaded value ${value} into register ${register.name}`);
+                    const left = reg.registerMap[params[0]];
+                    const right = reg.registerMap[params[1]];
+                    const result = reg.registerMap[params[2]];
+
+                    result.value = left.value + right.value;
                 }
             )
         ];
