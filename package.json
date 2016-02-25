@@ -21,12 +21,22 @@
     "gulp-typescript": "^2.11.0",
     "gulp-uglify": "^1.5.3",
     "gulp-watch": "^4.3.5",
+    "jasmine-core": "^2.4.1",
     "jasmine-spec-reporter": "^2.4.0",
+    "karma-jasmine": "^0.3.7",
     "merge2": "^1.0.1",
     "multi-glob": "^1.0.1",
     "tslint": "^3.4.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.21",
+    "karma-browserify": "^5.0.2",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.7",
+    "watchify": "^3.7.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
