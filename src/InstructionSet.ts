@@ -67,6 +67,21 @@ export class InstructionSet {
 
                     result.value = left.value + right.value;
                 }
+            ),
+            new Instruction(
+                "V_ADD",
+                4,
+                /**
+                 *  increment register param2 by value param1
+                 */
+                (reg:Registers, flags:Flags, ram:RAM) => {
+                    const params = ram.getMemorySlice(reg.IP.value + 1, 3);
+
+                    const value = params[0];
+                    const register = reg.registerMap[params[1]];
+
+                    register.incrementBy(value);
+                }
             )
         ];
     }
