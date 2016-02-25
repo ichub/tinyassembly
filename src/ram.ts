@@ -1,4 +1,5 @@
 import {Register} from "./register";
+import {clamp} from "./bits";
 
 export class RAM {
     private _memory:number[] = Array.from(new Array(RAM.size), () => 0);
@@ -7,7 +8,7 @@ export class RAM {
         return Math.pow(2, 10);
     }
 
-    public static get memoryCellSize() {
+    public static get maxMemoryCellValue() {
         return Register.maxValue;
     }
 
@@ -16,7 +17,7 @@ export class RAM {
     }
 
     public setCellValue(index:number, value:number) {
-        this._memory[index] = value;
+        this._memory[index] = clamp(value, RAM.maxMemoryCellValue);
     }
 
     public getMemorySlice(index:number, count:number) {
@@ -25,7 +26,7 @@ export class RAM {
 
     public setMemory(offset:number, values:number[]) {
         for (let i = 0; i < values.length; i++) {
-            this._memory[i + offset] = values[i];
+            this._memory[i + offset] = clamp(values[i], RAM.maxMemoryCellValue);
         }
     }
 
