@@ -18,6 +18,6 @@ describe("cpu register", function () {
 
         reg.value = negativeValue;
 
-        expect(reg.value).toBe(Register.maxValue + negativeValue);
+        expect(reg.value).toBe(Register.maxValue + negativeValue + 1);
     });
 });

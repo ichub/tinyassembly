@@ -1,4 +1,5 @@
 import {listToHex} from "./bits";
+import {clamp} from "./bits";
 
 export class Register {
     private _name:string;
@@ -13,8 +14,7 @@ export class Register {
     }
 
     public incrementBy(by:number):number {
-        this._value += by;
-        this.ensureOverflow();
+        this._value = clamp(this._value + by, Register.maxValue);
 
         return this._value;
     }
@@ -45,19 +45,10 @@ export class Register {
     }
 
     public set value(value:number) {
-        this._value = value;
-        this.ensureOverflow();
+        this._value = clamp(value, Register.maxValue);
     }
 
     get name():string {
         return this._name;
-    }
-
-    private ensureOverflow() {
-        while (this._value < 0) {
-            this._value += Register.maxValue;
-        }
-
-        this._value = this._value % (Register.maxValue + 1);
     }
 }
