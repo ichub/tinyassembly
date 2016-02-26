@@ -71,6 +71,58 @@ export class InstructionSet {
         result.value = left.value & right.value;
     }
 
+    @instruction("V_AND", 6)
+    public valueAndInstruction(cpu:CPU) {
+        const params = cpu.ram.getMemorySlice(cpu.registers.IP.value + 1, 3);
+
+        const value = params[0];
+        const register = cpu.registers.registerMap[params[1]];
+
+        register.value = register.value & value;
+    }
+
+    @instruction("R_OR", 7)
+    public registerOrInstruction(cpu:CPU) {
+        const params = cpu.ram.getMemorySlice(cpu.registers.IP.value + 1, 3);
+
+        const left = cpu.registers.registerMap[params[0]];
+        const right = cpu.registers.registerMap[params[1]];
+        const result = cpu.registers.registerMap[params[2]];
+
+        result.value = left.value | right.value;
+    }
+
+    @instruction("V_OR", 8)
+    public valueOrInstruction(cpu:CPU) {
+        const params = cpu.ram.getMemorySlice(cpu.registers.IP.value + 1, 3);
+
+        const value = params[0];
+        const register = cpu.registers.registerMap[params[1]];
+
+        register.value = register.value | value;
+    }
+
+    @instruction("R_XOR", 9)
+    public registerOrInstruction(cpu:CPU) {
+        const params = cpu.ram.getMemorySlice(cpu.registers.IP.value + 1, 3);
+
+        const left = cpu.registers.registerMap[params[0]];
+        const right = cpu.registers.registerMap[params[1]];
+        const result = cpu.registers.registerMap[params[2]];
+
+        result.value = left.value ^ right.value;
+    }
+
+    @instruction("V_XOR", 10)
+    public valueOrInstruction(cpu:CPU) {
+        const params = cpu.ram.getMemorySlice(cpu.registers.IP.value + 1, 3);
+
+        const value = params[0];
+        const register = cpu.registers.registerMap[params[1]];
+
+        register.value = register.value ^ value;
+    }
+
     public findInstruction(opcode:number):Instruction {
         for (let i = 0; i < this._instructions.length; i++) {
             if (this._instructions[i].opcode == opcode) {
