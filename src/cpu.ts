@@ -47,7 +47,7 @@ export class CPU {
 
         const instruction = this._instructionSet.findInstruction(opcode);
 
-        instruction.operation(this._registers, this._flags, this._ram);
+        instruction.operation(this);
     }
 
     public get registers():Registers {
@@ -56,5 +56,13 @@ export class CPU {
 
     public get flags():Flags {
         return this._flags;
+    }
+
+    get ram():RAM {
+        return this._ram;
+    }
+
+    public get currentParams():number[] {
+        return this._ram.getMemorySlice(this._registers.IP.value + 1, 3);
     }
 }
