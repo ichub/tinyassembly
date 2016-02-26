@@ -1,9 +1,9 @@
-export function instruction(one, two, three) {
-    return function(target, key, descriptor) {
-        console.log("instruction");
-        target.initInstructions();
-        console.log(target._instructions);
-        console.log(arguments);
+import {Instruction} from "./instruction";
+
+export function instruction(name:string, opcode:number) {
+    return function (target, key, descriptor) {
+        target._instructions = target._instructions || [];
+        target._instructions.push(new Instruction(name, opcode, target[key]));
         return descriptor;
     }
 }

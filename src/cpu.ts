@@ -58,5 +58,3 @@ export class CPU {
         return this._flags;
     }
 }
-
-console.log("it works!");

@@ -9,87 +9,53 @@ import {instruction} from "./InstructionDecorator";
 export class InstructionSet {
     private _instructions:Instruction[];
 
-    constructor() {
-        this.initInstructions();
+    @instruction("HALT", 0)
+    public haltInstruction(reg:Registers, flags:Flags, ram:RAM) {
+        flags.halt = true
     }
 
-    private initInstructions() {
-        this._instructions = [
-            new Instruction(
-                "HALT",
-                0,
-                (reg:Registers, flags:Flags, ram:RAM) => {
-                    flags.halt = true;
-                }),
-            new Instruction(
-                "R_LOAD",
-                1,
-                /**
-                 * load value at at register position 1 into register position 2
-                 */
-                (reg:Registers, flags:Flags, ram:RAM) => {
-                    const params = ram.getMemorySlice(reg.IP.value + 1, 3);
+    @instruction("R_LOAD", 1)
+    public registerLoadInstruction(reg:Registers, flags:Flags, ram:RAM) {
+        const params = ram.getMemorySlice(reg.IP.value + 1, 3);
 
-                    const first = params[0];
-                    const second = params[1];
+        const first = params[0];
+        const second = params[1];
 
-                    const firstRegister = reg.registerMap[first];
-                    const secondRegister = reg.registerMap[second];
+        const firstRegister = reg.registerMap[first];
+        const secondRegister = reg.registerMap[second];
 
-                    secondRegister.value = firstRegister.value;
-                }),
-            new Instruction(
-                "V_LOAD",
-                2,
-                /**
-                 * load value at position 1 into register position 2
-                 */
-                (reg:Registers, flags:Flags, ram:RAM) => {
-                    const params = ram.getMemorySlice(reg.IP.value + 1, 3);
-
-                    const value = params[0];
-                    const register = reg.registerMap[params[1]];
-
-                    register.value = value;
-                }
-            ),
-            new Instruction(
-                "R_ADD",
-                3,
-                /**
-                 *  add registers param1 and param2 and put result in param3
-                 */
-                (reg:Registers, flags:Flags, ram:RAM) => {
-                    const params = ram.getMemorySlice(reg.IP.value + 1, 3);
-
-                    const left = reg.registerMap[params[0]];
-                    const right = reg.registerMap[params[1]];
-                    const result = reg.registerMap[params[2]];
-
-                    result.value = left.value + right.value;
-                }
-            ),
-            new Instruction(
-                "V_ADD",
-                4,
-                /**
-                 *  increment register param2 by value param1
-                 */
-                (reg:Registers, flags:Flags, ram:RAM) => {
-                    const params = ram.getMemorySlice(reg.IP.value + 1, 3);
-
-                    const value = params[0];
-                    const register = reg.registerMap[params[1]];
-
-                    register.incrementBy(value);
-                }
-            )
-        ];
+        secondRegister.value = firstRegister.value;
     }
 
-    @instruction("one", "two", 3)
-    public instruction() {
+    @instruction("V_LOAD", 2)
+    public loadValueInstruction(reg:Registers, flags:Flags, ram:RAM) {
+        const params = ram.getMemorySlice(reg.IP.value + 1, 3);
 
+        const value = params[0];
+        const register = reg.registerMap[params[1]];
+
+        register.value = value;
+    }
+
+    @instruction("R_ADD", 3)
+    public registerAddInstruction(reg:Registers, flags:Flags, ram:RAM) {
+        const params = ram.getMemorySlice(reg.IP.value + 1, 3);
+
+        const left = reg.registerMap[params[0]];
+        const right = reg.registerMap[params[1]];
+        const result = reg.registerMap[params[2]];
+
+        result.value = left.value + right.value;
+    }
+
+    @instruction("V_ADD", 4)
+    public valueAddInstruction(reg:Registers, flags:Flags, ram:RAM) {
+        const params = ram.getMemorySlice(reg.IP.value + 1, 3);
+
+        const value = params[0];
+        const register = reg.registerMap[params[1]];
+
+        register.incrementBy(value);
     }
 
     public findInstruction(opcode:number):Instruction {
