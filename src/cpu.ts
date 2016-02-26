@@ -4,6 +4,7 @@ import {Logger} from "./logger";
 import {InstructionSet} from "./InstructionSet";
 import {Instruction} from "./instruction";
 import {Flags} from "./Flags";
+import {Params} from "./Params";
 
 export class CPU {
     private _registers:Registers;
@@ -62,7 +63,7 @@ export class CPU {
         return this._ram;
     }
 
-    public get currentParams():number[] {
-        return this._ram.getMemorySlice(this._registers.IP.value + 1, 3);
+    public get params():Params {
+        return new Params(this._ram.getMemorySlice(this._registers.IP.value + 1, 3));
     }
 }

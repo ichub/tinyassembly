@@ -18,109 +18,131 @@ export class InstructionSet {
 
     @instruction("R_LOAD", 1)
     public registerLoadInstruction(cpu:CPU) {
-        const params = cpu.currentParams;
-
-        const first = params[0];
-        const second = params[1];
-
-        const firstRegister = cpu.registers.registerMap[first];
-        const secondRegister = cpu.registers.registerMap[second];
+        const firstRegister = cpu.registers.map[cpu.params.first];
+        const secondRegister = cpu.registers.map[cpu.params.second];
 
         secondRegister.value = firstRegister.value;
     }
 
     @instruction("V_LOAD", 2)
     public loadValueInstruction(cpu:CPU) {
-        const params = cpu.ram.getMemorySlice(cpu.registers.IP.value + 1, 3);
-
-        const value = params[0];
-        const register = cpu.registers.registerMap[params[1]];
+        const value = cpu.params.first;
+        const register = cpu.registers.map[cpu.params.second];
 
         register.value = value;
     }
 
     @instruction("R_ADD", 3)
     public registerAddInstruction(cpu:CPU) {
-        const params = cpu.ram.getMemorySlice(cpu.registers.IP.value + 1, 3);
-
-        const left = cpu.registers.registerMap[params[0]];
-        const right = cpu.registers.registerMap[params[1]];
-        const result = cpu.registers.registerMap[params[2]];
+        const left = cpu.registers.map[cpu.params.first];
+        const right = cpu.registers.map[cpu.params.second];
+        const result = cpu.registers.map[cpu.params.third];
 
         result.value = left.value + right.value;
     }
 
     @instruction("V_ADD", 4)
     public valueAddInstruction(cpu:CPU) {
-        const params = cpu.ram.getMemorySlice(cpu.registers.IP.value + 1, 3);
-
-        const value = params[0];
-        const register = cpu.registers.registerMap[params[1]];
+        const value = cpu.params.first;
+        const register = cpu.registers.map[cpu.params.second];
 
         register.incrementBy(value);
     }
 
     @instruction("R_AND", 5)
     public registerAndInstruction(cpu:CPU) {
-        const params = cpu.ram.getMemorySlice(cpu.registers.IP.value + 1, 3);
-
-        const left = cpu.registers.registerMap[params[0]];
-        const right = cpu.registers.registerMap[params[1]];
-        const result = cpu.registers.registerMap[params[2]];
+        const left = cpu.registers.map[cpu.params.first];
+        const right = cpu.registers.map[cpu.params.second];
+        const result = cpu.registers.map[cpu.params.third];
 
         result.value = left.value & right.value;
     }
 
     @instruction("V_AND", 6)
     public valueAndInstruction(cpu:CPU) {
-        const params = cpu.ram.getMemorySlice(cpu.registers.IP.value + 1, 3);
-
-        const value = params[0];
-        const register = cpu.registers.registerMap[params[1]];
+        const value = cpu.params.first;
+        const register = cpu.registers.map[cpu.params.second];
 
         register.value = register.value & value;
     }
 
     @instruction("R_OR", 7)
     public registerOrInstruction(cpu:CPU) {
-        const params = cpu.ram.getMemorySlice(cpu.registers.IP.value + 1, 3);
-
-        const left = cpu.registers.registerMap[params[0]];
-        const right = cpu.registers.registerMap[params[1]];
-        const result = cpu.registers.registerMap[params[2]];
+        const left = cpu.registers.map[cpu.params.first];
+        const right = cpu.registers.map[cpu.params.second];
+        const result = cpu.registers.map[cpu.params.third];
 
         result.value = left.value | right.value;
     }
 
     @instruction("V_OR", 8)
     public valueOrInstruction(cpu:CPU) {
-        const params = cpu.ram.getMemorySlice(cpu.registers.IP.value + 1, 3);
-
-        const value = params[0];
-        const register = cpu.registers.registerMap[params[1]];
+        const value = cpu.params.first;
+        const register = cpu.registers.map[cpu.params.second];
 
         register.value = register.value | value;
     }
 
     @instruction("R_XOR", 9)
     public registerXorInstruction(cpu:CPU) {
-        const params = cpu.ram.getMemorySlice(cpu.registers.IP.value + 1, 3);
-
-        const left = cpu.registers.registerMap[params[0]];
-        const right = cpu.registers.registerMap[params[1]];
-        const result = cpu.registers.registerMap[params[2]];
+        const left = cpu.registers.map[cpu.params.first];
+        const right = cpu.registers.map[cpu.params.second];
+        const result = cpu.registers.map[cpu.params.third];
 
         result.value = left.value ^ right.value;
     }
 
     @instruction("V_XOR", 10)
     public valueXorInstruction(cpu:CPU) {
-        const params = cpu.ram.getMemorySlice(cpu.registers.IP.value + 1, 3);
-
-        const value = params[0];
-        const register = cpu.registers.registerMap[params[1]];
+        const value = cpu.params.first;
+        const register = cpu.registers.map[cpu.params.second];
 
         register.value = register.value ^ value;
+    }
+
+    @instruction("V_CMP", 11)
+    public valueCompareInstruction(cpu:CPU) {
+        const value = cpu.params.first;
+        const register = cpu.registers.map[cpu.params.second];
+
+        if (value == register.value) {
+            cpu.flags.equal = true;
+            cpu.flags.less = false;
+            cpu.flags.equal = false;
+        } else if (value < register.value) {
+            cpu.flags.equal = false;
+            cpu.flags.less = true;
+            cpu.flags.equal = false;
+        } else if (value > register.value) {
+            cpu.flags.equal = false;
+            cpu.flags.less = false;
+            cpu.flags.equal = true;
+        }
+    }
+
+    @instruction("R_CMP", 12)
+    public registerCompareInstruction(cpu:CPU) {
+        const left = cpu.registers.map[cpu.params.first];
+        const right = cpu.registers.map[cpu.params.second];
+
+        if (left.value == right.value) {
+            cpu.flags.equal = true;
+            cpu.flags.less = false;
+            cpu.flags.equal = false;
+        } else if (left.value < right.value) {
+            cpu.flags.equal = false;
+            cpu.flags.less = true;
+            cpu.flags.equal = false;
+        } else if (left.value > right.value) {
+            cpu.flags.equal = false;
+            cpu.flags.less = false;
+            cpu.flags.equal = true;
+        }
+    }
+
+    @instruction("JMP_EQ", 13)
+    public jumpInstruction(cpu:CPU) {
+
     }
 
     public findInstruction(opcode:number):Instruction {
