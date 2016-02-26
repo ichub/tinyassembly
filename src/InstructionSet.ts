@@ -103,7 +103,7 @@ export class InstructionSet {
     }
 
     @instruction("R_XOR", 9)
-    public registerOrInstruction(cpu:CPU) {
+    public registerXorInstruction(cpu:CPU) {
         const params = cpu.ram.getMemorySlice(cpu.registers.IP.value + 1, 3);
 
         const left = cpu.registers.registerMap[params[0]];
@@ -114,7 +114,7 @@ export class InstructionSet {
     }
 
     @instruction("V_XOR", 10)
-    public valueOrInstruction(cpu:CPU) {
+    public valueXorInstruction(cpu:CPU) {
         const params = cpu.ram.getMemorySlice(cpu.registers.IP.value + 1, 3);
 
         const value = params[0];

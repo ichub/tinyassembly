@@ -1,7 +1,5 @@
-import {Registers} from "./registers";
-import {RAM} from "./ram";
-import {Flags} from "./Flags";
+import {CPU} from "./cpu";
 
 export interface IInstructionOperation {
-    (registers:Registers, flags:Flags, ram:RAM):void;
+    (cpu:CPU):void;
 }
