@@ -4,6 +4,7 @@ import {RAM} from "./ram";
 import {Logger} from "./logger";
 import {Flags} from "./Flags";
 import {Register} from "./register";
+import {instruction} from "./InstructionDecorator";
 
 export class InstructionSet {
     private _instructions:Instruction[];
@@ -84,6 +85,11 @@ export class InstructionSet {
                 }
             )
         ];
+    }
+
+    @instruction("one", "two", 3)
+    public instruction() {
+
     }
 
     public findInstruction(opcode:number):Instruction {
