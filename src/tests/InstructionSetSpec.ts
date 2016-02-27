@@ -18,4 +18,22 @@ describe("instruction set", function () {
             opcodes.push(instruction.opcode);
         });
     });
+
+    it("should not contain duplicate instruction names", function () {
+        const instructionSet = new InstructionSet();
+
+        const names = [];
+        const reported = [];
+
+        instructionSet.instructions.forEach(function (instruction) {
+            if (names.indexOf(instruction.name) >= 0) {
+                if (reported.indexOf(instruction.name) == -1) {
+                    fail(`contained duplicate name: ${instruction.name}`);
+                    reported.push(instruction.name);
+                }
+            }
+
+            names.push(instruction.name);
+        });
+    });
 });
