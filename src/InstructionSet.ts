@@ -138,4 +138,8 @@ export class InstructionSet {
 
         throw "could not find matching instruction";
     }
+
+    public get instructions():Instruction[] {
+        return this._instructions;
+    }
 }
