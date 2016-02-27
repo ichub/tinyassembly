@@ -17,57 +17,57 @@ export class InstructionSet {
     }
 
     @instruction("R_LOAD", 1)
-    public registerLoadInstruction(cpu:CPU) {
+    public loadRegister(cpu:CPU) {
         cpu.params.r_first.value = cpu.params.r_second.value;
     }
 
     @instruction("V_LOAD", 2)
-    public loadValueInstruction(cpu:CPU) {
+    public loadValue(cpu:CPU) {
         cpu.params.r_second.value = cpu.params.first;
     }
 
     @instruction("R_ADD", 3)
-    public registerAddInstruction(cpu:CPU) {
+    public addRegisters(cpu:CPU) {
         cpu.params.r_third.value = cpu.params.r_first.value + cpu.params.r_second.value;
     }
 
     @instruction("V_ADD", 4)
-    public valueAddInstruction(cpu:CPU) {
+    public addValues(cpu:CPU) {
         cpu.params.r_second.incrementBy(cpu.params.first);
     }
 
     @instruction("R_AND", 5)
-    public registerAndInstruction(cpu:CPU) {
+    public bitwiseAndRegisters(cpu:CPU) {
         cpu.params.r_third.value = cpu.params.r_first.value & cpu.params.r_second.value;
     }
 
     @instruction("V_AND", 6)
-    public valueAndInstruction(cpu:CPU) {
+    public bitwiseAndValues(cpu:CPU) {
         cpu.params.r_second.value &= cpu.params.first;
     }
 
     @instruction("R_OR", 7)
-    public registerOrInstruction(cpu:CPU) {
+    public bitwiseOrRegisters(cpu:CPU) {
         cpu.params.r_third.value = cpu.params.r_first.value | cpu.params.r_second.value;
     }
 
     @instruction("V_OR", 8)
-    public valueOrInstruction(cpu:CPU) {
+    public bitwiseOrValues(cpu:CPU) {
         cpu.params.r_second.value |= cpu.params.first;
     }
 
     @instruction("R_XOR", 9)
-    public registerXorInstruction(cpu:CPU) {
+    public bitwoseXorRegisters(cpu:CPU) {
         cpu.params.r_third.value = cpu.params.r_first.value ^ cpu.params.r_second.value;
     }
 
     @instruction("V_XOR", 10)
-    public valueXorInstruction(cpu:CPU) {
+    public bitwiseXorValues(cpu:CPU) {
         cpu.params.r_second.value ^= cpu.params.first;
     }
 
     @instruction("V_CMP", 11)
-    public valueCompareInstruction(cpu:CPU) {
+    public compareValues(cpu:CPU) {
         if (cpu.params.first == cpu.params.r_second.value) {
             cpu.flags.equal = true;
             cpu.flags.less = false;
@@ -84,7 +84,7 @@ export class InstructionSet {
     }
 
     @instruction("R_CMP", 12)
-    public registerCompareInstruction(cpu:CPU) {
+    public compareRegisters(cpu:CPU) {
         if (cpu.params.r_first.value == cpu.params.r_second.value) {
             cpu.flags.equal = true;
             cpu.flags.less = false;
@@ -101,50 +101,39 @@ export class InstructionSet {
     }
 
     @instruction("JMP_EQ", 13)
-    public equalsJumpInstruction(cpu:CPU) {
-        if (cpu.flags.equal) {
-            cpu.flags.jumped = true;
-            cpu.registers.IP.value = cpu.params.first;
-        }
+    public jumpIfEqual(cpu:CPU) {
+        this.jumpIf(cpu.flags.equal, cpu, cpu.params.first);
     }
 
     @instruction("JMP_NEQ", 14)
-    public notEqualsJumpInstruction(cpu:CPU) {
-        if (!cpu.flags.equal) {
-            cpu.flags.jumped = true;
-            cpu.registers.IP.value = cpu.params.first;
-        }
+    public jumpIfNotEqual(cpu:CPU) {
+        this.jumpIf(!cpu.flags.equal, cpu, cpu.params.first);
     }
 
     @instruction("JMP_L", 15)
-    public lessJumpInstruction(cpu:CPU) {
-        if (cpu.flags.less) {
-            cpu.flags.jumped = true;
-            cpu.registers.IP.value = cpu.params.first;
-        }
+    public jumpIfless(cpu:CPU) {
+        this.jumpIf(cpu.flags.less, cpu, cpu.params.first);
     }
 
     @instruction("JMP_LEQ", 16)
-    public lessEqualsJumpInstruction(cpu:CPU) {
-        if (cpu.flags.less || cpu.flags.equal) {
-            cpu.flags.jumped = true;
-            cpu.registers.IP.value = cpu.params.first;
-        }
+    public jumpIfLessOrEqual(cpu:CPU) {
+        this.jumpIf(cpu.flags.less || cpu.flags.equal, cpu, cpu.params.first);
     }
 
     @instruction("JMP_M", 16)
-    public moreJumpInstruction(cpu:CPU) {
-        if (cpu.flags.more) {
-            cpu.flags.jumped = true;
-            cpu.registers.IP.value = cpu.params.first;
-        }
+    public jumpIfMore(cpu:CPU) {
+        this.jumpIf(cpu.flags.more, cpu, cpu.params.first);
     }
 
     @instruction("JMP_MEQ", 16)
-    public moreEqualsJumpInstruction(cpu:CPU) {
-        if (cpu.flags.more || cpu.flags.equal) {
+    public jumpIfMoreOrEqual(cpu:CPU) {
+        this.jumpIf(cpu.flags.more || cpu.flags.equal, cpu, cpu.params.first);
+    }
+
+    private jumpIf(predicate:boolean, cpu:CPU, to:number) {
+        if (predicate) {
             cpu.flags.jumped = true;
-            cpu.registers.IP.value = cpu.params.first;
+            cpu.registers.IP.value = to;
         }
     }
 
