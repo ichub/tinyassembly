@@ -96,12 +96,12 @@ export class InstructionSet {
         this.jumpIf(cpu.flags.less || cpu.flags.equal, cpu, cpu.params.first);
     }
 
-    @instruction("JMP_M", 16)
+    @instruction("JMP_M", 17)
     public jumpIfMore(cpu:CPU) {
         this.jumpIf(cpu.flags.more, cpu, cpu.params.first);
     }
 
-    @instruction("JMP_MEQ", 16)
+    @instruction("JMP_MEQ", 18)
     public jumpIfMoreOrEqual(cpu:CPU) {
         this.jumpIf(cpu.flags.more || cpu.flags.equal, cpu, cpu.params.first);
     }
