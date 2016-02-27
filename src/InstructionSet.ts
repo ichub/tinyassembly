@@ -106,6 +106,36 @@ export class InstructionSet {
         this.jumpIf(cpu.flags.more || cpu.flags.equal, cpu, cpu.params.first);
     }
 
+    @instruction("R_JMP_EQ", 19)
+    public registerJumpIfEqual(cpu:CPU) {
+        this.jumpIf(cpu.flags.equal, cpu, cpu.params.r_first.value);
+    }
+
+    @instruction("R_JMP_NEQ", 20)
+    public registerJumpIfNotEqual(cpu:CPU) {
+        this.jumpIf(!cpu.flags.equal, cpu, cpu.params.r_first.value);
+    }
+
+    @instruction("R_JMP_L", 21)
+    public registerJumpIfless(cpu:CPU) {
+        this.jumpIf(cpu.flags.less, cpu, cpu.params.r_first.value);
+    }
+
+    @instruction("R_JMP_LEQ", 22)
+    public registerJumpIfLessOrEqual(cpu:CPU) {
+        this.jumpIf(cpu.flags.less || cpu.flags.equal, cpu, cpu.params.r_first.value);
+    }
+
+    @instruction("R_JMP_M", 23)
+    public registerJumpIfMore(cpu:CPU) {
+        this.jumpIf(cpu.flags.more, cpu, cpu.params.r_first.value);
+    }
+
+    @instruction("R_JMP_MEQ", 24)
+    public registerJumpIfMoreOrEqual(cpu:CPU) {
+        this.jumpIf(cpu.flags.more || cpu.flags.equal, cpu, cpu.params.r_first.value);
+    }
+
     private jumpIf(predicate:boolean, cpu:CPU, to:number) {
         if (predicate) {
             cpu.flags.jumped = true;
