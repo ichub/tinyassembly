@@ -64,23 +64,19 @@ export class InstructionSet {
     @instruction("V_XOR", 10)
     public valueXorInstruction(cpu:CPU) {
         cpu.params.r_second.value ^= cpu.params.first;
-
     }
 
     @instruction("V_CMP", 11)
     public valueCompareInstruction(cpu:CPU) {
-        const value = cpu.params.first;
-        const register = cpu.registers.map[cpu.params.second];
-
-        if (value == register.value) {
+        if (cpu.params.first == cpu.params.r_second.value) {
             cpu.flags.equal = true;
             cpu.flags.less = false;
             cpu.flags.equal = false;
-        } else if (value < register.value) {
+        } else if (cpu.params.first < cpu.params.r_second.value) {
             cpu.flags.equal = false;
             cpu.flags.less = true;
             cpu.flags.equal = false;
-        } else if (value > register.value) {
+        } else if (cpu.params.first > cpu.params.r_second.value) {
             cpu.flags.equal = false;
             cpu.flags.less = false;
             cpu.flags.equal = true;
@@ -89,18 +85,15 @@ export class InstructionSet {
 
     @instruction("R_CMP", 12)
     public registerCompareInstruction(cpu:CPU) {
-        const left = cpu.registers.map[cpu.params.first];
-        const right = cpu.registers.map[cpu.params.second];
-
-        if (left.value == right.value) {
+        if (cpu.params.r_first.value == cpu.params.r_second.value) {
             cpu.flags.equal = true;
             cpu.flags.less = false;
             cpu.flags.equal = false;
-        } else if (left.value < right.value) {
+        } else if (cpu.params.r_first.value < cpu.params.r_second.value) {
             cpu.flags.equal = false;
             cpu.flags.less = true;
             cpu.flags.equal = false;
-        } else if (left.value > right.value) {
+        } else if (cpu.params.r_first.value > cpu.params.r_second.value) {
             cpu.flags.equal = false;
             cpu.flags.less = false;
             cpu.flags.equal = true;
