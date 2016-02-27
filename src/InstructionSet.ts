@@ -18,86 +18,53 @@ export class InstructionSet {
 
     @instruction("R_LOAD", 1)
     public registerLoadInstruction(cpu:CPU) {
-        const firstRegister = cpu.registers.map[cpu.params.first];
-        const secondRegister = cpu.registers.map[cpu.params.second];
-
-        secondRegister.value = firstRegister.value;
+        cpu.params.r_first.value = cpu.params.r_second.value;
     }
 
     @instruction("V_LOAD", 2)
     public loadValueInstruction(cpu:CPU) {
-        const value = cpu.params.first;
-        const register = cpu.registers.map[cpu.params.second];
-
-        register.value = value;
+        cpu.params.r_second.value = cpu.params.first;
     }
 
     @instruction("R_ADD", 3)
     public registerAddInstruction(cpu:CPU) {
-        const left = cpu.registers.map[cpu.params.first];
-        const right = cpu.registers.map[cpu.params.second];
-        const result = cpu.registers.map[cpu.params.third];
-
-        result.value = left.value + right.value;
+        cpu.params.r_third.value = cpu.params.r_first.value + cpu.params.r_second.value;
     }
 
     @instruction("V_ADD", 4)
     public valueAddInstruction(cpu:CPU) {
-        const value = cpu.params.first;
-        const register = cpu.registers.map[cpu.params.second];
-
-        register.incrementBy(value);
+        cpu.params.r_second.incrementBy(cpu.params.first);
     }
 
     @instruction("R_AND", 5)
     public registerAndInstruction(cpu:CPU) {
-        const left = cpu.registers.map[cpu.params.first];
-        const right = cpu.registers.map[cpu.params.second];
-        const result = cpu.registers.map[cpu.params.third];
-
-        result.value = left.value & right.value;
+        cpu.params.r_third.value = cpu.params.r_first.value & cpu.params.r_second.value;
     }
 
     @instruction("V_AND", 6)
     public valueAndInstruction(cpu:CPU) {
-        const value = cpu.params.first;
-        const register = cpu.registers.map[cpu.params.second];
-
-        register.value = register.value & value;
+        cpu.params.r_second.value &= cpu.params.first;
     }
 
     @instruction("R_OR", 7)
     public registerOrInstruction(cpu:CPU) {
-        const left = cpu.registers.map[cpu.params.first];
-        const right = cpu.registers.map[cpu.params.second];
-        const result = cpu.registers.map[cpu.params.third];
-
-        result.value = left.value | right.value;
+        cpu.params.r_third.value = cpu.params.r_first.value | cpu.params.r_second.value;
     }
 
     @instruction("V_OR", 8)
     public valueOrInstruction(cpu:CPU) {
-        const value = cpu.params.first;
-        const register = cpu.registers.map[cpu.params.second];
-
-        register.value = register.value | value;
+        cpu.params.r_second.value |= cpu.params.first;
     }
 
     @instruction("R_XOR", 9)
     public registerXorInstruction(cpu:CPU) {
-        const left = cpu.registers.map[cpu.params.first];
-        const right = cpu.registers.map[cpu.params.second];
-        const result = cpu.registers.map[cpu.params.third];
-
-        result.value = left.value ^ right.value;
+        cpu.params.r_third.value = cpu.params.r_first.value ^ cpu.params.r_second.value;
     }
 
     @instruction("V_XOR", 10)
     public valueXorInstruction(cpu:CPU) {
-        const value = cpu.params.first;
-        const register = cpu.registers.map[cpu.params.second];
+        cpu.params.r_second.value ^= cpu.params.first;
 
-        register.value = register.value ^ value;
     }
 
     @instruction("V_CMP", 11)
