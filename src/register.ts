@@ -45,6 +45,15 @@ export class Register {
     }
 
     public set value(value:number) {
+        if (typeof value != "number") {
+            throw `attempted to set value of register to ${value}, which
+            is not allowed because it is of type ${typeof value}, and not "number"`;
+        }
+
+        if (isNaN(value)) {
+            throw `register cannot be NaN`;
+        }
+
         this._value = clamp(value, Register.maxValue);
     }
 
