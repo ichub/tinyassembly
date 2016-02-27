@@ -38,7 +38,7 @@ let htmlGlob = './index.html';
 gulp.task("default", ["serve"]);
 
 gulp.task("browserfiy", ["ts"], function () {
-    gulp.src("./dist/*.js")
+    gulp.src(["./dist/*.js", "!./dist/tests/*"])
         .pipe(browserify({
             insertGlobals: false
         }))

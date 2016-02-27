@@ -16,11 +16,10 @@ export class Params {
 
     get second():number {
         return this._raw[1];
-
     }
 
     get third():number {
-        return this._raw[0];
+        return this._raw[2];
     }
 
     get r_first():Register {
