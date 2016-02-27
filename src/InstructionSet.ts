@@ -101,8 +101,51 @@ export class InstructionSet {
     }
 
     @instruction("JMP_EQ", 13)
-    public jumpInstruction(cpu:CPU) {
+    public equalsJumpInstruction(cpu:CPU) {
+        if (cpu.flags.equal) {
+            cpu.flags.jumped = true;
+            cpu.registers.IP.value = cpu.params.first;
+        }
+    }
 
+    @instruction("JMP_NEQ", 14)
+    public notEqualsJumpInstruction(cpu:CPU) {
+        if (!cpu.flags.equal) {
+            cpu.flags.jumped = true;
+            cpu.registers.IP.value = cpu.params.first;
+        }
+    }
+
+    @instruction("JMP_L", 15)
+    public lessJumpInstruction(cpu:CPU) {
+        if (cpu.flags.less) {
+            cpu.flags.jumped = true;
+            cpu.registers.IP.value = cpu.params.first;
+        }
+    }
+
+    @instruction("JMP_LEQ", 16)
+    public lessEqualsJumpInstruction(cpu:CPU) {
+        if (cpu.flags.less || cpu.flags.equal) {
+            cpu.flags.jumped = true;
+            cpu.registers.IP.value = cpu.params.first;
+        }
+    }
+
+    @instruction("JMP_M", 16)
+    public moreJumpInstruction(cpu:CPU) {
+        if (cpu.flags.more) {
+            cpu.flags.jumped = true;
+            cpu.registers.IP.value = cpu.params.first;
+        }
+    }
+
+    @instruction("JMP_MEQ", 16)
+    public moreEqualsJumpInstruction(cpu:CPU) {
+        if (cpu.flags.more || cpu.flags.equal) {
+            cpu.flags.jumped = true;
+            cpu.registers.IP.value = cpu.params.first;
+        }
     }
 
     public findInstruction(opcode:number):Instruction {
