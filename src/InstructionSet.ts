@@ -68,36 +68,12 @@ export class InstructionSet {
 
     @instruction("V_CMP", 11)
     public compareValues(cpu:CPU) {
-        if (cpu.params.first == cpu.params.r_second.value) {
-            cpu.flags.equal = true;
-            cpu.flags.less = false;
-            cpu.flags.equal = false;
-        } else if (cpu.params.first < cpu.params.r_second.value) {
-            cpu.flags.equal = false;
-            cpu.flags.less = true;
-            cpu.flags.equal = false;
-        } else if (cpu.params.first > cpu.params.r_second.value) {
-            cpu.flags.equal = false;
-            cpu.flags.less = false;
-            cpu.flags.equal = true;
-        }
+        this.compare(cpu.params.first, cpu.params.r_second.value, cpu);
     }
 
     @instruction("R_CMP", 12)
     public compareRegisters(cpu:CPU) {
-        if (cpu.params.r_first.value == cpu.params.r_second.value) {
-            cpu.flags.equal = true;
-            cpu.flags.less = false;
-            cpu.flags.equal = false;
-        } else if (cpu.params.r_first.value < cpu.params.r_second.value) {
-            cpu.flags.equal = false;
-            cpu.flags.less = true;
-            cpu.flags.equal = false;
-        } else if (cpu.params.r_first.value > cpu.params.r_second.value) {
-            cpu.flags.equal = false;
-            cpu.flags.less = false;
-            cpu.flags.equal = true;
-        }
+        this.compare(cpu.params.r_first.value, cpu.params.r_second.value, cpu);
     }
 
     @instruction("JMP_EQ", 13)
@@ -134,6 +110,22 @@ export class InstructionSet {
         if (predicate) {
             cpu.flags.jumped = true;
             cpu.registers.IP.value = to;
+        }
+    }
+
+    private compare(left:number, right:number, cpu:CPU) {
+        if (left == right) {
+            cpu.flags.equal = true;
+            cpu.flags.less = false;
+            cpu.flags.equal = false;
+        } else if (left < right) {
+            cpu.flags.equal = false;
+            cpu.flags.less = true;
+            cpu.flags.equal = false;
+        } else if (left > right) {
+            cpu.flags.equal = false;
+            cpu.flags.less = false;
+            cpu.flags.equal = true;
         }
     }
 
