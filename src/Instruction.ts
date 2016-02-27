@@ -1,4 +1,3 @@
-import {IInstructionOperation} from "./IInstructionOperation";
 import {ParamType} from "./ParamType";
 import {CPU} from "./CPU";
 import {Register} from "./Register";
@@ -6,10 +5,10 @@ import {Register} from "./Register";
 export class Instruction {
     private _name:string;
     private _opcode:number;
-    private _operation:IInstructionOperation;
+    private _operation:Function;
     private _paramList:ParamType[];
 
-    constructor(name:string, opcode:number, operation:IInstructionOperation, paramList:ParamType[]) {
+    constructor(name:string, opcode:number, operation:Function, paramList:ParamType[]) {
         this._name = name;
         this._opcode = opcode;
         this._operation = operation;
@@ -43,7 +42,7 @@ export class Instruction {
         return this._opcode;
     }
 
-    public get operation():IInstructionOperation {
+    public get operation():Function {
         return (cpu:CPU) => {
             if (!this.verifyParams(cpu)) {
                 throw "params were not correct";
