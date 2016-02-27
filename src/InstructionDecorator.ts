@@ -13,7 +13,7 @@ function wrapInstructionWithParams(target:InstructionSet, params:ParamType[], in
                     args.push(cpu.params.raw[i]);
                     break;
                 case ParamType.Register:
-                    args.push(cpu.registers[cpu.params.raw[i]]);
+                    args.push(cpu.registers.map[cpu.params.raw[i]]);
                     break;
                 case ParamType.None:
                 default:

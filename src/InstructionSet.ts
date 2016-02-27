@@ -18,13 +18,13 @@ export class InstructionSet {
     }
 
     @instruction("R_LOAD", 1, ParamType.Register, ParamType.Register)
-    public loadRegister(cpu:CPU) {
-        cpu.params.r_first.value = cpu.params.r_second.value;
+    public loadRegister(cpu:CPU, destination:Register, source:Register) {
+        destination.value = source.value;
     }
 
     @instruction("V_LOAD", 2, ParamType.Value, ParamType.Register)
-    public loadValue(cpu:CPU) {
-        cpu.params.r_second.value = cpu.params.first;
+    public loadValue(cpu:CPU, value:number, destination:Register) {
+        destination.value = value;
     }
 
     @instruction("R_ADD", 3, ParamType.Register, ParamType.Register, ParamType.Register)
