@@ -64,6 +64,6 @@ export class CPU {
     }
 
     public get params():Params {
-        return new Params(this._ram.getMemorySlice(this._registers.IP.value + 1, 3));
+        return new Params(this);
     }
 }
