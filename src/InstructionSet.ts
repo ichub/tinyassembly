@@ -148,15 +148,15 @@ export class InstructionSet {
         if (left == right) {
             cpu.flags.equal = true;
             cpu.flags.less = false;
-            cpu.flags.equal = false;
+            cpu.flags.more = false;
         } else if (left < right) {
             cpu.flags.equal = false;
             cpu.flags.less = true;
-            cpu.flags.equal = false;
+            cpu.flags.more = false;
         } else if (left > right) {
             cpu.flags.equal = false;
             cpu.flags.less = false;
-            cpu.flags.equal = true;
+            cpu.flags.more = true;
         }
     }
 
