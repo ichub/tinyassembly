@@ -1,7 +1,7 @@
 import {Register} from "./register";
 
 export class Registers {
-    private static _registers:string[] = Object.freeze(["A", "B", "C", "D", "E", "F", "G"]);
+    private static _registers:string[] = Object.freeze(["A", "B", "C", "D", "E", "F", "G", "IP"]);
 
     private _A:Register = new Register("A");
     private _B:Register = new Register("B");
@@ -21,7 +21,8 @@ export class Registers {
             this._D,
             this._E,
             this._F,
-            this._G
+            this._G,
+            this._IP
         ]);
     }
 
