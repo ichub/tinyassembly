@@ -1,6 +1,8 @@
 import {Register} from "./register";
 
 export class Registers {
+    private static _registers:string[] = Object.freeze(["A", "B", "C", "D", "E", "F", "G"]);
+
     private _A:Register = new Register("A");
     private _B:Register = new Register("B");
     private _C:Register = new Register("C");
@@ -9,7 +11,7 @@ export class Registers {
     private _F:Register = new Register("F");
     private _G:Register = new Register("G");
     private _IP:Register = new Register("IP");
-    private _map:{[index:number]:Register};
+    private _map:Register[];
 
     constructor() {
         this._map = Object.freeze([
@@ -57,5 +59,19 @@ export class Registers {
 
     get map():{} {
         return this._map;
+    }
+
+    public findByName(registerName:string) {
+        for (let i = 0; i < this._map.length; i++) {
+            if (this._map[i].name == registerName) {
+                return this._map[i];
+            }
+        }
+
+        throw "could not find register with that name";
+    }
+
+    public static get registers() {
+        return Registers._registers;
     }
 }

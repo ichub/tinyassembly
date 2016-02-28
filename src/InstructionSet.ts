@@ -10,6 +10,7 @@ import {CPU} from "./cpu";
 import {ParamType} from "./ParamType";
 
 export class InstructionSet {
+    private _instructionLength:number = 4;
     private _instructions:Instruction[];
 
     @instruction("HALT", 0)
@@ -160,7 +161,7 @@ export class InstructionSet {
         }
     }
 
-    public findInstruction(opcode:number):Instruction {
+    public findInstructionByOpcode(opcode:number):Instruction {
         for (let i = 0; i < this._instructions.length; i++) {
             if (this._instructions[i].opcode == opcode) {
                 return this._instructions[i];
@@ -170,7 +171,36 @@ export class InstructionSet {
         throw "could not find matching instruction";
     }
 
+    public findInstructionByNameAndParams(name:string, paramsTypes:ParamType[]):Instruction {
+        for (let i = 0; i < this._instructions.length; i++) {
+            const inst = this._instructions[i];
+
+            if (inst.name == name) {
+                let matching = true;
+
+                for (let j = 0; j < paramsTypes.length; j++) {
+                    const type = paramsTypes[j];
+
+                    if (inst.paramList[j] != type) {
+                        matching = false;
+                        break;
+                    }
+                }
+
+                if (matching) {
+                    return inst;
+                }
+            }
+        }
+
+        throw "could not find matching instruction";
+    }
+
     public get instructions():Instruction[] {
         return this._instructions;
+    }
+
+    public get instructionLength():number {
+        return this._instructionLength;
     }
 }

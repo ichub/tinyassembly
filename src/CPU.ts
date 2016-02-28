@@ -46,7 +46,7 @@ export class CPU {
     private executeInstruction(opcode:number) {
         Logger.log(`executing instruction ${opcode}`);
 
-        const instruction = this._instructionSet.findInstruction(opcode);
+        const instruction = this._instructionSet.findInstructionByOpcode(opcode);
 
         instruction.operation(this);
     }
