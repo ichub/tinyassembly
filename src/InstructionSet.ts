@@ -172,10 +172,12 @@ export class InstructionSet {
     }
 
     public findInstructionByNameAndParams(name:string, paramsTypes:ParamType[]):Instruction {
+        name = name.toLowerCase();
+
         for (let i = 0; i < this._instructions.length; i++) {
             const inst = this._instructions[i];
 
-            if (inst.name == name) {
+            if (inst.name.toLowerCase() == name) {
                 let matching = true;
 
                 for (let j = 0; j < paramsTypes.length; j++) {

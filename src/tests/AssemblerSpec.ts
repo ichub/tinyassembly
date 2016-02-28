@@ -19,6 +19,17 @@ describe("assembler", function () {
         }));
     });
 
+    it("should be case insensitive", function() {
+        const expectedResult = [4, 100, 0, 0];
+        const first = "ADD 100 %A";
+        const second = "AdD 100 %A";
+        const third = "AdD 100 %a";
+
+        expect(assembler.assembleSingleInstruction(first)).toEqual(expectedResult);
+        expect(assembler.assembleSingleInstruction(second)).toEqual(expectedResult);
+        expect(assembler.assembleSingleInstruction(third)).toEqual(expectedResult);
+    });
+
     it("should assemble the halt instruction", function () {
         expect(assembler.assembleSingleInstruction("HALT")).toEqual([0, 0, 0, 0]);
     });
