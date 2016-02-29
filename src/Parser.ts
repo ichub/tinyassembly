@@ -17,11 +17,13 @@ export class Parser {
         const lines = program.split(/\n/);
 
         const instructions = lines.map(instruction => this.parseSingleInstruction(instruction));
-        let tokens = [];
+        let tokens = [new Token(TokenType.Begin)];
 
         for (let i = 0; i < instructions.length; i++) {
             tokens = [...tokens, ...instructions[i], new Token(TokenType.InstructionSeparator)]
         }
+
+        tokens.push(new Token(TokenType.End));
 
         return new TokenStream(tokens);
     }
