@@ -17,6 +17,6 @@ describe("parser", function () {
             TokenType.RegisterReference,
             TokenType.InstructionSeparator]);
 
-        expect(values).toEqual(["ADD", "100", "%A", new jasmine.anything()])
+        expect(values).toEqual(["ADD", "100", "%A", jasmine.anything()])
     });
 });
