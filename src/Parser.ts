@@ -26,7 +26,7 @@ export class Parser {
         return new TokenStream(tokens);
     }
 
-    public parseSingleInstruction(line:string):Token[] {
+    private parseSingleInstruction(line:string):Token[] {
         const words = line.split(/\s+/);
 
         const instructionName = words[0];
@@ -38,19 +38,16 @@ export class Parser {
         return [new Token(TokenType.InstructionName, instructionName), ...tokens];
     }
 
-    public paramStringToToken(paramString:string):Token {
+    private paramStringToToken(paramString:string):Token {
         const registerPattern = /%[a-zA-Z]/;
         let type;
-        let value;
 
         if (registerPattern.test(paramString)) {
-            value = Registers.registers.indexOf(paramString.substr(1).toUpperCase());
             type = TokenType.RegisterReference;
         } else {
-            value = parseInt(paramString, 10);
             type = TokenType.NumberLiteral;
         }
 
-        return Token(type, value);
+        return Token(type, paramString);
     }
 }
