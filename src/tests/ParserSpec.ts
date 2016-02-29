@@ -38,4 +38,20 @@ describe("parser", function () {
 
         expect(values).toEqual(["ADD", "100", "%A", jasmine.anything(), "LOAD", "%B", "%C", jasmine.anything()]);
     });
+
+    it("should handle unknown patterns", function () {
+        const stream = parser.parse("LOAD &*( % %A -100 0");
+
+        const types = stream.tokens.map(token => token.type);
+        const values = stream.tokens.map(token => token.value);
+
+        expect(types).toEqual([
+            TokenType.InstructionName,
+            TokenType.Unknown,
+            TokenType.Unknown,
+            TokenType.RegisterReference,
+            TokenType.Unknown,
+            TokenType.NumberLiteral,
+            TokenType.InstructionSeparator]);
+    });
 });

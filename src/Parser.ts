@@ -43,8 +43,8 @@ export class Parser {
     }
 
     private paramStringToToken(paramString:string):Token {
-        const registerPattern = /%[a-zA-Z]/;
-        const numberLiteralPattern = /\d+/;
+        const registerPattern = /^%[a-zA-Z]$/;
+        const numberLiteralPattern = /^\d+$/;
 
         let type;
 
