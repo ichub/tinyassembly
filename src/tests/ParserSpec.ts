@@ -75,5 +75,17 @@ describe("parser", function () {
             TokenType.NumberLiteral,
             TokenType.InstructionSeparator,
             TokenType.End]);
+
+        expect(values).toEqual([
+            jasmine.anything(),
+            "LOAD",
+            "&*(",
+            "%",
+            "%A",
+            "-100",
+            "0",
+            jasmine.anything(),
+            jasmine.anything()
+        ])
     });
 });
