@@ -4,7 +4,7 @@ export class Token {
     private _type:TokenType;
     private _value:string;
 
-    constructor(type:TokenType, value:string) {
+    constructor(type:TokenType, value:string = "") {
         this._type = type;
         this._value = value;
     }

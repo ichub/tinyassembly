@@ -20,7 +20,7 @@ export class Parser {
         let tokens = [];
 
         for (let i = 0; i < instructions.length; i++) {
-            tokens = [...tokens, ...instructions[i], new Token(TokenType.InstructionSeparator, "\n")]
+            tokens = [...tokens, ...instructions[i], new Token(TokenType.InstructionSeparator)]
         }
 
         return new TokenStream(tokens);
