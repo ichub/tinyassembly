@@ -27,4 +27,8 @@ export class TokenStream {
 
         return result;
     }
+
+    get tokens():Token[] {
+        return this._tokens;
+    }
 }

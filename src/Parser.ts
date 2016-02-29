@@ -16,11 +16,11 @@ export class Parser {
     public parse(program:string):TokenStream {
         const lines = program.split(/\n/);
 
-        const instructions = lines.map(this.parseSingleInstruction);
+        const instructions = lines.map(instruction => this.parseSingleInstruction(instruction));
         let tokens = [];
 
         for (let i = 0; i < instructions.length; i++) {
-            tokens = [...tokens, ...instructions, new Token(TokenType.InstructionSeparator, "\n")]
+            tokens = [...tokens, ...instructions[i], new Token(TokenType.InstructionSeparator, "\n")]
         }
 
         return new TokenStream(tokens);
@@ -33,7 +33,7 @@ export class Parser {
 
         words.shift();
 
-        const tokens = words.map(this.paramStringToToken);
+        const tokens = words.map(token => this.paramStringToToken(token));
 
         return [new Token(TokenType.InstructionName, instructionName), ...tokens];
     }
@@ -48,6 +48,6 @@ export class Parser {
             type = TokenType.NumberLiteral;
         }
 
-        return Token(type, paramString);
+        return new Token(type, paramString);
     }
 }
