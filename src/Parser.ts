@@ -29,7 +29,7 @@ export class Parser {
     }
 
     private parseSingleInstruction(line:string):Token[] {
-        const words = line.split(/\s+/);
+        const words = line.split(/\s+/).filter(str => str.length > 0);
 
         if (words.length > 0) {
             const instructionName = words[0];
