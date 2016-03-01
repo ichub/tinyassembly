@@ -2,6 +2,7 @@ import {Logger} from "./logger";
 import {Computer} from "./computer";
 import {InterfaceHolder} from "./InterfaceHolder";
 import {bind} from "./BindDecorator";
+import {eventlistener} from "./EventListenerDecorator";
 
 export class Interface extends InterfaceHolder {
     private _computer:Computer;
@@ -39,6 +40,7 @@ export class Interface extends InterfaceHolder {
         return stringified;
     }
 
+    @eventlistener("#assemble", "click")
     private onAssembleButtonClick(e:Event) {
         try {
             this._assemblerOutput.innerText =
