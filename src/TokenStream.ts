@@ -25,7 +25,7 @@ export class TokenStream {
             }
         }
 
-        return new TokenStream(result);
+        return result.map(bucket => new TokenStream(bucket));
     }
 
     public skipBeginAndEndTokens():TokenStream {
