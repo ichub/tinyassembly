@@ -59,6 +59,37 @@ describe("parser", function () {
             jasmine.anything()]);
     });
 
+    it("should ignore irregular whitespace", function () {
+        const stream = parser.parse("    ADD     100  %A     \n LOAD   %B %C ");
+
+        const types = stream.tokens.map(token => token.type);
+        const values = stream.tokens.map(token => token.value);
+
+        expect(types).toEqual([
+            TokenType.Begin,
+            TokenType.InstructionName,
+            TokenType.NumberLiteral,
+            TokenType.RegisterReference,
+            TokenType.InstructionSeparator,
+            TokenType.InstructionName,
+            TokenType.RegisterReference,
+            TokenType.RegisterReference,
+            TokenType.InstructionSeparator,
+            TokenType.End]);
+
+        expect(values).toEqual([
+            jasmine.anything(),
+            "ADD",
+            "100",
+            "%A",
+            jasmine.anything(),
+            "LOAD",
+            "%B",
+            "%C",
+            jasmine.anything(),
+            jasmine.anything()]);
+    });
+
     it("should handle unknown patterns", function () {
         const stream = parser.parse("LOAD &*( % %A -100 0");
 
