@@ -12,7 +12,7 @@ export class TokenStream {
         this._tokens.push(token);
     }
 
-    public splitBySeparator():Token[][] {
+    public splitBySeparator():TokenStream[] {
         const result = [];
         let bucket = [];
 
@@ -25,7 +25,13 @@ export class TokenStream {
             }
         }
 
-        return result;
+        return new TokenStream(result);
+    }
+
+    public skipBeginAndEndTokens():TokenStream {
+        return new TokenStream(this._tokens.filter(item => {
+            return item.type !== TokenType.Begin && item.type !== TokenType.End;
+        }));
     }
 
     get tokens():Token[] {
