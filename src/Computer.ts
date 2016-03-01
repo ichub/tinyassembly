@@ -17,11 +17,14 @@ export class Computer {
         this._cpu.run();
     }
 
-    public loadProgram(program:string):void {
+    public loadProgram(program:string):number[] {
         const assembledProgram = this._assembler.assembleString(program);
+
         this._cpu.registers.zeroOut();
         this._ram.zeroOut();
         this._ram.setMemory(0, assembledProgram);
+
+        return assembledProgram;
     }
 
     public get cpu():CPU {
