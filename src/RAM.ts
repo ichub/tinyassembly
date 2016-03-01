@@ -30,6 +30,12 @@ export class RAM {
         }
     }
 
+    public zeroOut() {
+        for (let i = 0; i < this._memory.length; i++) {
+            this._memory[0] = 0;
+        }
+    }
+
     public get size() {
         return this._memory.length;
     }

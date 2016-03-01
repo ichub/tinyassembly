@@ -66,4 +66,8 @@ export class CPU {
     public get params():Params {
         return new Params(this);
     }
+
+    get instructionSet():InstructionSet {
+        return this._instructionSet;
+    }
 }

@@ -72,6 +72,12 @@ export class Registers {
         throw "could not find register with that name";
     }
 
+    public zeroOut():void {
+        for (let i = 0; i < this._map.length; i++) {
+            this._map[i].value = 0;
+        }
+    }
+
     public static get registers() {
         return Registers._registers;
     }
