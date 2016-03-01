@@ -18,7 +18,8 @@ export class Interface {
         for (let i = 0; i < program.length; i++) {
             stringified += program[i] + " ";
 
-            if (i % this._computer.cpu.instructionSet.instructionLength === 3) {
+            if (i % this._computer.cpu.instructionSet.instructionLength ===
+                this._computer.cpu.instructionSet.instructionLength - 1) {
                 stringified += "\n";
             }
         }
