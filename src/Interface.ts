@@ -7,16 +7,21 @@ import {eventlistener} from "./EventListenerDecorator";
 export class Interface extends InterfaceHolder {
     private _computer:Computer;
 
-    @bind("textarea[name='program']")
+    private static programTextAreaSelector = "textarea[name='program']";
+    private static assembleButtonSelector = "#assemble";
+    private static assemblerOutputSelector = "#assembler-output";
+    private static assemblerErrorOutputSelector = "#assembler-error-output";
+
+    @bind(Interface.programTextAreaSelector)
     private _programTextArea:HTMLTextAreaElement;
 
-    @bind("#assemble")
+    @bind(Interface.assembleButtonSelector)
     private _assembleButton:HTMLButtonElement;
 
-    @bind("#assembler-output")
+    @bind(Interface.assemblerOutputSelector)
     private _assemblerOutput:HTMLDivElement;
 
-    @bind("#assembler-error-output")
+    @bind(Interface.assemblerErrorOutputSelector)
     private _assemblerErrorOutput:HTMLDivElement;
 
     constructor(computer:Computer) {
@@ -40,7 +45,7 @@ export class Interface extends InterfaceHolder {
         return stringified;
     }
 
-    @eventlistener("#assemble", "click")
+    @eventlistener(Interface.assembleButtonSelector, "click")
     private onAssembleButtonClick(e:Event) {
         try {
             this._assemblerOutput.innerText =
