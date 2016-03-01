@@ -1,14 +1,26 @@
 import {Logger} from "./logger";
 import {Computer} from "./computer";
+import {InterfaceHolder} from "./InterfaceHolder";
+import {bind} from "./BindDecorator";
 
-export class Interface {
+export class Interface extends InterfaceHolder {
     private _computer:Computer;
+
+    @bind("textarea[name='program']")
     private _programTextArea:HTMLTextAreaElement;
+
+    @bind("#assemble")
     private _assembleButton:HTMLButtonElement;
+
+    @bind("#assembler-output")
     private _assemblerOutput:HTMLDivElement;
+
+    @bind("#assembler-error-output")
     private _assemblerErrorOutput:HTMLDivElement;
 
     constructor(computer:Computer) {
+        super();
+
         this._computer = computer;
     }
 
@@ -36,15 +48,6 @@ export class Interface {
         } catch (e) {
             this._assemblerErrorOutput.innerText = e;
         }
-    }
-
-    public bind() {
-        this._programTextArea = <HTMLTextAreaElement> document.querySelector("textarea[name='program']");
-        this._assembleButton = <HTMLButtonElement> document.querySelector("#assemble");
-        this._assemblerOutput = <HTMLDivElement> document.querySelector("#assembler-output");
-        this._assemblerErrorOutput = <HTMLDivElement> document.querySelector("#assembler-error-output");
-
-        this.bindListeners();
     }
 
     private bindListeners() {
