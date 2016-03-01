@@ -51,10 +51,4 @@ export class Interface extends InterfaceHolder {
             this._assemblerErrorOutput.innerText = e;
         }
     }
-
-    private bindListeners() {
-        this._assembleButton.addEventListener("click", (e) => {
-            this.onAssembleButtonClick(e);
-        });
-    }
 }
