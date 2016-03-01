@@ -5,9 +5,15 @@ import {ParamType} from "../ParamType";
 describe("assembler", function () {
     const assembler = new Assembler(new InstructionSet());
 
-    it("should work", function () {
+    it("should work on simple programs", function () {
         const numbers = assembler.assembleString("LOAD 100 %B");
 
         expect(numbers).toEqual([2, 100, 1, 0]);
+    });
+
+    it("should work on multiline programs", function () {
+        const numbers = assembler.assembleString("LOAD 100 %B\nCMP %B %C");
+
+        expect(numbers).toEqual([2, 100, 1, 0, 12, 1, 2, 0]);
     });
 });
