@@ -119,4 +119,14 @@ describe("parser", function () {
             jasmine.anything()
         ])
     });
+
+    it("should parse empty programs", function () {
+        const stream = parser.parse("");
+
+        const types = stream.tokens.map(token => token.type);
+        const values = stream.tokens.map(token => token.value);
+
+        expect(types).toEqual([TokenType.Begin, TokenType.End]);
+        expect(values).toEqual([jasmine.anything(), jasmine.anything()]);
+    });
 });

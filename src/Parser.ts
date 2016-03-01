@@ -11,7 +11,7 @@ export class Parser {
     }
 
     public parse(program:string):TokenStream {
-        const lines = program.split(/\n/);
+        const lines = program.split(/\n/).filter(str => str.length > 0);
 
         const instructions = lines.map(instruction => this.parseSingleInstruction(instruction));
         let tokens = [new Token(TokenType.Begin)];
