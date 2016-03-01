@@ -71,7 +71,7 @@ export class Assembler {
                     value = this.registerLiteralToValue(tokens[i].value);
                     break;
                 default:
-                    throw `unexpected token at this time - value: "${tokens[i].value}" with type ${TokenType[tokens[i].value]}`;
+                    throw `unexpected token at this time - value: "${tokens[i].value}" with type "${TokenType[tokens[i].type]}"`;
             }
 
             const parameterType = this.tokenTypeToParameterType(tokens[i].type);
