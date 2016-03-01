@@ -3,6 +3,7 @@ import {Computer} from "./computer";
 import {InterfaceHolder} from "./InterfaceHolder";
 import {bind} from "./BindDecorator";
 import {eventlistener} from "./EventListenerDecorator";
+import {EventName} from "./EventName";
 
 export class Interface extends InterfaceHolder {
     private _computer:Computer;
@@ -45,7 +46,7 @@ export class Interface extends InterfaceHolder {
         return stringified;
     }
 
-    @eventlistener(Interface.assembleButtonSelector, "click")
+    @eventlistener(Interface.assembleButtonSelector, EventName.click)
     private onAssembleButtonClick(e:Event) {
         try {
             this._assemblerOutput.innerText =
