@@ -1,11 +1,6 @@
 import {Instruction} from "./instruction";
-import {Registers} from "./registers";
-import {RAM} from "./ram";
-import {Logger} from "./logger";
-import {Flags} from "./Flags";
 import {Register} from "./register";
 import {instruction} from "./InstructionDecorator";
-import {Computer} from "./computer";
 import {CPU} from "./cpu";
 import {ParamType} from "./ParamType";
 
@@ -15,7 +10,7 @@ export class InstructionSet {
 
     @instruction("HALT", 0)
     public haltInstruction(cpu:CPU) {
-        cpu.flags.halt = true
+        cpu.flags.halt = true;
     }
 
     @instruction("LOAD", 1, ParamType.Register, ParamType.Register)
@@ -138,32 +133,9 @@ export class InstructionSet {
         this.jumpIf(cpu.flags.more || cpu.flags.equal, cpu, cpu.params.r_first.value);
     }
 
-    private jumpIf(predicate:boolean, cpu:CPU, to:number) {
-        if (predicate) {
-            cpu.flags.jumped = true;
-            cpu.registers.IP.value = to;
-        }
-    }
-
-    private compare(left:number, right:number, cpu:CPU) {
-        if (left == right) {
-            cpu.flags.equal = true;
-            cpu.flags.less = false;
-            cpu.flags.more = false;
-        } else if (left < right) {
-            cpu.flags.equal = false;
-            cpu.flags.less = true;
-            cpu.flags.more = false;
-        } else if (left > right) {
-            cpu.flags.equal = false;
-            cpu.flags.less = false;
-            cpu.flags.more = true;
-        }
-    }
-
     public findInstructionByOpcode(opcode:number):Instruction {
         for (let i = 0; i < this._instructions.length; i++) {
-            if (this._instructions[i].opcode == opcode) {
+            if (this._instructions[i].opcode === opcode) {
                 return this._instructions[i];
             }
         }
@@ -177,13 +149,13 @@ export class InstructionSet {
         for (let i = 0; i < this._instructions.length; i++) {
             const inst = this._instructions[i];
 
-            if (inst.name.toLowerCase() == name) {
+            if (inst.name.toLowerCase() === name) {
                 let matching = true;
 
                 for (let j = 0; j < paramsTypes.length; j++) {
                     const type = paramsTypes[j];
 
-                    if (inst.paramList[j] != type) {
+                    if (inst.paramList[j] !== type) {
                         matching = false;
                         break;
                     }
@@ -204,5 +176,28 @@ export class InstructionSet {
 
     public get instructionLength():number {
         return this._instructionLength;
+    }
+
+    private jumpIf(predicate:boolean, cpu:CPU, to:number) {
+        if (predicate) {
+            cpu.flags.jumped = true;
+            cpu.registers.IP.value = to;
+        }
+    }
+
+    private compare(left:number, right:number, cpu:CPU) {
+        if (left === right) {
+            cpu.flags.equal = true;
+            cpu.flags.less = false;
+            cpu.flags.more = false;
+        } else if (left < right) {
+            cpu.flags.equal = false;
+            cpu.flags.less = true;
+            cpu.flags.more = false;
+        } else if (left > right) {
+            cpu.flags.equal = false;
+            cpu.flags.less = false;
+            cpu.flags.more = true;
+        }
     }
 }

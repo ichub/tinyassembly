@@ -72,7 +72,6 @@ export class Assembler {
                     break;
                 default:
                     throw `unexpected token at this time - value: "${tokens[i].value}" with type ${TokenType[tokens[i].value]}`;
-                    break;
             }
 
             const parameterType = this.tokenTypeToParameterType(tokens[i].type);

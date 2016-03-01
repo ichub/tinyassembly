@@ -14,14 +14,14 @@ export class TokenStream {
 
     public splitBySeparator():TokenStream[] {
         const result = [];
-        let bucket = [];
+        let currentBucket = [];
 
         for (let i = 0; i < this._tokens.length; i++) {
             if (this._tokens[i].type === TokenType.InstructionSeparator) {
-                result.push(bucket);
-                bucket = [];
+                result.push(currentBucket);
+                currentBucket = [];
             } else {
-                bucket.push(this._tokens[i]);
+                currentBucket.push(this._tokens[i]);
             }
         }
 

@@ -45,7 +45,7 @@ export class Register {
     }
 
     public set value(value:number) {
-        if (typeof value != "number") {
+        if (typeof value !== "number") {
             throw `attempted to set value of register to ${value}, which
             is not allowed because it is of type ${typeof value}, and not "number"`;
         }

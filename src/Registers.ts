@@ -22,7 +22,7 @@ export class Registers {
             this._E,
             this._F,
             this._G,
-            this._IP
+            this._IP,
         ]);
     }
 
@@ -64,7 +64,7 @@ export class Registers {
 
     public findByName(registerName:string) {
         for (let i = 0; i < this._map.length; i++) {
-            if (this._map[i].name == registerName) {
+            if (this._map[i].name === registerName) {
                 return this._map[i];
             }
         }

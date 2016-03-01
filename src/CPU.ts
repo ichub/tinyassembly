@@ -2,7 +2,6 @@ import {Registers} from "./registers";
 import {RAM} from "./ram";
 import {Logger} from "./logger";
 import {InstructionSet} from "./InstructionSet";
-import {Instruction} from "./instruction";
 import {Flags} from "./Flags";
 import {Params} from "./Params";
 

@@ -1,8 +1,5 @@
 import {InstructionSet} from "./InstructionSet";
 import {TokenStream} from "./TokenStream";
-import {Param} from "./Param";
-import {Registers} from "./Registers";
-import {ParamType} from "./ParamType";
 import {Token} from "./Token";
 import {TokenType} from "./TokenType";
 
@@ -20,7 +17,7 @@ export class Parser {
         let tokens = [new Token(TokenType.Begin)];
 
         for (let i = 0; i < instructions.length; i++) {
-            tokens = [...tokens, ...instructions[i], new Token(TokenType.InstructionSeparator)]
+            tokens = [...tokens, ...instructions[i], new Token(TokenType.InstructionSeparator)];
         }
 
         tokens.push(new Token(TokenType.End));

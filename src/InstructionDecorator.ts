@@ -16,6 +16,7 @@ function wrapInstructionWithParams(target:InstructionSet, params:ParamType[], in
                     args.push(cpu.registers.map[cpu.params.raw[i]]);
                     break;
                 case ParamType.None:
+                    break;
                 default:
                     break;
             }
@@ -24,7 +25,7 @@ function wrapInstructionWithParams(target:InstructionSet, params:ParamType[], in
         args = [cpu, ...args];
 
         instruction.apply(target, args);
-    }
+    };
 }
 
 export function instruction(name:string, opcode:number, ...params:ParamType[]) {
@@ -42,5 +43,5 @@ export function instruction(name:string, opcode:number, ...params:ParamType[]) {
                 params));
 
         return descriptor;
-    }
+    };
 }
