@@ -46,7 +46,7 @@ export class Assembler {
     }
 
     private registerLiteralToValue(literal:string):number {
-        return Registers.registers.indexOf(literal.substr(1));
+        return Registers.findRegisterNumberByName(literal.substr(1));
     }
 
     private assembleSingleInstruction(tokenStream:TokenStream):number[] {
@@ -88,7 +88,6 @@ export class Assembler {
         }
 
         const instruction = this._instructionSet.findInstructionByNameAndParams(nameToken.value, paramTypes);
-
 
         return [instruction.opcode, ...paramValues];
     }

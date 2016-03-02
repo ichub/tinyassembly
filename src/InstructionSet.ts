@@ -3,6 +3,7 @@ import {Register} from "./register";
 import {instruction} from "./InstructionDecorator";
 import {CPU} from "./cpu";
 import {ParamType} from "./ParamType";
+import {ignoreCaseEquals} from "./Strings";
 
 export class InstructionSet {
     private _instructionLength:number = 4;
@@ -144,12 +145,10 @@ export class InstructionSet {
     }
 
     public findInstructionByNameAndParams(name:string, paramsTypes:ParamType[]):Instruction {
-        name = name.toLowerCase();
-
         for (let i = 0; i < this._instructions.length; i++) {
             const inst = this._instructions[i];
 
-            if (inst.name.toLowerCase() === name) {
+            if (ignoreCaseEquals(inst.name, name)) {
                 let matching = true;
 
                 for (let j = 0; j < paramsTypes.length; j++) {

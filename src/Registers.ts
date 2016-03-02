@@ -1,4 +1,5 @@
 import {Register} from "./register";
+import {ignoreCaseEquals} from "./Strings";
 
 export class Registers {
     private static _registers:string[] = Object.freeze(["A", "B", "C", "D", "E", "F", "G", "IP"]);
@@ -62,9 +63,19 @@ export class Registers {
         return this._map;
     }
 
+    public static findRegisterNumberByName(name:string):number {
+        for (let i = 0; i < Registers._registers.length; i++) {
+            if (ignoreCaseEquals(Registers._registers[i], name)) {
+                return i
+            }
+        }
+
+        throw "could not find register with that name";
+    }
+
     public findByName(registerName:string) {
         for (let i = 0; i < this._map.length; i++) {
-            if (this._map[i].name === registerName) {
+            if (ignoreCaseEquals(this._map[i].name, registerName)) {
                 return this._map[i];
             }
         }
