@@ -1,10 +1,9 @@
 import {InterfaceHolder} from "./InterfaceHolder";
-import {EventName} from "./EventName";
 import {Binder} from "./Binder";
 
-export function eventlistener(selector:string, event:string | EventName) {
-    return function (target:InterfaceHolder, key:string, descriptor:PropertyDescriptor):PropertyDescriptor {
-        target._binders = target._binders || [];
+export function eventlistener(selector:string, event:string):any {
+    return function (target:InterfaceHolder, key:string):PropertyDescriptor {
+        target.binders = target.binders || [];
 
         const bindfn = (holder:InterfaceHolder) => {
             const listener = (e:Event) => {
@@ -20,8 +19,8 @@ export function eventlistener(selector:string, event:string | EventName) {
 
         const newBinder = new Binder(bindfn);
 
-        target._binders.push(newBinder);
+        target.binders.push(newBinder);
 
-        return descriptor;
+        return {};
     };
 }

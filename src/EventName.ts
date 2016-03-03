@@ -1,3 +1,3 @@
-export enum EventName {
-    click = "click"
+export module EventName {
+    export const click = "click";
 }

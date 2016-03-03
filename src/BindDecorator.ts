@@ -1,9 +1,9 @@
 import {InterfaceHolder} from "./InterfaceHolder";
 import {Binder} from "./Binder";
 
-export function bind(selector:string) {
-    return function (target:InterfaceHolder, key:string, descriptor:PropertyDescriptor):PropertyDescriptor {
-        target._binders = target._binders || [];
+export function bind(selector:string):any {
+    return function (target:InterfaceHolder, key:string):PropertyDescriptor {
+        target.binders = target.binders || [];
 
         const bindfn = (holder:InterfaceHolder) => {
             target[key] = document.querySelector(selector);
@@ -11,8 +11,8 @@ export function bind(selector:string) {
             return null;
         };
 
-        target._binders.push(new Binder(bindfn));
+        target.binders.push(new Binder(bindfn));
 
-        return descriptor;
+        return {};
     };
 }
