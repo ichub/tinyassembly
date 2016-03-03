@@ -136,22 +136,20 @@ export class InstructionSet {
 
     @instruction("PUSH", 25, ParamType.Register)
     public pushRegister(cpu:CPU, register:Register) {
-
+        cpu.ram.setCellValue(cpu.registers.SP.value, register.value);
+        cpu.registers.SP.increment();
     }
 
     @instruction("PUSH", 26, ParamType.Value)
     public pushValue(cpu:CPU, value:number) {
-
+        cpu.ram.setCellValue(cpu.registers.SP.value, value);
+        cpu.registers.SP.increment();
     }
 
     @instruction("POP", 27, ParamType.Register)
     public popRegister(cpu:CPU, register:Register) {
-
-    }
-
-    @instruction("POP", 28, ParamType.Value)
-    public popValue(cpu:CPU, value:number) {
-
+        cpu.registers.SP.decrement();
+        register.value = cpu.ram.getCellValue(cpu.registers.SP.value);
     }
 
     public findInstructionByOpcode(opcode:number):Instruction {

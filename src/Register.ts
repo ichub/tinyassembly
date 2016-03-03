@@ -13,6 +13,10 @@ export class Register {
         return this.incrementBy(1);
     }
 
+    public decrement():number {
+        return this.incrementBy(-1);
+    }
+
     public incrementBy(by:number):number {
         this._value = clamp(this._value + by, Register.maxValue);
 

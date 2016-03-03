@@ -61,6 +61,10 @@ export class Registers {
         return this._IP;
     }
 
+    get SP():Register {
+        return this._SP;
+    }
+
     get map():{} {
         return this._map;
     }
