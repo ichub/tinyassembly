@@ -3,14 +3,13 @@ import {clamp} from "./bits";
 import {MemoryRange} from "./MemoryRange";
 
 export class RAM {
+    private static _programRange = new MemoryRange(0, RAM.programSize);
+    private static _stackRange = new MemoryRange(RAM._programRange.high + 1, RAM.stackSize);
+
     private _memory:number[];
-    private _programRange:MemoryRange;
-    private _stackRange:MemoryRange;
 
     constructor() {
         this._memory = Array.from(new Array(RAM.size), () => 0);
-        this._programRange = new MemoryRange(0, RAM.programSize);
-        this._stackRange = new MemoryRange(this._programRange.high + 1, RAM.stackSize);
     }
 
     public static get size() {
@@ -55,5 +54,14 @@ export class RAM {
 
     public get size() {
         return this._memory.length;
+    }
+
+
+    public static get programRange():MemoryRange {
+        return this._programRange;
+    }
+
+    public static get stackRange():MemoryRange {
+        return this._stackRange;
     }
 }

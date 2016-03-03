@@ -1,5 +1,6 @@
 import {Register} from "./register";
 import {ignoreCaseEquals} from "./Strings";
+import {RAM} from "./RAM";
 
 export class Registers {
     private static _registers:string[] = Object.freeze(["A", "B", "C", "D", "E", "F", "G", "IP"]);
@@ -16,6 +17,7 @@ export class Registers {
     private _map:Register[];
 
     constructor() {
+        this._SP.value = RAM.stackRange.low;
         this._map = Object.freeze([
             this._A,
             this._B,
