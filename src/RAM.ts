@@ -1,10 +1,27 @@
 import {Register} from "./register";
 import {clamp} from "./bits";
+import {MemoryRange} from "./MemoryRange";
 
 export class RAM {
-    private _memory:number[] = Array.from(new Array(RAM.size), () => 0);
+    private _memory:number[];
+    private _programRange:MemoryRange;
+    private _stackRange:MemoryRange;
+
+    constructor() {
+        this._memory = Array.from(new Array(RAM.size), () => 0);
+        this._programRange = new MemoryRange(0, RAM.programSize);
+        this._stackRange = new MemoryRange(this._programRange.high + 1, RAM.stackSize);
+    }
 
     public static get size() {
+        return Math.pow(2, 11);
+    }
+
+    public static get stackSize() {
+        return Math.pow(2, 10);
+    }
+
+    public static get programSize() {
         return Math.pow(2, 10);
     }
 

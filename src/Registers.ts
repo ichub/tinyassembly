@@ -12,6 +12,7 @@ export class Registers {
     private _F:Register = new Register("F");
     private _G:Register = new Register("G");
     private _IP:Register = new Register("IP");
+    private _SP:Register = new Register("SP");
     private _map:Register[];
 
     constructor() {
@@ -24,6 +25,7 @@ export class Registers {
             this._F,
             this._G,
             this._IP,
+            this._SP
         ]);
     }
 

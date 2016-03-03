@@ -134,6 +134,26 @@ export class InstructionSet {
         this.jumpIf(cpu.flags.more || cpu.flags.equal, cpu, cpu.params.r_first.value);
     }
 
+    @instruction("PUSH", 25, ParamType.Register)
+    public pushRegister(cpu:CPU, register:Register) {
+
+    }
+
+    @instruction("PUSH", 26, ParamType.Value)
+    public pushValue(cpu:CPU, value:number) {
+
+    }
+
+    @instruction("POP", 27, ParamType.Register)
+    public popRegister(cpu:CPU, register:Register) {
+
+    }
+
+    @instruction("POP", 28, ParamType.Value)
+    public popValue(cpu:CPU, value:number) {
+
+    }
+
     public findInstructionByOpcode(opcode:number):Instruction {
         for (let i = 0; i < this._instructions.length; i++) {
             if (this._instructions[i].opcode === opcode) {
