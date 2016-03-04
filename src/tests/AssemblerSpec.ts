@@ -16,4 +16,10 @@ describe("assembler", function () {
 
         expect(numbers).toEqual([2, 100, 1, 0, 12, 1, 2, 0]);
     });
+
+    it("should assemble labels", function () {
+        const numbers = assembler.assembleString("label:\nJMP label");
+
+        expect(numbers).toEqual([]);
+    });
 });
