@@ -3,7 +3,7 @@ export enum TokenType {
     End = "End",
     Unknown = "Unknown",
     Label = "Label",
-    LineEnding = "LineEnding",
+    StatementEnding = "LineEnding",
     InstructionName = "InstructionName",
     NumberLiteral = "NumberLiteral",
     RegisterReference = "RegisterReference"

@@ -16,7 +16,7 @@ describe("parser", function () {
             TokenType.InstructionName,
             TokenType.NumberLiteral,
             TokenType.RegisterReference,
-            TokenType.LineEnding,
+            TokenType.StatementEnding,
             TokenType.End]);
 
         expect(values).toEqual([
@@ -39,11 +39,11 @@ describe("parser", function () {
             TokenType.InstructionName,
             TokenType.NumberLiteral,
             TokenType.RegisterReference,
-            TokenType.LineEnding,
+            TokenType.StatementEnding,
             TokenType.InstructionName,
             TokenType.RegisterReference,
             TokenType.RegisterReference,
-            TokenType.LineEnding,
+            TokenType.StatementEnding,
             TokenType.End]);
 
         expect(values).toEqual([
@@ -70,11 +70,11 @@ describe("parser", function () {
             TokenType.InstructionName,
             TokenType.NumberLiteral,
             TokenType.RegisterReference,
-            TokenType.LineEnding,
+            TokenType.StatementEnding,
             TokenType.InstructionName,
             TokenType.RegisterReference,
             TokenType.RegisterReference,
-            TokenType.LineEnding,
+            TokenType.StatementEnding,
             TokenType.End]);
 
         expect(values).toEqual([
@@ -104,7 +104,7 @@ describe("parser", function () {
             TokenType.RegisterReference,
             TokenType.Unknown,
             TokenType.NumberLiteral,
-            TokenType.LineEnding,
+            TokenType.StatementEnding,
             TokenType.End]);
 
         expect(values).toEqual([
@@ -139,11 +139,11 @@ describe("parser", function () {
         expect(types).toEqual([
             TokenType.Begin,
             TokenType.InstructionName,
-            TokenType.LineEnding,
+            TokenType.StatementEnding,
             TokenType.Label,
-            TokenType.LineEnding,
+            TokenType.StatementEnding,
             TokenType.InstructionName,
-            TokenType.LineEnding,
+            TokenType.StatementEnding,
             TokenType.End]);
 
         expect(values).toEqual([

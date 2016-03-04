@@ -23,7 +23,7 @@ export class Parser {
         let tokens = [new Token(TokenType.Begin)];
 
         for (let i = 0; i < instructions.length; i++) {
-            tokens = [...tokens, ...instructions[i], new Token(TokenType.LineEnding)];
+            tokens = [...tokens, ...instructions[i], new Token(TokenType.StatementEnding)];
         }
 
         tokens.push(new Token(TokenType.End));
