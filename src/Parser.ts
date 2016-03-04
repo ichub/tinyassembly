@@ -13,7 +13,12 @@ export class Parser {
     public parse(program:string):TokenStream {
         const lines = program.split(/\n/).filter(str => str.length > 0);
 
-        const instructions = lines.map(instruction => this.parseSingleInstruction(instruction));
+        const instructions = [];
+
+        for (let i = 0; i < lines.length; i++) {
+            instructions.push(this.parseLine(lines[i]));
+        }
+
         let tokens = [new Token(TokenType.Begin)];
 
         for (let i = 0; i < instructions.length; i++) {
@@ -25,7 +30,7 @@ export class Parser {
         return new TokenStream(tokens);
     }
 
-    private parseSingleInstruction(line:string):Token[] {
+    private parseLine(line:string):Token[] {
         const words = line.split(/\s+/).filter(str => str.length > 0);
 
         if (words.length > 0) {
