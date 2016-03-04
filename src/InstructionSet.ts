@@ -152,6 +152,16 @@ export class InstructionSet {
         cpu.registers.SP.decrement();
     }
 
+    @instruction("MUL", 28, ParamType.Register, ParamType.Register, ParamType.Register)
+    public multiplyRegisters(cpu:CPU, lhs:Register, rhs:Register, result:Register) {
+        result.value = lhs.value * rhs.value;
+    }
+
+    @instruction("MUL", 29, ParamType.Value, ParamType.Register)
+    public multiplyRegisters(cpu:CPU, by:number, result:Register) {
+        result.value = result.value * by;
+    }
+
     public findInstructionByOpcode(opcode:number):Instruction {
         for (let i = 0; i < this._instructions.length; i++) {
             if (this._instructions[i].opcode === opcode) {
