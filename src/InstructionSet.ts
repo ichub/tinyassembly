@@ -162,6 +162,14 @@ export class InstructionSet {
         result.value = result.value * by;
     }
 
+    @instruction("SWAP", 30, ParamType.Register, ParamType.Register)
+    public swap(cpu:CPU, lhs:Register, rhs:Register) {
+        const temp = lhs.value;
+        lhs.value = rhs.value;
+        rhs.value = temp;
+    }
+
+
     public findInstructionByOpcode(opcode:number):Instruction {
         for (let i = 0; i < this._instructions.length; i++) {
             if (this._instructions[i].opcode === opcode) {
