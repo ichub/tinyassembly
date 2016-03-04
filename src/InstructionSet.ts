@@ -148,8 +148,8 @@ export class InstructionSet {
 
     @instruction("POP", 27, ParamType.Register)
     public popRegister(cpu:CPU, register:Register) {
-        cpu.registers.SP.decrement();
         register.value = cpu.ram.getCellValue(cpu.registers.SP.value);
+        cpu.registers.SP.decrement();
     }
 
     public findInstructionByOpcode(opcode:number):Instruction {
