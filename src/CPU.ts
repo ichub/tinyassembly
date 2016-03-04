@@ -29,6 +29,12 @@ export class CPU {
         }
     }
 
+    public runSynchronouslyUntilHalted():void {
+        while (!this._flags.halt) {
+            this.step();
+        }
+    }
+
     public run() {
         this.step();
 
