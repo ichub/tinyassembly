@@ -17,7 +17,7 @@ export class TokenStream {
         let currentBucket = [];
 
         for (let i = 0; i < this._tokens.length; i++) {
-            if (this._tokens[i].type === TokenType.InstructionSeparator) {
+            if (this._tokens[i].type === TokenType.LineEnding) {
                 result.push(currentBucket);
                 currentBucket = [];
             } else {

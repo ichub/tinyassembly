@@ -16,7 +16,7 @@ describe("parser", function () {
             TokenType.InstructionName,
             TokenType.NumberLiteral,
             TokenType.RegisterReference,
-            TokenType.InstructionSeparator,
+            TokenType.LineEnding,
             TokenType.End]);
 
         expect(values).toEqual([
@@ -39,11 +39,11 @@ describe("parser", function () {
             TokenType.InstructionName,
             TokenType.NumberLiteral,
             TokenType.RegisterReference,
-            TokenType.InstructionSeparator,
+            TokenType.LineEnding,
             TokenType.InstructionName,
             TokenType.RegisterReference,
             TokenType.RegisterReference,
-            TokenType.InstructionSeparator,
+            TokenType.LineEnding,
             TokenType.End]);
 
         expect(values).toEqual([
@@ -70,11 +70,11 @@ describe("parser", function () {
             TokenType.InstructionName,
             TokenType.NumberLiteral,
             TokenType.RegisterReference,
-            TokenType.InstructionSeparator,
+            TokenType.LineEnding,
             TokenType.InstructionName,
             TokenType.RegisterReference,
             TokenType.RegisterReference,
-            TokenType.InstructionSeparator,
+            TokenType.LineEnding,
             TokenType.End]);
 
         expect(values).toEqual([
@@ -104,7 +104,7 @@ describe("parser", function () {
             TokenType.RegisterReference,
             TokenType.Unknown,
             TokenType.NumberLiteral,
-            TokenType.InstructionSeparator,
+            TokenType.LineEnding,
             TokenType.End]);
 
         expect(values).toEqual([
@@ -128,5 +128,33 @@ describe("parser", function () {
 
         expect(types).toEqual([TokenType.Begin, TokenType.End]);
         expect(values).toEqual([jasmine.anything(), jasmine.anything()]);
+    });
+
+    it("should parse labels", function () {
+        const stream = parser.parse("HALT\n label:  \n HALT");
+
+        const types = stream.tokens.map(token => token.type);
+        const values = stream.tokens.map(token => token.value);
+
+        expect(types).toEqual([
+            TokenType.Begin,
+            TokenType.InstructionName,
+            TokenType.LineEnding,
+            TokenType.Label,
+            TokenType.LineEnding,
+            TokenType.InstructionName,
+            TokenType.LineEnding,
+            TokenType.End]);
+
+        expect(values).toEqual([
+            jasmine.anything(),
+            "HALT",
+            jasmine.anything(),
+            "label",
+            jasmine.anything(),
+            "HALT",
+            jasmine.anything(),
+            jasmine.anything()
+        ]);
     });
 });

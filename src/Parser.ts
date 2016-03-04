@@ -2,6 +2,7 @@ import {InstructionSet} from "./InstructionSet";
 import {TokenStream} from "./TokenStream";
 import {Token} from "./Token";
 import {TokenType} from "./TokenType";
+import {Label} from "./Label";
 
 export class Parser {
     private _instructionSet:InstructionSet;
@@ -22,7 +23,7 @@ export class Parser {
         let tokens = [new Token(TokenType.Begin)];
 
         for (let i = 0; i < instructions.length; i++) {
-            tokens = [...tokens, ...instructions[i], new Token(TokenType.InstructionSeparator)];
+            tokens = [...tokens, ...instructions[i], new Token(TokenType.LineEnding)];
         }
 
         tokens.push(new Token(TokenType.End));
@@ -30,7 +31,7 @@ export class Parser {
         return new TokenStream(tokens);
     }
 
-    private parseLine(line:string):Token[] {
+    private parseInstructionLine(line:string):Token[] {
         const words = line.split(/\s+/).filter(str => str.length > 0);
 
         if (words.length > 0) {
@@ -44,6 +45,24 @@ export class Parser {
         }
 
         return [];
+    }
+
+    private parseLabelLine(line:string):Token[] {
+        const labelPattern = /^\s*([a-zA-Z]+):\s*$/;
+
+        const result = line.match(labelPattern);
+
+        return [new Token(TokenType.Label, result[1])];
+    }
+
+    private parseLine(line:string):Token[] {
+        const labelPattern = /^\s*([a-zA-Z]+):\s*$/;
+
+        if (labelPattern.test(line)) {
+            return this.parseLabelLine(line);
+        }
+
+        return this.parseInstructionLine(line);
     }
 
     private paramStringToToken(paramString:string):Token {
