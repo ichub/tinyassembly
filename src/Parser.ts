@@ -68,6 +68,7 @@ export class Parser {
     private paramStringToToken(paramString:string):Token {
         const registerPattern = /^%[a-zA-Z]$/;
         const numberLiteralPattern = /^\d+$/;
+        const labelPattern = /^\$[a-zA-Z]+$/;
 
         let type;
 
@@ -75,6 +76,8 @@ export class Parser {
             type = TokenType.RegisterReference;
         } else if (numberLiteralPattern.test(paramString)) {
             type = TokenType.NumberLiteral;
+        } else if (labelPattern.test(paramString)) {
+            type = TokenType.LabelReference;
         } else {
             type = TokenType.Unknown;
         }

@@ -5,6 +5,7 @@ import {Registers} from "./Registers";
 import {TokenStream} from "./TokenStream";
 import {TokenType} from "./TokenType";
 import {Parser} from "./Parser";
+import {AssemblerContext} from "./AssemblerContext";
 
 export class Assembler {
     private _instructionSet:InstructionSet;
@@ -21,11 +22,14 @@ export class Assembler {
 
     public assemble(tokenStream:TokenStream):number[] {
         const instructions = tokenStream.skipBeginAndEndTokens().splitBySeparator();
+        const context:AssemblerContext = new AssemblerContext();
 
         let result = [];
 
         for (let i = 0; i < instructions.length; i++) {
-            result = result.concat(this.assembleSingleInstruction(instructions[i]));
+            let assembledInstruction = this.assembleSingleStatement(instructions[i], context);
+
+            result = result.concat(assembledInstruction);
         }
 
         return result;
@@ -34,7 +38,7 @@ export class Assembler {
     private tokenTypeToParameterType(tokenType:TokenType):ParamType {
         if (tokenType === TokenType.RegisterReference) {
             return ParamType.Register;
-        } else if (tokenType === TokenType.NumberLiteral) {
+        } else if (tokenType === TokenType.NumberLiteral || TokenType.RegisterReference) {
             return ParamType.Value;
         } else {
             throw "no corresponding parameter type";
@@ -49,7 +53,21 @@ export class Assembler {
         return Registers.findRegisterNumberByName(literal.substr(1));
     }
 
-    private assembleSingleInstruction(tokenStream:TokenStream):number[] {
+    private assembleSingleStatement(tokenStream:TokenStream, context:AssemblerContext) {
+        if (tokenStream.tokens[0].type == TokenType.Label) {
+            return this.assembleLabel(tokenStream, context);
+        } else {
+            return this.assembleSingleInstruction(tokenStream, context);
+        }
+    }
+
+    private assembleLabel(tokenStream:TokenStream, context:AssemblerContext):number[] {
+        context.labels[tokenStream.tokens[0].value] = context.instructionCount++;
+
+        return [];
+    }
+
+    private assembleSingleInstruction(tokenStream:TokenStream, context:AssemblerContext):number[] {
         const tokens = tokenStream.tokens;
 
         const nameToken = tokens[0];
@@ -70,6 +88,9 @@ export class Assembler {
                 case TokenType.RegisterReference:
                     value = this.registerLiteralToValue(tokens[i].value);
                     break;
+                case TokenType.LabelReference:
+                    value = this.labelReferenceToValue(tokens[i].value, context);
+                    break;
                 default:
                     throw `unexpected token at this time - value: "${tokens[i].value}" with type "${TokenType[tokens[i].type]}"`;
             }
@@ -89,6 +110,11 @@ export class Assembler {
 
         const instruction = this._instructionSet.findInstructionByNameAndParams(nameToken.value, paramTypes);
 
+        context.instructionCount++;
         return [instruction.opcode, ...paramValues];
+    }
+
+    private labelReferenceToValue(value:string, context:AssemblerContext):number {
+        return context.labels[value.substr(1)] * this._instructionSet.instructionLength;
     }
 }

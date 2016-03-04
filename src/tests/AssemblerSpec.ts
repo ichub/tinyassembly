@@ -18,8 +18,8 @@ describe("assembler", function () {
     });
 
     it("should assemble labels", function () {
-        const numbers = assembler.assembleString("label:\nJMP label");
+        const numbers = assembler.assembleString("HALT\nlabel:\nJMP $label");
 
-        expect(numbers).toEqual([]);
+        expect(numbers).toEqual([0, 0, 0, 0, 32, 4, 0, 0]);
     });
 });
