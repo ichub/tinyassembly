@@ -75,8 +75,8 @@ export class InstructionSet {
     }
 
     @instruction("JMPEQ", 13, ParamType.Value)
-    public jumpIfEqual(cpu:CPU) {
-        this.jumpIf(cpu.flags.equal, cpu, cpu.params.first);
+    public jumpIfEqual(cpu:CPU, destination:number) {
+        this.jumpIf(cpu.flags.equal, cpu, destination);
     }
 
     @instruction("JMPNEQ", 14, ParamType.Value)
