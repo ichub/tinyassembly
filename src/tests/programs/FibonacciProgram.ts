@@ -1,6 +1,8 @@
 import {Computer} from "../../Computer";
 describe("finonacci number", function () {
     it("should work", function () {
+        const fibCount = 12;
+
         const fibonacci = function (n) {
             let first = 0;
             let second = 1;
@@ -12,19 +14,30 @@ describe("finonacci number", function () {
                 first = second;
                 second = fib;
                 fib = temp;
-
-                console.log(`first: ${first}, second: ${second}, fib:${fib}`);
             }
 
             return fib;
         };
 
-        const program = "LOAD 1 %A\nLOAD 1 %B\n";
+        const program = [
+            "LOAD 0 %A",
+            "LOAD 1 %B",
+            "LOAD 1 %C",
+            "LOAD 0 %D",
+            "CMP " + fibCount + " %D",
+            "INC %D",
+            "JMPLEQ 100",
+            "ADD %C %B %E",
+            "LOAD %A %B",
+            "LOAD %B %C",
+            "LOAD %C %E",
+            "JMP 16"
+        ].join("\n");
 
         const computer = new Computer();
         computer.loadProgram(program);
         computer.cpu.runSynchronouslyUntilHalted();
 
-        expect(computer.cpu.registers.C.value).toEqual(fibonacci(10));
+        expect(computer.cpu.registers.C.value).toEqual(fibonacci(fibCount));
     });
 });

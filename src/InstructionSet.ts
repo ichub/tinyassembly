@@ -65,13 +65,13 @@ export class InstructionSet {
     }
 
     @instruction("CMP", 11, ParamType.Value, ParamType.Register)
-    public compareValues(cpu:CPU) {
-        this.compare(cpu.params.first, cpu.params.r_second.value, cpu);
+    public compareValues(cpu:CPU, lhs:number, rhs:Register) {
+        this.compare(lhs, rhs.value, cpu);
     }
 
     @instruction("CMP", 12, ParamType.Register, ParamType.Register)
-    public compareRegisters(cpu:CPU) {
-        this.compare(cpu.params.r_first.value, cpu.params.r_second.value, cpu);
+    public compareRegisters(cpu:CPU, lhs:Register, rhs:Register) {
+        this.compare(lhs.value, rhs.value, cpu);
     }
 
     @instruction("JMPEQ", 13, ParamType.Value)
@@ -86,7 +86,7 @@ export class InstructionSet {
 
     @instruction("JMPL", 15, ParamType.Value)
     public jumpIfless(cpu:CPU) {
-        this.jumpIf(cpu.flags.less, cpu, cpu.params.first);
+        this.jumpIf(cpu.flags.less && !cpu.flags.equal, cpu, cpu.params.first);
     }
 
     @instruction("JMPLEQ", 16, ParamType.Value)
@@ -96,7 +96,7 @@ export class InstructionSet {
 
     @instruction("JMPM", 17, ParamType.Value)
     public jumpIfMore(cpu:CPU) {
-        this.jumpIf(cpu.flags.more, cpu, cpu.params.first);
+        this.jumpIf(cpu.flags.more && !cpu.flags.equal, cpu, cpu.params.first);
     }
 
     @instruction("JMPMEQ", 18, ParamType.Value)
@@ -158,7 +158,7 @@ export class InstructionSet {
     }
 
     @instruction("MUL", 29, ParamType.Value, ParamType.Register)
-    public multiplyRegisters(cpu:CPU, by:number, result:Register) {
+    public multiplyValues(cpu:CPU, by:number, result:Register) {
         result.value = result.value * by;
     }
 
@@ -169,6 +169,20 @@ export class InstructionSet {
         rhs.value = temp;
     }
 
+    @instruction("INC", 31, ParamType.Register)
+    public increment(cpu:CPU, reg:Register) {
+        reg.increment();
+    }
+
+    @instruction("JMP", 32, ParamType.Value)
+    public jumpValue(cpu:CPU, value:number) {
+        this.jumpIf(true, cpu, value);
+    }
+
+    @instruction("JMP", 33, ParamType.Register)
+    public jumpRegister(cpu:CPU, reg:Register) {
+        this.jumpIf(true, cpu, reg.value);
+    }
 
     public findInstructionByOpcode(opcode:number):Instruction {
         for (let i = 0; i < this._instructions.length; i++) {
