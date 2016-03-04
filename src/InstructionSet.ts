@@ -75,8 +75,8 @@ export class InstructionSet {
     }
 
     @instruction("JMPEQ", 13, ParamType.Value)
-    public jumpIfEqual(cpu:CPU) {
-        this.jumpIf(cpu.flags.equal, cpu, cpu.params.first);
+    public jumpIfEqual(cpu:CPU, destination:number) {
+        this.jumpIf(cpu.flags.equal, cpu, destination);
     }
 
     @instruction("JMPNEQ", 14, ParamType.Value)
@@ -132,6 +132,24 @@ export class InstructionSet {
     @instruction("JMPMEQ", 24, ParamType.Register)
     public registerJumpIfMoreOrEqual(cpu:CPU) {
         this.jumpIf(cpu.flags.more || cpu.flags.equal, cpu, cpu.params.r_first.value);
+    }
+
+    @instruction("PUSH", 25, ParamType.Register)
+    public pushRegister(cpu:CPU, register:Register) {
+        cpu.ram.setCellValue(cpu.registers.SP.value, register.value);
+        cpu.registers.SP.increment();
+    }
+
+    @instruction("PUSH", 26, ParamType.Value)
+    public pushValue(cpu:CPU, value:number) {
+        cpu.ram.setCellValue(cpu.registers.SP.value, value);
+        cpu.registers.SP.increment();
+    }
+
+    @instruction("POP", 27, ParamType.Register)
+    public popRegister(cpu:CPU, register:Register) {
+        cpu.registers.SP.decrement();
+        register.value = cpu.ram.getCellValue(cpu.registers.SP.value);
     }
 
     public findInstructionByOpcode(opcode:number):Instruction {

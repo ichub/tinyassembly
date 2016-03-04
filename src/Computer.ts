@@ -27,6 +27,11 @@ export class Computer {
         return assembledProgram;
     }
 
+    public reset():void {
+        this._ram.zeroOut();
+        this._cpu.reset();
+    }
+
     public get cpu():CPU {
         return this._cpu;
     }

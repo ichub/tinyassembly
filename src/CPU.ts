@@ -50,6 +50,11 @@ export class CPU {
         instruction.operation(this);
     }
 
+    public reset():void {
+        this._registers.zeroOut();
+        this._flags.zeroOut();
+    }
+
     public get registers():Registers {
         return this._registers;
     }
