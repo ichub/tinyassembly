@@ -24,14 +24,17 @@ describe("finonacci number", function () {
             "LOAD 1 %B",
             "LOAD 1 %C",
             "LOAD 0 %D",
+            "loop:",
             "CMP " + fibCount + " %D",
             "INC %D",
-            "JMPLEQ 100",
+            "JMPLEQ $halt",
             "ADD %C %B %E",
             "LOAD %A %B",
             "LOAD %B %C",
             "LOAD %C %E",
-            "JMP 16"
+            "JMP $loop",
+            "halt:",
+            "HALT"
         ].join("\n");
 
         const computer = new Computer();

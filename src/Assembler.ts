@@ -21,18 +21,42 @@ export class Assembler {
     }
 
     public assemble(tokenStream:TokenStream):number[] {
-        const instructions = tokenStream.skipBeginAndEndTokens().splitBySeparator();
         const context:AssemblerContext = new AssemblerContext();
+        const instructions = this.initAndFilterLabels(tokenStream, context);
+
 
         let result = [];
 
         for (let i = 0; i < instructions.length; i++) {
-            let assembledInstruction = this.assembleSingleStatement(instructions[i], context);
+            let assembledInstruction = this.assembleSingleInstruction(instructions[i], context);
 
             result = result.concat(assembledInstruction);
         }
 
         return result;
+    }
+
+    private initAndFilterLabels(tokenStream:TokenStream, context:AssemblerContext):TokenStream[] {
+        const instructions = tokenStream.skipBeginAndEndTokens().splitBySeparator();
+        const filteredStatements = [];
+
+        for (let i = 0; i < instructions.length; i++) {
+            if (!this.addLabelIfLabelStatement(instructions[i], context)) {
+                filteredStatements.push(instructions[i]);
+            }
+        }
+
+        return filteredStatements;
+    }
+
+    private addLabelIfLabelStatement(tokenStream:TokenStream, context:AssemblerContext):boolean {
+        if (tokenStream.tokens[0].type == TokenType.Label) {
+            context.labels[tokenStream.tokens[0].value] = context.instructionCount;
+            return true;
+        } else {
+            context.instructionCount++;
+            return false;
+        }
     }
 
     private tokenTypeToParameterType(tokenType:TokenType):ParamType {
@@ -51,20 +75,6 @@ export class Assembler {
 
     private registerLiteralToValue(literal:string):number {
         return Registers.findRegisterNumberByName(literal.substr(1));
-    }
-
-    private assembleSingleStatement(tokenStream:TokenStream, context:AssemblerContext) {
-        if (tokenStream.tokens[0].type == TokenType.Label) {
-            return this.assembleLabel(tokenStream, context);
-        } else {
-            return this.assembleSingleInstruction(tokenStream, context);
-        }
-    }
-
-    private assembleLabel(tokenStream:TokenStream, context:AssemblerContext):number[] {
-        context.labels[tokenStream.tokens[0].value] = context.instructionCount++;
-
-        return [];
     }
 
     private assembleSingleInstruction(tokenStream:TokenStream, context:AssemblerContext):number[] {
