@@ -12,6 +12,8 @@ export class CPU {
     private _stepInterval = 100;
     private _instructionSet:InstructionSet;
 
+    public onStep:Function;
+
     constructor(ram:RAM) {
         this._registers = new Registers();
         this._ram = ram;
@@ -21,11 +23,13 @@ export class CPU {
 
     public step() {
         this.executeInstruction(this._ram.getCellValue(this._registers.IP.value));
-
         if (this._flags.jumped) {
             this._flags.jumped = false;
         } else {
             this._registers.IP.incrementBy(4);
+        }
+        if (this.onStep) {
+            this.onStep();
         }
     }
 

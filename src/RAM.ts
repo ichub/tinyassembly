@@ -69,4 +69,8 @@ export class RAM {
     public static get stackRange():MemoryRange {
         return this._stackRange;
     }
+
+    static get imageRange():MemoryRange {
+        return this._imageRange;
+    }
 }

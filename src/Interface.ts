@@ -4,6 +4,7 @@ import {InterfaceHolder} from "./InterfaceHolder";
 import {bind} from "./BindDecorator";
 import {eventlistener} from "./EventListenerDecorator";
 import {EventName} from "./EventName";
+import {RAM} from "./RAM";
 
 export class Interface extends InterfaceHolder {
     private _computer:Computer;
@@ -13,6 +14,8 @@ export class Interface extends InterfaceHolder {
     private static assemblerOutputSelector = "#assembler-output";
     private static assemblerErrorOutputSelector = "#assembler-error-output";
     private static graphicsSelector = "#graphics";
+
+    private pixels = [];
 
     @bind(Interface.programTextAreaSelector)
     private _programTextArea:HTMLTextAreaElement;
@@ -33,6 +36,9 @@ export class Interface extends InterfaceHolder {
         super();
 
         this._computer = computer;
+        this._computer.cpu.onStep = () => {
+            this.updateScreen();
+        };
     }
 
     private stringifyAssembledProgram(program:number[]):string {
@@ -69,10 +75,27 @@ export class Interface extends InterfaceHolder {
         return pixel;
     }
 
+    private updateScreen() {
+        for (let i = 0; i < 64; i++) {
+            for (let j = 0; j < 64; j++) {
+
+                let memoryCellValue = this._computer.ram.getCellValue(RAM.imageRange.low + i * 64 + j);
+
+                if (memoryCellValue === 0) {
+                    this.pixels[i * 64 + j].classList.remove("on");
+                } else {
+                    this.pixels[i * 64 + j].classList.add("on");
+                }
+            }
+        }
+    }
+
     public onBind() {
         for (let i = 0; i < 64; i++) {
             for (let j = 0; j < 64; j++) {
-                this._graphics.appendChild(this.makePixel());
+                let pixel = this.makePixel();
+                this.pixels.push(pixel);
+                this._graphics.appendChild(pixel);
             }
         }
     }
