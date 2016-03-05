@@ -5,6 +5,7 @@ import {MemoryRange} from "./MemoryRange";
 export class RAM {
     private static _programRange = new MemoryRange(0, RAM.programSize);
     private static _stackRange = new MemoryRange(RAM._programRange.high + 1, RAM.stackSize);
+    private static _imageRange = new MemoryRange(RAM._stackRange.high + 1, RAM.imageSize);
 
     private _memory:number[];
 
@@ -13,7 +14,7 @@ export class RAM {
     }
 
     public static get size() {
-        return Math.pow(2, 11);
+        return RAM.stackSize + RAM.programSize + RAM.imageSize;
     }
 
     public static get stackSize() {
@@ -22,6 +23,10 @@ export class RAM {
 
     public static get programSize() {
         return Math.pow(2, 10);
+    }
+
+    public static get imageSize() {
+        return 64 * 64;
     }
 
     public static get maxMemoryCellValue() {

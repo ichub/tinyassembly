@@ -1,0 +1,22 @@
+$pixel-size: 5;
+$pixel-on-color: rgb(0, 0, 0);
+$pixel-off-color: rgb(61, 122, 61);
+
+#graphics {
+  width: 64px * $pixel-size;
+  height: 64px * $pixel-size;
+  display: block;
+  padding: 0;
+
+  .pixel {
+    background-color: $pixel-off-color;
+    display: inline-block;
+    width: $pixel-size * 1px;
+    height: $pixel-size * 1px;
+    float: left;
+
+    &.on {
+      background-color: $pixel-on-color;
+    }
+  }
+}

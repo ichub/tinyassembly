@@ -12,6 +12,7 @@ export class Interface extends InterfaceHolder {
     private static assembleButtonSelector = "#assemble";
     private static assemblerOutputSelector = "#assembler-output";
     private static assemblerErrorOutputSelector = "#assembler-error-output";
+    private static graphicsSelector = "#graphics";
 
     @bind(Interface.programTextAreaSelector)
     private _programTextArea:HTMLTextAreaElement;
@@ -24,6 +25,9 @@ export class Interface extends InterfaceHolder {
 
     @bind(Interface.assemblerErrorOutputSelector)
     private _assemblerErrorOutput:HTMLDivElement;
+
+    @bind(Interface.graphicsSelector)
+    private _graphics:HTMLDivElement;
 
     constructor(computer:Computer) {
         super();
@@ -55,6 +59,21 @@ export class Interface extends InterfaceHolder {
             this._assemblerErrorOutput.innerText = "";
         } catch (e) {
             this._assemblerErrorOutput.innerText = e;
+        }
+    }
+
+    private makePixel() {
+        let pixel = document.createElement("div");
+        pixel.classList.add("pixel");
+
+        return pixel;
+    }
+
+    public onBind() {
+        for (let i = 0; i < 64; i++) {
+            for (let j = 0; j < 64; j++) {
+                this._graphics.appendChild(this.makePixel());
+            }
         }
     }
 }

@@ -13,6 +13,5 @@ export function bind(selector:string):any {
 
         target.binders.push(new Binder(bindfn));
 
-        return {};
     };
 }
