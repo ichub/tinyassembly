@@ -4,19 +4,22 @@ import {Logger} from "./logger";
 import {InstructionSet} from "./InstructionSet";
 import {Flags} from "./Flags";
 import {Params} from "./Params";
+import {Graphics} from "./Graphics";
 
 export class CPU {
     private _registers:Registers;
     private _flags:Flags;
     private _ram:RAM;
+    private _graphics:Graphics;
     private _stepInterval = 100;
     private _instructionSet:InstructionSet;
 
     public onStep:Function;
 
-    constructor(ram:RAM) {
+    constructor(ram:RAM, graphics:Graphics) {
         this._registers = new Registers();
         this._ram = ram;
+        this._graphics = graphics;
         this._instructionSet = new InstructionSet();
         this._flags = new Flags();
     }

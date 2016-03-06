@@ -1,15 +1,18 @@
 import {CPU} from "./cpu";
 import {RAM} from "./ram";
 import {Assembler} from "./Assembler";
+import {Graphics} from "./Graphics";
 
 export class Computer {
     private _cpu:CPU;
     private _ram:RAM;
+    private _graphics:Graphics;
     private _assembler:Assembler;
 
     constructor() {
         this._ram = new RAM();
-        this._cpu = new CPU(this._ram);
+        this._graphics = new Graphics();
+        this._cpu = new CPU(this._ram, this._graphics);
         this._assembler = new Assembler(this._cpu.instructionSet);
     }
 
