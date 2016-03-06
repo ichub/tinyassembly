@@ -3,24 +3,10 @@ import {clamp} from "./bits";
 import {MemoryRange} from "./MemoryRange";
 
 export class Memory {
-    private static _programRange = new MemoryRange(0, Memory.programSize - 1);
-    private static _stackRange = new MemoryRange(Memory._programRange.high + 1, Memory.stackSize);
     private _memory:number[];
 
-    constructor() {
-        this._memory = Array.from(new Array(Memory.size), () => 0);
-    }
-
-    public static get size() {
-        return Memory.stackSize + Memory.programSize;
-    }
-
-    public static get stackSize() {
-        return Math.pow(2, 10);
-    }
-
-    public static get programSize() {
-        return Math.pow(2, 10);
+    constructor(length:number) {
+        this._memory = Array.from(new Array(length), () => 0);
     }
 
     public static get dataSize() {
@@ -69,9 +55,5 @@ export class Memory {
 
     public get size() {
         return this._memory.length;
-    }
-
-    static get stackRange():MemoryRange {
-        return this._stackRange;
     }
 }
