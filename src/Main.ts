@@ -19,7 +19,8 @@ computer.ram.setMemory(100,
 
 computer.ram.setMemory(0, [35, 100, 0, 0]);
 computer.ram.setMemory(4, [4, 1, 0, 0]);
-computer.ram.setMemory(8, [32, 0]);
+computer.ram.setMemory(8, [36, 0, 0, 0]);
+computer.ram.setMemory(12, [32, 0, 0, 0]);
 
 
 window.addEventListener("load", () => {

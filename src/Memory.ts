@@ -49,7 +49,7 @@ export class Memory {
 
     public zeroOut() {
         for (let i = 0; i < this._memory.length; i++) {
-            this._memory[0] = 0;
+            this._memory[i] = 0;
         }
     }
 

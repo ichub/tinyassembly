@@ -200,6 +200,11 @@ export class InstructionSet {
         }
     }
 
+    @instruction("CLS", 36)
+    public clearScreen(cpu:CPU) {
+        cpu.graphics.zeroOut();
+    }
+
     public findInstructionByOpcode(opcode:number):Instruction {
         for (let i = 0; i < this._instructions.length; i++) {
             if (this._instructions[i].opcode === opcode) {
