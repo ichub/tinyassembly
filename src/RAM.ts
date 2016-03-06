@@ -3,10 +3,10 @@ import {clamp} from "./bits";
 import {MemoryRange} from "./MemoryRange";
 
 export class RAM {
-    private static _programRange = new MemoryRange(0, RAM.programSize);
+    private static _programRange = new MemoryRange(0, RAM.programSize - 1);
     private static _stackRange = new MemoryRange(RAM._programRange.high + 1, RAM.stackSize);
     private static _imageRange = new MemoryRange(RAM._stackRange.high + 1, RAM.imageSize);
-
+    private static _dataRange = new MemoryRange(RAM._imageRange.high + 1, RAM.dataSize);
     private _memory:number[];
 
     constructor() {
@@ -14,7 +14,7 @@ export class RAM {
     }
 
     public static get size() {
-        return RAM.stackSize + RAM.programSize + RAM.imageSize;
+        return RAM.stackSize + RAM.programSize + RAM.imageSize + RAM.dataSize;
     }
 
     public static get stackSize() {
@@ -22,6 +22,10 @@ export class RAM {
     }
 
     public static get programSize() {
+        return Math.pow(2, 10);
+    }
+
+    public static get dataSize() {
         return Math.pow(2, 10);
     }
 
@@ -51,6 +55,12 @@ export class RAM {
         }
     }
 
+    public copy(source:number, length:number, destination:number) {
+        for (let i = 0; i < length; i++) {
+            this._memory[destination + i] = this._memory[source + i];
+        }
+    }
+
     public zeroOut() {
         for (let i = 0; i < this._memory.length; i++) {
             this._memory[0] = 0;
@@ -72,5 +82,9 @@ export class RAM {
 
     static get imageRange():MemoryRange {
         return this._imageRange;
+    }
+
+    static get dataRange():MemoryRange {
+        return this._dataRange;
     }
 }

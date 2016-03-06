@@ -4,6 +4,8 @@ import {instruction} from "./InstructionDecorator";
 import {CPU} from "./cpu";
 import {ParamType} from "./ParamType";
 import {ignoreCaseEquals} from "./Strings";
+import {RAM} from "./RAM";
+import {Param} from "./Param";
 
 export class InstructionSet {
     private _instructionLength:number = 4;
@@ -182,6 +184,13 @@ export class InstructionSet {
     @instruction("JMP", 33, ParamType.Register)
     public jumpRegister(cpu:CPU, reg:Register) {
         this.jumpIf(true, cpu, reg.value);
+    }
+
+    @instruction("BLIT", 34, ParamType.Value, ParamType.Value, ParamType.Value)
+    public blit(cpu:CPU, origin:number, x:number, y:number) {
+        for (let i = 0; i < 8; i++) {
+            cpu.ram.copy(origin + 8 * i, 8, RAM.imageRange.low + x + (y + i) * 64);
+        }
     }
 
     public findInstructionByOpcode(opcode:number):Instruction {
