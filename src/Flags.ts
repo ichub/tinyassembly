@@ -4,6 +4,7 @@ export class Flags {
     public equal:boolean = false;
     public less:boolean = false;
     public more:boolean = false;
+    public draw:boolean = false;
 
     public zeroOut() {
         this.halt = false;
@@ -11,5 +12,6 @@ export class Flags {
         this.equal = false;
         this.less = false;
         this.more = false;
+        this.draw = false;
     }
 }

@@ -32,7 +32,10 @@ export class CPU {
             this._registers.IP.incrementBy(4);
         }
         if (this.onStep) {
-            this.onStep();
+            if (this._flags.draw) {
+                this.onStep();
+                this._flags.draw = false;
+            }
         }
     }
 

@@ -205,6 +205,11 @@ export class InstructionSet {
         cpu.graphics.zeroOut();
     }
 
+    @instruction("DRAW", 37)
+    public draw(cpu:CPU) {
+        cpu.flags.draw = true;
+    }
+
     public findInstructionByOpcode(opcode:number):Instruction {
         for (let i = 0; i < this._instructions.length; i++) {
             if (this._instructions[i].opcode === opcode) {

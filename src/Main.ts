@@ -17,10 +17,12 @@ computer.ram.setMemory(100,
         1, 1, 1, 1, 1, 1, 1, 1,
     ]);
 
-computer.ram.setMemory(0, [35, 100, 0, 0]);
-computer.ram.setMemory(4, [4, 1, 0, 0]);
-computer.ram.setMemory(8, [36, 0, 0, 0]);
-computer.ram.setMemory(12, [32, 0, 0, 0]);
+let mem = 0;
+computer.ram.setMemory(mem, [36, 0, 0, 0]);
+computer.ram.setMemory(mem += 4, [35, 100, 0, 0]);
+computer.ram.setMemory(mem += 4, [37, 0, 0, 0]);
+computer.ram.setMemory(mem += 4, [4, 1, 0, 0]);
+computer.ram.setMemory(mem += 4, [32, 0, 0, 0]);
 
 
 window.addEventListener("load", () => {
