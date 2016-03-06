@@ -2,7 +2,7 @@ import {InterfaceHolder} from "./InterfaceHolder";
 import {Binder} from "./Binder";
 
 export function bind(selector:string):any {
-    return function (target:InterfaceHolder, key:string):PropertyDescriptor {
+    return function (target:InterfaceHolder, key:string, descriptor:PropertyDescriptor):PropertyDescriptor {
         target.binders = target.binders || [];
 
         const bindfn = (holder:InterfaceHolder) => {
@@ -13,5 +13,6 @@ export function bind(selector:string):any {
 
         target.binders.push(new Binder(bindfn));
 
+        return descriptor;
     };
 }

@@ -5,8 +5,6 @@ import {MemoryRange} from "./MemoryRange";
 export class Memory {
     private static _programRange = new MemoryRange(0, Memory.programSize - 1);
     private static _stackRange = new MemoryRange(Memory._programRange.high + 1, Memory.stackSize);
-    private static _imageRange = new MemoryRange(Memory._stackRange.high + 1, Memory.imageSize);
-    private static _dataRange = new MemoryRange(Memory._imageRange.high + 1, Memory.dataSize);
     private _memory:number[];
 
     constructor() {
@@ -14,7 +12,7 @@ export class Memory {
     }
 
     public static get size() {
-        return Memory.stackSize + Memory.programSize + Memory.imageSize + Memory.dataSize;
+        return Memory.stackSize + Memory.programSize;
     }
 
     public static get stackSize() {
@@ -55,9 +53,11 @@ export class Memory {
         }
     }
 
-    public copy(source:number, length:number, destination:number) {
+    public copy(source:number, length:number, destination:number, memory?:Memory) {
+        memory = memory || this;
+
         for (let i = 0; i < length; i++) {
-            this._memory[destination + i] = this._memory[source + i];
+            memory._memory[destination + i] = this._memory[source + i];
         }
     }
 
@@ -71,19 +71,7 @@ export class Memory {
         return this._memory.length;
     }
 
-    public static get programRange():MemoryRange {
-        return this._programRange;
-    }
-
-    public static get stackRange():MemoryRange {
+    static get stackRange():MemoryRange {
         return this._stackRange;
-    }
-
-    static get imageRange():MemoryRange {
-        return this._imageRange;
-    }
-
-    static get dataRange():MemoryRange {
-        return this._dataRange;
     }
 }

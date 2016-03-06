@@ -87,4 +87,8 @@ export class CPU {
     get instructionSet():InstructionSet {
         return this._instructionSet;
     }
+
+    get graphics():Graphics {
+        return this._graphics;
+    }
 }

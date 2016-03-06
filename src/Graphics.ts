@@ -1,7 +1,7 @@
-export class Graphics {
-    private _memory:number[];
+import {Memory} from "./Memory";
 
+export class Graphics extends Memory {
     constructor() {
-
+        super();
     }
 }

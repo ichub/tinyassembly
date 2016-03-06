@@ -189,7 +189,7 @@ export class InstructionSet {
     @instruction("BLIT", 34, ParamType.Value, ParamType.Value, ParamType.Value)
     public blit(cpu:CPU, origin:number, x:number, y:number) {
         for (let i = 0; i < 8; i++) {
-            cpu.ram.copy(origin + 8 * i, 8, RAM.imageRange.low + x + (y + i) * 64);
+            cpu.ram.copy(origin + 8 * i, 8, x + (y + i) * 64, cpu.graphics);
         }
     }
 

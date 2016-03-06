@@ -79,7 +79,7 @@ export class Interface extends InterfaceHolder {
         for (let i = 0; i < 64; i++) {
             for (let j = 0; j < 64; j++) {
 
-                let memoryCellValue = this._computer.ram.getCellValue(RAM.imageRange.low + i * 64 + j);
+                let memoryCellValue = this._computer.graphics.getCellValue(i * 64 + j);
 
                 if (memoryCellValue === 0) {
                     this.pixels[i * 64 + j].classList.remove("on");

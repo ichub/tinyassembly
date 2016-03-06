@@ -43,6 +43,10 @@ export class Computer {
         return this._ram;
     }
 
+    get graphics():Graphics {
+        return this._graphics;
+    }
+
     public get assembler():Assembler {
         return this._assembler;
     }
