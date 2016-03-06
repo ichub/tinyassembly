@@ -193,6 +193,13 @@ export class InstructionSet {
         }
     }
 
+    @instruction("BLIT", 35, ParamType.Value, ParamType.Register, ParamType.Register)
+    public blitReg(cpu:CPU, origin:number, x:Register, y:Register) {
+        for (let i = 0; i < 8; i++) {
+            cpu.ram.copy(origin + 8 * i, 8, x.value + (y.value + i) * 64, cpu.graphics);
+        }
+    }
+
     public findInstructionByOpcode(opcode:number):Instruction {
         for (let i = 0; i < this._instructions.length; i++) {
             if (this._instructions[i].opcode === opcode) {

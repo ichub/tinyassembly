@@ -11,7 +11,7 @@ export class CPU {
     private _flags:Flags;
     private _ram:RAM;
     private _graphics:Graphics;
-    private _stepInterval = 100;
+    private _stepInterval = 0;
     private _instructionSet:InstructionSet;
 
     public onStep:Function;

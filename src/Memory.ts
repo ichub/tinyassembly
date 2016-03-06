@@ -43,7 +43,7 @@ export class Memory {
         memory = memory || this;
 
         for (let i = 0; i < length; i++) {
-            memory._memory[destination + i] = this._memory[source + i];
+            memory._memory[(destination + i) % memory.size] = this._memory[(source + i) % this.size];
         }
     }
 
