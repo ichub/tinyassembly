@@ -3,7 +3,6 @@ import {RAM} from "./ram";
 import {Logger} from "./logger";
 import {InstructionSet} from "./InstructionSet";
 import {Flags} from "./Flags";
-import {Params} from "./Params";
 import {Graphics} from "./Graphics";
 
 export class CPU {

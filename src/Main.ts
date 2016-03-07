@@ -29,5 +29,3 @@ window.addEventListener("load", () => {
     webInterface.bind();
     computer.cpu.run();
 });
-
-window.computer = computer;
