@@ -210,6 +210,16 @@ export class InstructionSet {
         cpu.flags.draw = true;
     }
 
+    @instruction("RAND", 38, ParamType.Register, ParamType.Value, ParamType.Value)
+    public random(cpu:CPU, dest:Register, low:number, high:number) {
+        dest.value = Math.round(Math.random() * (high - low)) + low;
+    }
+
+    @instruction("DEC", 39, ParamType.Register)
+    public decrement(cpu:CPU, reg:Register) {
+        reg.decrement();
+    }
+
     public findInstructionByOpcode(opcode:number):Instruction {
         for (let i = 0; i < this._instructions.length; i++) {
             if (this._instructions[i].opcode === opcode) {

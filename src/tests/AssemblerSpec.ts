@@ -22,4 +22,9 @@ describe("assembler", function () {
 
         expect(numbers).toEqual([0, 0, 0, 0, 32, 4, 0, 0]);
     });
+
+    it("should assemble raw numbers", function() {
+        const numbers = assembler.assembleString("HALT\nlabel:\n");
+
+    });
 });
