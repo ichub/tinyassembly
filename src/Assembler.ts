@@ -50,7 +50,7 @@ export class Assembler {
     }
 
     private addLabelIfLabelStatement(tokenStream:TokenStream, context:AssemblerContext):boolean {
-        if (tokenStream.tokens[0].type == TokenType.Label) {
+        if (tokenStream.tokens[0].type === TokenType.Label) {
             context.labels[tokenStream.tokens[0].value] = context.instructionCount;
             return true;
         } else {
