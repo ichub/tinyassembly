@@ -8,12 +8,14 @@ function wrapInstructionWithParams(target:InstructionSet, params:ParamType[], in
         let args = [];
 
         for (let i = 0; i < params.length; i++) {
+            const rawValue = cpu.ram.getCellValue(cpu.registers.IP.value + i + 1);
+
             switch (params[i]) {
                 case ParamType.Value:
-                    args.push(cpu.params.raw[i]);
+                    args.push(rawValue);
                     break;
                 case ParamType.Register:
-                    args.push(cpu.registers.map[cpu.params.raw[i]]);
+                    args.push(cpu.registers.map[rawValue]);
                     break;
                 case ParamType.None:
                     break;

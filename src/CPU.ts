@@ -83,10 +83,6 @@ export class CPU {
         return this._ram;
     }
 
-    public get params():Params {
-        return new Params(this);
-    }
-
     get instructionSet():InstructionSet {
         return this._instructionSet;
     }

@@ -27,43 +27,43 @@ export class InstructionSet {
     }
 
     @instruction("ADD", 3, ParamType.Register, ParamType.Register, ParamType.Register)
-    public addRegisters(cpu:CPU) {
-        cpu.params.r_third.value = cpu.params.r_first.value + cpu.params.r_second.value;
+    public addRegisters(cpu:CPU, lhs:Register, rhs:Register, dest:Register) {
+        dest.value = lhs.value + rhs.value;
     }
 
     @instruction("ADD", 4, ParamType.Value, ParamType.Register)
-    public addValues(cpu:CPU) {
-        cpu.params.r_second.incrementBy(cpu.params.first);
+    public addValues(cpu:CPU, value:number, dest:Register) {
+        dest.incrementBy(value);
     }
 
     @instruction("AND", 5, ParamType.Register, ParamType.Register, ParamType.Register)
-    public bitwiseAndRegisters(cpu:CPU) {
-        cpu.params.r_third.value = cpu.params.r_first.value & cpu.params.r_second.value;
+    public bitwiseAndRegisters(cpu:CPU, lhs:Register, rhs:Register, dest:Register) {
+        dest.value = lhs.value & rhs.value;
     }
 
     @instruction("AND", 6, ParamType.Value, ParamType.Register)
-    public bitwiseAndValues(cpu:CPU) {
-        cpu.params.r_second.value &= cpu.params.first;
+    public bitwiseAndValues(cpu:CPU, value:number, dest:Register) {
+        dest.value &= value;
     }
 
     @instruction("OR", 7, ParamType.Register, ParamType.Register, ParamType.Register)
-    public bitwiseOrRegisters(cpu:CPU) {
-        cpu.params.r_third.value = cpu.params.r_first.value | cpu.params.r_second.value;
+    public bitwiseOrRegisters(cpu:CPU, lhs:Register, rhs:Register, dest:Register) {
+        dest.value = lhs.value | rhs.value;
     }
 
     @instruction("OR", 8, ParamType.Value, ParamType.Register)
-    public bitwiseOrValues(cpu:CPU) {
-        cpu.params.r_second.value |= cpu.params.first;
+    public bitwiseOrValues(cpu:CPU, value:number, dest:Register) {
+        dest.value |= value;
     }
 
     @instruction("XOR", 9, ParamType.Register, ParamType.Register, ParamType.Register)
-    public bitwiseXorRegisters(cpu:CPU) {
-        cpu.params.r_third.value = cpu.params.r_first.value ^ cpu.params.r_second.value;
+    public bitwiseXorRegisters(cpu:CPU, lhs:Register, rhs:Register, dest:Register) {
+        dest.value = lhs.value ^ rhs.value;
     }
 
     @instruction("XOR", 10, ParamType.Value, ParamType.Register)
-    public bitwiseXorValues(cpu:CPU) {
-        cpu.params.r_second.value ^= cpu.params.first;
+    public bitwiseXorValues(cpu:CPU, value:number, dest:Register) {
+        dest.value ^= value;
     }
 
     @instruction("CMP", 11, ParamType.Value, ParamType.Register)
@@ -82,58 +82,58 @@ export class InstructionSet {
     }
 
     @instruction("JMPNEQ", 14, ParamType.Value)
-    public jumpIfNotEqual(cpu:CPU) {
-        this.jumpIf(!cpu.flags.equal, cpu, cpu.params.first);
+    public jumpIfNotEqual(cpu:CPU, value:number) {
+        this.jumpIf(!cpu.flags.equal, cpu, value);
     }
 
     @instruction("JMPL", 15, ParamType.Value)
-    public jumpIfless(cpu:CPU) {
-        this.jumpIf(cpu.flags.less && !cpu.flags.equal, cpu, cpu.params.first);
+    public jumpIfless(cpu:CPU, value:number) {
+        this.jumpIf(cpu.flags.less && !cpu.flags.equal, cpu, value);
     }
 
     @instruction("JMPLEQ", 16, ParamType.Value)
-    public jumpIfLessOrEqual(cpu:CPU) {
-        this.jumpIf(cpu.flags.less || cpu.flags.equal, cpu, cpu.params.first);
+    public jumpIfLessOrEqual(cpu:CPU, value:number) {
+        this.jumpIf(cpu.flags.less || cpu.flags.equal, cpu, value);
     }
 
     @instruction("JMPM", 17, ParamType.Value)
-    public jumpIfMore(cpu:CPU) {
-        this.jumpIf(cpu.flags.more && !cpu.flags.equal, cpu, cpu.params.first);
+    public jumpIfMore(cpu:CPU, value:number) {
+        this.jumpIf(cpu.flags.more && !cpu.flags.equal, cpu, value);
     }
 
     @instruction("JMPMEQ", 18, ParamType.Value)
-    public jumpIfMoreOrEqual(cpu:CPU) {
-        this.jumpIf(cpu.flags.more || cpu.flags.equal, cpu, cpu.params.first);
+    public jumpIfMoreOrEqual(cpu:CPU, value:number) {
+        this.jumpIf(cpu.flags.more || cpu.flags.equal, cpu, value);
     }
 
     @instruction("JMPEQ", 19, ParamType.Register)
-    public registerJumpIfEqual(cpu:CPU) {
-        this.jumpIf(cpu.flags.equal, cpu, cpu.params.r_first.value);
+    public registerJumpIfEqual(cpu:CPU, reg:Register) {
+        this.jumpIf(cpu.flags.equal, cpu, reg.value);
     }
 
     @instruction("JMPNEQ", 20, ParamType.Register)
-    public registerJumpIfNotEqual(cpu:CPU) {
-        this.jumpIf(!cpu.flags.equal, cpu, cpu.params.r_first.value);
+    public registerJumpIfNotEqual(cpu:CPU, reg:Register) {
+        this.jumpIf(!cpu.flags.equal, cpu, reg.value);
     }
 
     @instruction("JMPL", 21, ParamType.Register)
-    public registerJumpIfless(cpu:CPU) {
-        this.jumpIf(cpu.flags.less, cpu, cpu.params.r_first.value);
+    public registerJumpIfless(cpu:CPU, reg:Register) {
+        this.jumpIf(cpu.flags.less, cpu, reg.value);
     }
 
     @instruction("JMPLEQ", 22, ParamType.Register)
-    public registerJumpIfLessOrEqual(cpu:CPU) {
-        this.jumpIf(cpu.flags.less || cpu.flags.equal, cpu, cpu.params.r_first.value);
+    public registerJumpIfLessOrEqual(cpu:CPU, reg:Register) {
+        this.jumpIf(cpu.flags.less || cpu.flags.equal, cpu, reg.value);
     }
 
     @instruction("JMPM", 23, ParamType.Register)
-    public registerJumpIfMore(cpu:CPU) {
-        this.jumpIf(cpu.flags.more, cpu, cpu.params.r_first.value);
+    public registerJumpIfMore(cpu:CPU, reg:Register) {
+        this.jumpIf(cpu.flags.more, cpu, reg.value);
     }
 
     @instruction("JMPMEQ", 24, ParamType.Register)
-    public registerJumpIfMoreOrEqual(cpu:CPU) {
-        this.jumpIf(cpu.flags.more || cpu.flags.equal, cpu, cpu.params.r_first.value);
+    public registerJumpIfMoreOrEqual(cpu:CPU, reg:Register) {
+        this.jumpIf(cpu.flags.more || cpu.flags.equal, cpu, reg.value);
     }
 
     @instruction("PUSH", 25, ParamType.Register)

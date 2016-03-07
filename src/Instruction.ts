@@ -30,7 +30,7 @@ export class Instruction {
 
     private verifyParams(cpu:CPU):boolean {
         for (let i = 0; i < this._paramList.length; i++) {
-            if (!this.verifySingleParam(this._paramList[i], cpu.params.raw[i])) {
+            if (!this.verifySingleParam(this._paramList[i], cpu.ram.getCellValue(cpu.registers.IP.value + i + 1))) {
                 return false;
             }
         }
