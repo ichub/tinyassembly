@@ -18,6 +18,7 @@ export class Registers {
 
     constructor() {
         this._SP.value = RAM.stackRange.low;
+        this._IP.value = RAM.programRange.low;
         this._map = Object.freeze([
             this._A,
             this._B,
@@ -95,6 +96,8 @@ export class Registers {
         for (let i = 0; i < this._map.length; i++) {
             this._map[i].value = 0;
         }
+
+        this._IP.value = RAM.programRange.low;
     }
 
     public static get registers() {

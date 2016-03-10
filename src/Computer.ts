@@ -25,7 +25,7 @@ export class Computer {
 
         this._cpu.registers.zeroOut();
         this._ram.zeroOut();
-        this._ram.setMemory(0, assembledProgram);
+        this._ram.setMemory(RAM.programRange.low, assembledProgram);
 
         return assembledProgram;
     }
