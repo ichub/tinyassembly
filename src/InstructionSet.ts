@@ -195,8 +195,11 @@ export class InstructionSet {
 
     @instruction("BLIT", 35, ParamType.Value, ParamType.Register, ParamType.Register)
     public blitReg(cpu:CPU, origin:number, x:Register, y:Register) {
-        for (let i = 0; i < 8; i++) {
-            cpu.ram.copy(origin + 8 * i, 8, x.value + (y.value + i) * 64, cpu.graphics);
+        const width = cpu.ram.getCellValue(origin);
+        const height = cpu.ram.getCellValue(origin + 1);
+
+        for (let i = 0; i < height; i++) {
+            cpu.ram.copy(origin + width * i + 2, width, x.value + (y.value + i) * 64, cpu.graphics);
         }
     }
 
