@@ -7,28 +7,35 @@ const webInterface = new Interface(computer);
 
 computer.loadProgram([
     "start:",
-    "CLS",
-    "BLIT 100 %A %D",
+    "LOAD 100 %C",
+    "LOAD 2 %A",
+    "LOAD 2 %B",
+    "loop:",
+    "BLIT %C %A %B",
     "DRAW",
-    "CMP 0 %B",
-    "JMPNEQ $notequal",
-    "RAND %B 5 10",
-    "notequal:",
-    "CMP 0 %C",
-    "JMPNEQ $notequaltwo",
-    "RAND %C 5 10",
-    "notequaltwo:",
-    "DEC %B",
-    "ADD %B %A %A",
-    "ADD %C %D %D",
-    "JMP $start"
+    "ADD 6 %A",
+    "CMP 60 %A",
+    "JMPMEQ $else",
+    "LOAD 2 %A",
+    "ADD 6 %B",
+    "CMP 60 %B",
+    "JMPLEQ $end",
+    "else:",
+    "JMP $loop",
+    "end:",
+    "HALT",
+
+
 ].join("\n"));
 
 computer.ram.setMemory(100,
     [
-        3, 2,
-        1, 0, 1,
-        0, 1, 0
+        5, 5,
+        1, 0, 0, 0, 1,
+        1, 0, 0, 0, 1,
+        1, 1, 1, 1, 1,
+        1, 0, 0, 0, 1,
+        1, 0, 0, 0, 1
     ]);
 
 

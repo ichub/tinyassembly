@@ -223,6 +223,16 @@ export class InstructionSet {
         reg.decrement();
     }
 
+    @instruction("BLIT", 40, ParamType.Register, ParamType.Register, ParamType.Register)
+    public blitRegReg(cpu:CPU, origin:Register, x:Register, y:Register) {
+        const width = cpu.ram.getCellValue(origin.value);
+        const height = cpu.ram.getCellValue(origin.value + 1);
+
+        for (let i = 0; i < height; i++) {
+            cpu.ram.copy(origin.value + width * i + 2, width, x.value + (y.value + i) * 64, cpu.graphics);
+        }
+    }
+
     public findInstructionByOpcode(opcode:number):Instruction {
         for (let i = 0; i < this._instructions.length; i++) {
             if (this._instructions[i].opcode === opcode) {
@@ -255,7 +265,7 @@ export class InstructionSet {
             }
         }
 
-        throw "could not find matching instruction";
+        throw "could not find matching instruction: " + name;
     }
 
     public get instructions():Instruction[] {

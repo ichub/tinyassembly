@@ -33,10 +33,12 @@ export class Memory {
         return this._memory.slice(index, index + count);
     }
 
-    public setMemory(offset:number, values:number[]) {
+    public setMemory(offset:number, values:number[]):number {
         for (let i = 0; i < values.length; i++) {
             this._memory[i + offset] = clamp(values[i], Memory.maxMemoryCellValue);
         }
+
+        return offset + values.length;
     }
 
     public copy(source:number, length:number, destination:number, memory?:Memory) {
