@@ -6,6 +6,7 @@ import {TokenStream} from "./TokenStream";
 import {TokenType} from "./TokenType";
 import {Parser} from "./Parser";
 import {AssemblerContext} from "./AssemblerContext";
+import {RAM} from "./RAM";
 
 export class Assembler {
     private _instructionSet:InstructionSet;
@@ -125,6 +126,6 @@ export class Assembler {
     }
 
     private labelReferenceToValue(value:string, context:AssemblerContext):number {
-        return context.labels[value.substr(1)] * this._instructionSet.instructionLength;
+        return RAM.programRange.low + context.labels[value.substr(1)] * this._instructionSet.instructionLength;
     }
 }
