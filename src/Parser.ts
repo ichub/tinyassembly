@@ -48,7 +48,7 @@ export class Parser {
     }
 
     private parseLabelLine(line:string):Token[] {
-        const labelPattern = /^\s*([a-zA-Z]+):\s*$/;
+        const labelPattern = /^\s*([a-zA-Z0-9]+):\s*$/;
 
         const result = line.match(labelPattern);
 
@@ -56,7 +56,7 @@ export class Parser {
     }
 
     private parseLine(line:string):Token[] {
-        const labelPattern = /^\s*([a-zA-Z]+):\s*$/;
+        const labelPattern = /^\s*([a-zA-Z0-9]+):\s*$/;
 
         if (labelPattern.test(line)) {
             return this.parseLabelLine(line);
@@ -68,7 +68,7 @@ export class Parser {
     private paramStringToToken(paramString:string):Token {
         const registerPattern = /^%[a-zA-Z]$/;
         const numberLiteralPattern = /^\d+$/;
-        const labelPattern = /^\$[a-zA-Z]+$/;
+        const labelPattern = /^\$[a-zA-Z0-9]+$/;
 
         let type;
 
