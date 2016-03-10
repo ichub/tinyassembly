@@ -34,9 +34,9 @@ computer.loadProgram([
 
 computer.ram.setMemory(100,
     [
-        2, 2,
-        1, 0,
-        0, 1
+        3, 2,
+        1, 0, 1,
+        0, 1, 0
     ]);
 
 
