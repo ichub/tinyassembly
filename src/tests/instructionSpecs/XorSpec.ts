@@ -1,4 +1,5 @@
 import {Computer} from "../../computer";
+import {RAM} from "../../RAM";
 
 describe("the XOR instruction", function () {
     it("param3 = param1 ^ param2", function () {
@@ -8,7 +9,7 @@ describe("the XOR instruction", function () {
 
         comp.cpu.registers.A.value = left;
         comp.cpu.registers.B.value = right;
-        comp.ram.setMemory(0, [9, 0, 1, 2]);
+        comp.ram.setMemory(RAM.programRange.low, [9, 0, 1, 2]);
         comp.cpu.step();
 
         expect(comp.cpu.registers.C.value).toBe(left ^ right);
@@ -20,7 +21,7 @@ describe("the XOR instruction", function () {
         const right = 0b01101;
 
         comp.cpu.registers.A.value = left;
-        comp.ram.setMemory(0, [10, right, 0, 0]);
+        comp.ram.setMemory(RAM.programRange.low, [10, right, 0, 0]);
         comp.cpu.step();
 
         expect(comp.cpu.registers.A.value).toBe(left ^ right);

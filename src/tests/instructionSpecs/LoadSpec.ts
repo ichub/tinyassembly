@@ -1,4 +1,5 @@
 import {Computer} from "../../computer";
+import {RAM} from "../../RAM";
 
 describe("the R_LOAD instruction", function () {
     it("should load the value in register index parameter 1 into register index parameter 2", function () {
@@ -13,7 +14,7 @@ describe("the R_LOAD instruction", function () {
         const comp = new Computer();
         const testValue = 100;
 
-        comp.ram.setMemory(0, [2, testValue, 3, 0]);
+        comp.ram.setMemory(RAM.programRange.low, [2, testValue, 3, 0]);
         comp.cpu.step();
 
         expect(comp.cpu.registers.D.value).toBe(testValue);

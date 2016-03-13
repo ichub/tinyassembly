@@ -1,4 +1,5 @@
 import {Computer} from "../../Computer";
+import {RAM} from "../../RAM";
 
 describe("the jump instruction", function () {
     const comp = new Computer();
@@ -6,7 +7,7 @@ describe("the jump instruction", function () {
     describe("JUMPEQ", function () {
         it("shoud jump if equal", function () {
             comp.cpu.flags.equal = true;
-            comp.ram.setMemory(0, [13, 100, 0, 0]);
+            comp.ram.setMemory(RAM.programRange.low, [13, 100, 0, 0]);
             comp.cpu.step();
 
             expect(comp.cpu.registers.IP.value).toBe(100);
@@ -16,10 +17,12 @@ describe("the jump instruction", function () {
             comp.reset();
 
             comp.cpu.flags.equal = false;
-            comp.ram.setMemory(0, [13, 100, 0, 0]);
+            comp.ram.setMemory(RAM.programRange.low, [13, 100, 0, 0]);
             comp.cpu.step();
 
-            expect(comp.cpu.registers.IP.value).toBe(comp.cpu.instructionSet.instructionLength);
+            expect(comp.cpu.registers.IP.value).toBe(
+                comp.cpu.instructionSet.instructionLength +
+                RAM.programRange.low);
         });
     });
 
@@ -28,7 +31,7 @@ describe("the jump instruction", function () {
             comp.reset();
 
             comp.cpu.flags.equal = false;
-            comp.ram.setMemory(0, [14, 100, 0, 0]);
+            comp.ram.setMemory(RAM.programRange.low, [14, 100, 0, 0]);
             comp.cpu.step();
 
             expect(comp.cpu.registers.IP.value).toBe(100);
@@ -38,10 +41,12 @@ describe("the jump instruction", function () {
             comp.reset();
 
             comp.cpu.flags.equal = true;
-            comp.ram.setMemory(0, [14, 100, 0, 0]);
+            comp.ram.setMemory(RAM.programRange.low, [14, 100, 0, 0]);
             comp.cpu.step();
 
-            expect(comp.cpu.registers.IP.value).toBe(comp.cpu.instructionSet.instructionLength);
+            expect(comp.cpu.registers.IP.value).toBe(
+                comp.cpu.instructionSet.instructionLength +
+                RAM.programRange.low);
         });
     });
 
@@ -50,7 +55,7 @@ describe("the jump instruction", function () {
             comp.reset();
 
             comp.cpu.flags.less = true;
-            comp.ram.setMemory(0, [15, 100, 0, 0]);
+            comp.ram.setMemory(RAM.programRange.low, [15, 100, 0, 0]);
             comp.cpu.step();
 
             expect(comp.cpu.registers.IP.value).toBe(100);
@@ -60,10 +65,12 @@ describe("the jump instruction", function () {
             comp.reset();
 
             comp.cpu.flags.less = false;
-            comp.ram.setMemory(0, [15, 100, 0, 0]);
+            comp.ram.setMemory(RAM.programRange.low, [15, 100, 0, 0]);
             comp.cpu.step();
 
-            expect(comp.cpu.registers.IP.value).toBe(comp.cpu.instructionSet.instructionLength);
+            expect(comp.cpu.registers.IP.value).toBe(
+                comp.cpu.instructionSet.instructionLength +
+                RAM.programRange.low);
         });
     });
 
@@ -73,7 +80,7 @@ describe("the jump instruction", function () {
 
             comp.cpu.flags.less = true;
             comp.cpu.flags.equal = true;
-            comp.ram.setMemory(0, [16, 100, 0, 0]);
+            comp.ram.setMemory(RAM.programRange.low, [16, 100, 0, 0]);
             comp.cpu.step();
 
             expect(comp.cpu.registers.IP.value).toBe(100);
@@ -83,10 +90,12 @@ describe("the jump instruction", function () {
             comp.reset();
 
             comp.cpu.flags.less = false;
-            comp.ram.setMemory(0, [16, 100, 0, 0]);
+            comp.ram.setMemory(RAM.programRange.low, [16, 100, 0, 0]);
             comp.cpu.step();
 
-            expect(comp.cpu.registers.IP.value).toBe(comp.cpu.instructionSet.instructionLength);
+            expect(comp.cpu.registers.IP.value).toBe(
+                comp.cpu.instructionSet.instructionLength +
+                RAM.programRange.low);
         });
     });
 
@@ -95,7 +104,7 @@ describe("the jump instruction", function () {
             comp.reset();
 
             comp.cpu.flags.more = true;
-            comp.ram.setMemory(0, [17, 100, 0, 0]);
+            comp.ram.setMemory(RAM.programRange.low, [17, 100, 0, 0]);
             comp.cpu.step();
 
             expect(comp.cpu.registers.IP.value).toBe(100);
@@ -105,10 +114,12 @@ describe("the jump instruction", function () {
             comp.reset();
 
             comp.cpu.flags.less = false;
-            comp.ram.setMemory(0, [17, 100, 0, 0]);
+            comp.ram.setMemory(RAM.programRange.low, [17, 100, 0, 0]);
             comp.cpu.step();
 
-            expect(comp.cpu.registers.IP.value).toBe(comp.cpu.instructionSet.instructionLength);
+            expect(comp.cpu.registers.IP.value).toBe(
+                comp.cpu.instructionSet.instructionLength +
+                RAM.programRange.low);
         });
     });
 
@@ -118,7 +129,7 @@ describe("the jump instruction", function () {
 
             comp.cpu.flags.more = true;
             comp.cpu.flags.equal = true;
-            comp.ram.setMemory(0, [18, 100, 0, 0]);
+            comp.ram.setMemory(RAM.programRange.low, [18, 100, 0, 0]);
             comp.cpu.step();
 
             expect(comp.cpu.registers.IP.value).toBe(100);
@@ -128,10 +139,12 @@ describe("the jump instruction", function () {
             comp.reset();
 
             comp.cpu.flags.less = true;
-            comp.ram.setMemory(0, [18, 100, 0, 0]);
+            comp.ram.setMemory(RAM.programRange.low, [18, 100, 0, 0]);
             comp.cpu.step();
 
-            expect(comp.cpu.registers.IP.value).toBe(comp.cpu.instructionSet.instructionLength);
+            expect(comp.cpu.registers.IP.value).toBe(
+                comp.cpu.instructionSet.instructionLength +
+                RAM.programRange.low);
         });
     });
 });

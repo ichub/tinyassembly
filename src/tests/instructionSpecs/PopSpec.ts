@@ -1,4 +1,5 @@
 import {Computer} from "../../Computer";
+import {RAM} from "../../RAM";
 
 describe("the pop instruction", function () {
     it("should pop values", function () {
@@ -8,7 +9,7 @@ describe("the pop instruction", function () {
 
         comp.cpu.registers.SP.increment();
         comp.ram.setCellValue(comp.cpu.registers.SP.value, expectedValue);
-        comp.ram.setMemory(0, [27, 0, 0, 0]);
+        comp.ram.setMemory(RAM.programRange.low, [27, 0, 0, 0]);
         comp.cpu.step();
 
         expect(comp.cpu.registers.A.value).toEqual(expectedValue);

@@ -1,6 +1,7 @@
 import {Assembler} from "../Assembler";
 import {InstructionSet} from "../InstructionSet";
 import {ParamType} from "../ParamType";
+import {RAM} from "../RAM";
 
 describe("assembler", function () {
     const assembler = new Assembler(new InstructionSet());
@@ -20,7 +21,7 @@ describe("assembler", function () {
     it("should assemble labels", function () {
         const numbers = assembler.assembleString("HALT\nlabel:\nJMP $label");
 
-        expect(numbers).toEqual([0, 0, 0, 0, 32, 4, 0, 0]);
+        expect(numbers).toEqual([0, 0, 0, 0, 32, RAM.programRange.low + 4, 0, 0]);
     });
 
     it("should assemble raw numbers", function() {

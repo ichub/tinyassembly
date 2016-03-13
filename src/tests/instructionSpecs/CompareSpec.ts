@@ -1,4 +1,5 @@
 import {Computer} from "../../Computer";
+import {RAM} from "../../RAM";
 
 describe("CMP instruction", function () {
     it("value less", function () {
@@ -7,7 +8,7 @@ describe("CMP instruction", function () {
         let more = 456;
 
         comp.cpu.registers.A.value = more;
-        comp.ram.setMemory(0, [11, less, 0, 0]);
+        comp.ram.setMemory(RAM.programRange.low, [11, less, 0, 0]);
         comp.cpu.step();
 
         expect(comp.cpu.flags.less).toBe(true);
@@ -21,7 +22,7 @@ describe("CMP instruction", function () {
         let more = 456;
 
         comp.cpu.registers.A.value = less;
-        comp.ram.setMemory(0, [11, more, 0, 0]);
+        comp.ram.setMemory(RAM.programRange.low, [11, more, 0, 0]);
         comp.cpu.step();
 
         expect(comp.cpu.flags.less).toBe(false);
@@ -34,7 +35,7 @@ describe("CMP instruction", function () {
         let value = 123;
 
         comp.cpu.registers.A.value = value;
-        comp.ram.setMemory(0, [11, value, 0, 0]);
+        comp.ram.setMemory(RAM.programRange.low, [11, value, 0, 0]);
         comp.cpu.step();
 
         expect(comp.cpu.flags.less).toBe(false);
@@ -49,7 +50,7 @@ describe("CMP instruction", function () {
 
         comp.cpu.registers.A.value = less;
         comp.cpu.registers.B.value = more;
-        comp.ram.setMemory(0, [12, 0, 1, 0]);
+        comp.ram.setMemory(RAM.programRange.low, [12, 0, 1, 0]);
         comp.cpu.step();
 
         expect(comp.cpu.flags.less).toBe(true);
@@ -64,7 +65,7 @@ describe("CMP instruction", function () {
 
         comp.cpu.registers.A.value = more;
         comp.cpu.registers.B.value = less;
-        comp.ram.setMemory(0, [12, 0, 1, 0]);
+        comp.ram.setMemory(RAM.programRange.low, [12, 0, 1, 0]);
         comp.cpu.step();
 
         expect(comp.cpu.flags.less).toBe(false);
@@ -78,7 +79,7 @@ describe("CMP instruction", function () {
 
         comp.cpu.registers.A.value = value;
         comp.cpu.registers.B.value = value;
-        comp.ram.setMemory(0, [12, 0, 1, 0]);
+        comp.ram.setMemory(RAM.programRange.low, [12, 0, 1, 0]);
         comp.cpu.step();
 
         expect(comp.cpu.flags.less).toBe(false);
