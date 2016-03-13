@@ -46,11 +46,21 @@ export class AppComponent extends React.Component<any, any> {
         this.forceUpdate();
     }
 
+    public handleStopClick() {
+        this.state.computer.stop();
+    }
+
+    public handleStepClick() {
+        this.state.computer.step();
+    }
+
     public render() {
         return <div className="app">
             <ScreenComponent computer={this.state.computer}/>
             <button onClick={this.handleRunClick.bind(this)}>run</button>
             <button onClick={this.handleResetClick.bind(this)}>reset</button>
+            <button onClick={this.handleStopClick.bind(this)}>stop</button>
+            <button onClick={this.handleStepClick.bind(this)}>step</button>
         </div>;
     }
 }

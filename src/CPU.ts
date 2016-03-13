@@ -69,6 +69,10 @@ export class CPU {
     public reset():void {
         this._registers.zeroOut();
         this._flags.zeroOut();
+        this.stop();
+    }
+
+    public stop():void {
         clearTimeout(this._timeoutHandle);
     }
 

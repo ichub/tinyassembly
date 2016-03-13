@@ -36,6 +36,14 @@ export class Computer {
         this._graphics.zeroOut();
     }
 
+    public stop():void {
+        this._cpu.stop();
+    }
+
+    public step():void {
+        this._cpu.step();
+    }
+
     public get cpu():CPU {
         return this._cpu;
     }
