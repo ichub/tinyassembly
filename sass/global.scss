@@ -1,12 +1,14 @@
 $pixel-size: 3;
 $pixel-on-color: rgb(0, 0, 0);
 $pixel-off-color: rgb(61, 122, 61);
+$screen-color: rgb(204, 204, 204);
 
 .screen {
   width: 64px * $pixel-size;
   height: 64px * $pixel-size;
   display: block;
   padding: 0;
+  background-color: $screen-color;
 
   .pixel {
     background-color: $pixel-off-color;
