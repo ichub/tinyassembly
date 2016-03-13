@@ -19,7 +19,7 @@ export class RAM extends Memory {
     }
 
     public static get staticSize() {
-        return Math.pow(2, 10);
+        return Math.pow(2, 12);
     }
 
     public static get size() {

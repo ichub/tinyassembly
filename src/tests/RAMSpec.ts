@@ -1,10 +1,10 @@
 import {RAM} from "../ram";
 
 describe("RAM", function () {
-    it("should be initialized with zeroes", function () {
+    it("should be initialized with zeroes in non-data ranges", function () {
         const ram = new RAM();
 
-        for (let i = 0; i < ram.size; i++) {
+        for (let i = RAM.staticRange.high; i < ram.size; i++) {
             expect(ram.getCellValue(i)).toBe(0);
         }
     });
