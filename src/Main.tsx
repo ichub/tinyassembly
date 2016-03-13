@@ -1,13 +1,11 @@
 import {Computer} from "./computer";
-import {Interface} from "./Interface";
 import {RAM} from "./RAM";
 import {TextInitializer} from "./TextInitializer";
 import * as ReactDom from "react-dom";
 import * as React from "react";
-import {TestComponent} from "./components/TestComponent";
+import {AppComponent} from "./components/AppComponent";
 
 const computer = new Computer();
-const webInterface = new Interface(computer);
 
 computer.loadProgram([
     "start:",
@@ -34,9 +32,7 @@ computer.loadProgram([
 ].join("\n"));
 
 window.addEventListener("load", () => {
-    webInterface.bind();
     computer.cpu.run();
 
-    ReactDom.render(<TestComponent/>, document.getElementById("app-container"));
+    ReactDom.render(<AppComponent/>, document.getElementById("app-container"));
 });
-

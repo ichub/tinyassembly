@@ -2,7 +2,7 @@ $pixel-size: 3;
 $pixel-on-color: rgb(0, 0, 0);
 $pixel-off-color: rgb(61, 122, 61);
 
-#graphics {
+.screen {
   width: 64px * $pixel-size;
   height: 64px * $pixel-size;
   display: block;
