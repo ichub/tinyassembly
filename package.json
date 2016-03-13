@@ -4,6 +4,8 @@
   "description": "",
   "main": "gulpfile.js",
   "dependencies": {
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
   },
   "devDependencies": {
     "browserify": "^13.0.0",

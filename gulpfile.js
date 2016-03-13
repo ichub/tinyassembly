@@ -29,7 +29,7 @@ let cli = commandLineArgs([
 let options = cli.parse();
 
 let sassGlob = './sass/**/*.scss';
-let tsGlob = "./src/**/*.ts";
+let tsGlob = "./src/**/*.@(ts|tsx)";
 
 let sassOutputGlob = './css/**/*.css';
 let tsOutputGlob = './dist/**/*.js';
@@ -46,12 +46,13 @@ gulp.task("browserfiy", ["ts"], function () {
 });
 
 gulp.task('ts', function () {
-    return gulp.src('src/**/*.ts')
+    return gulp.src(tsGlob)
         .pipe(ts({
             declaration: false,
             module: "commonjs",
             target: "es6",
-            experimentalDecorators: true
+            experimentalDecorators: true,
+            jsx: "react"
         }))
         .js
         .pipe(babel({

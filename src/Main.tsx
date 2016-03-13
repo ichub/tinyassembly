@@ -2,6 +2,9 @@ import {Computer} from "./computer";
 import {Interface} from "./Interface";
 import {RAM} from "./RAM";
 import {TextInitializer} from "./TextInitializer";
+import * as ReactDom from "react-dom";
+import * as React from "react";
+import {TestComponent} from "./components/TestComponent";
 
 const computer = new Computer();
 const webInterface = new Interface(computer);
@@ -33,4 +36,7 @@ computer.loadProgram([
 window.addEventListener("load", () => {
     webInterface.bind();
     computer.cpu.run();
+
+    ReactDom.render(<TestComponent/>, document.getElementById("app-container"));
 });
+
