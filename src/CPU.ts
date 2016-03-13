@@ -12,6 +12,7 @@ export class CPU {
     private _graphics:Graphics;
     private _stepInterval = 0;
     private _instructionSet:InstructionSet;
+    private _timeoutHandle:number;
 
     public onStep:Function;
 
@@ -52,7 +53,7 @@ export class CPU {
             return;
         }
 
-        setTimeout(() => {
+        this._timeoutHandle = setTimeout(() => {
             this.run();
         }, this._stepInterval);
     }
@@ -68,6 +69,7 @@ export class CPU {
     public reset():void {
         this._registers.zeroOut();
         this._flags.zeroOut();
+        clearTimeout(this._timeoutHandle);
     }
 
     public get registers():Registers {

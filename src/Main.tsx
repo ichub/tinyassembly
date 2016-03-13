@@ -27,8 +27,6 @@ computer.loadProgram([
     "JMP $loop",
     "end:",
     "HALT",
-
-
 ].join("\n"));
 
 window.addEventListener("load", () => {

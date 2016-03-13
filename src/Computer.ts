@@ -33,6 +33,7 @@ export class Computer {
     public reset():void {
         this._ram.zeroOut();
         this._cpu.reset();
+        this._graphics.zeroOut();
     }
 
     public get cpu():CPU {

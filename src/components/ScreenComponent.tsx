@@ -6,6 +6,10 @@ import {Graphics} from "../Graphics";
 export class ScreenComponent extends React.Component<IComputerProps, any> {
     constructor(props:IComputerProps) {
         super(props);
+
+        this.props.computer.cpu.onStep = () => {
+            this.forceUpdate();
+        }
     }
 
     public render() {
