@@ -40,7 +40,8 @@ gulp.task("default", ["serve"]);
 gulp.task("browserfiy", ["ts"], function () {
     gulp.src(["./dist/*.js", "!./dist/tests/*"])
         .pipe(browserify({
-            insertGlobals: false
+            insertGlobals: false,
+            debug:true
         }))
         .pipe(gulp.dest("dist/bundle"))
 });
