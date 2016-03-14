@@ -56,6 +56,10 @@ $stack-range-color: rgb(152, 93, 99);
       height: 100%;
     }
 
+    .zero {
+      font-weight: normal;
+    }
+
     .range-static {
       background-color: $static-range-color;
     }

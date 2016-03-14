@@ -17,17 +17,19 @@ export class RamRowComponent extends React.Component<IRamRowProps, any> {
     }
 
     public render() {
-        const cssClasses = classnames(
-            this.regionToClass(this.props.regionName)
-        );
+        const values = this.props.values.map((value, index) => {
+            const valueClass = classnames(
+                {
+                    "zero": value === 0
+                }
+            );
 
-        const values = this.props.values.map(value => {
-            return toHex(value, 4) + " ";
+            return <span className={valueClass} key={index}>{toHex(value, 4) + " "}</span>;
         });
 
         return <div className="ram-row">
             <span className="offset">{this.props.offset}</span>
-            <span className={cssClasses}>{values}</span>
+            <span className={this.regionToClass(this.props.regionName)}>{values}</span>
         </div>;
     }
 }
