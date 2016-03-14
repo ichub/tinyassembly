@@ -5,7 +5,7 @@ export function toHex(num:number, desiredLength:number):string {
         converted = "0" + converted;
     }
 
-    return "0x" + converted.toUpperCase();
+    return converted.toUpperCase();
 }
 
 export function listToHex(nums:number[], desiredLength:number):string[] {
