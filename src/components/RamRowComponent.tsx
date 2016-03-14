@@ -28,7 +28,7 @@ export class RamRowComponent extends React.Component<IRamRowProps, any> {
         });
 
         return <div className="ram-row">
-            <span className="offset">{this.props.offset}</span>
+            <span className="offset">{toHex(this.props.offset, 4)}</span>
             <span className={this.regionToClass(this.props.regionName)}>{values}</span>
         </div>;
     }
