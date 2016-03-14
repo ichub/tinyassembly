@@ -16,7 +16,13 @@ export class RamViewComponent extends React.Component<IComputerProps, any> {
         }
 
         const rows = values.map((rowValues:number[], index:number) => {
-           return <RamRowComponent key={index} values={rowValues}/>;
+            const region = RAM.getRangeName(index * this.rowLength);
+
+            return <RamRowComponent
+                key={index}
+                values={rowValues}
+                offset={this.rowLength * index}
+                regionName={region}/>;
         });
 
         return <div className="ram-view">

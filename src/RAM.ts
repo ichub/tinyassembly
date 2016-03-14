@@ -1,6 +1,7 @@
 import {Memory} from "./Memory";
 import {MemoryRange} from "./MemoryRange";
 import {TextInitializer} from "./TextInitializer";
+import {MemoryRegion} from "./MemoryRegion";
 
 export class RAM extends Memory {
     private static _staticRange = new MemoryRange(0, RAM.staticSize);
@@ -44,5 +45,17 @@ export class RAM extends Memory {
 
     static get staticRange():MemoryRange {
         return this._staticRange;
+    }
+
+    public static getRangeName(offset:number):MemoryRegion {
+        if (offset >= RAM._staticRange.low && offset < RAM._staticRange.high) {
+            return MemoryRegion.Static
+        } else if (offset >= RAM._programRange.low && offset < RAM._programRange.high) {
+            return MemoryRegion.Program
+        } else if (offset >= RAM._stackRange.low && offset < RAM._stackRange.high) {
+            return MemoryRegion.Stack
+        }
+
+        throw "no region found for offset " + offset;
     }
 }
