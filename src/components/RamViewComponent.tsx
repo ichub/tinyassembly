@@ -5,7 +5,7 @@ import {InstructionSet} from "../InstructionSet";
 import {RamRowComponent} from "./RamRowComponent";
 
 export class RamViewComponent extends React.Component<IComputerProps, any> {
-    private rowLength = 16;
+    private rowLength = 4;
 
     public render() {
         const ram = this.props.computer.ram;
