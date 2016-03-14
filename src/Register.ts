@@ -24,7 +24,7 @@ export class Register {
     }
 
     public static get maxValue() {
-        return Math.pow(2, 32) - 1;
+        return Math.pow(2, 16) - 1;
     }
 
     public getBytes():number[] {
