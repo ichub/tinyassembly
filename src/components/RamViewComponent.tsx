@@ -31,7 +31,8 @@ export class RamViewComponent extends React.Component<IComputerProps, any> {
                 values={rowValues}
                 offset={this.rowLength * index}
                 regionName={region}
-                isCurrentInstruction={this.props.computer.cpu.registers.IP.value == index * 4}/>;
+                isCurrentInstruction={this.props.computer.cpu.registers.IP.value == index * 4}
+                disassembler={this.props.computer.disassembler}/>;
         });
 
         return <div className="ram-view">

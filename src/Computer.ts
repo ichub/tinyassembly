@@ -2,18 +2,21 @@ import {CPU} from "./cpu";
 import {RAM} from "./ram";
 import {Assembler} from "./Assembler";
 import {Graphics} from "./Graphics";
+import {Disassembler} from "./Disassembler";
 
 export class Computer {
     private _cpu:CPU;
     private _ram:RAM;
     private _graphics:Graphics;
     private _assembler:Assembler;
+    private _disassembler:Disassembler;
 
     constructor() {
         this._ram = new RAM();
         this._graphics = new Graphics();
         this._cpu = new CPU(this._ram, this._graphics);
         this._assembler = new Assembler(this._cpu.instructionSet);
+        this._disassembler = new Disassembler(this._cpu.instructionSet);
     }
 
     public run() {
@@ -58,5 +61,9 @@ export class Computer {
 
     public get assembler():Assembler {
         return this._assembler;
+    }
+
+    get disassembler():Disassembler {
+        return this._disassembler;
     }
 }

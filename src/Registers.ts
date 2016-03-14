@@ -82,6 +82,10 @@ export class Registers {
         throw "could not find register with that name";
     }
 
+    public static findRegisterNameByNumber(number:number):string {
+        return Registers._registers[number];
+    }
+
     public findByName(registerName:string) {
         for (let i = 0; i < this._map.length; i++) {
             if (ignoreCaseEquals(this._map[i].name, registerName)) {
