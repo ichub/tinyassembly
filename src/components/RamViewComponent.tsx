@@ -7,6 +7,14 @@ import {RamRowComponent} from "./RamRowComponent";
 export class RamViewComponent extends React.Component<IComputerProps, any> {
     private rowLength = 4;
 
+    constructor(props:IComputerProps) {
+        super(props);
+
+        props.computer.cpu.on("step", () => {
+            this.forceUpdate();
+        });
+    }
+
     public render() {
         const ram = this.props.computer.ram;
         const values = [];
@@ -22,7 +30,8 @@ export class RamViewComponent extends React.Component<IComputerProps, any> {
                 key={index}
                 values={rowValues}
                 offset={this.rowLength * index}
-                regionName={region}/>;
+                regionName={region}
+                isCurrentInstruction={this.props.computer.cpu.registers.IP.value == index * 4}/>;
         });
 
         return <div className="ram-view">

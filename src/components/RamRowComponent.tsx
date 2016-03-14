@@ -27,7 +27,14 @@ export class RamRowComponent extends React.Component<IRamRowProps, any> {
             return <span className={valueClass} key={index}>{toHex(value, 4) + " "}</span>;
         });
 
-        return <div className="ram-row">
+        const rowClass = classnames(
+            "ram-row",
+            {
+                "current": this.props.isCurrentInstruction
+            }
+        );
+
+        return <div className={rowClass}>
             <span className="offset">{toHex(this.props.offset, 4)}</span>
             <span className={this.regionToClass(this.props.regionName)}>{values}</span>
         </div>;

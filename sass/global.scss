@@ -1,4 +1,4 @@
-$font-monospace: 'Inconsolata', ;
+$font-monospace: 'Inconsolata',;
 
 $pixel-size: 3;
 $pixel-on-color: rgb(0, 0, 0);
@@ -54,6 +54,10 @@ $stack-range-color: rgb(245, 230, 239);
       font-weight: bold;
       color: darken($offset-back-color, 40);
       height: 100%;
+    }
+
+    &.current {
+      color: red;
     }
 
     .zero {
