@@ -2,6 +2,7 @@ import * as React from "react";
 import * as classnames from "classnames";
 import {IRamRowProps} from "../props/IRamRowProps";
 import {MemoryRegion} from "../MemoryRegion";
+import {toHex} from "../Bits";
 
 export class RamRowComponent extends React.Component<IRamRowProps, any> {
     private regionToClass(region:MemoryRegion):string {
@@ -21,7 +22,7 @@ export class RamRowComponent extends React.Component<IRamRowProps, any> {
         );
 
         const values = this.props.values.map(value => {
-            return value + " ";
+            return toHex(value, 4) + " ";
         });
 
         return <div className="ram-row">
