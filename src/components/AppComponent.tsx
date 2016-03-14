@@ -64,7 +64,7 @@ export class AppComponent extends React.Component<any, any> {
             <button onClick={this.handleStopClick.bind(this)}>stop</button>
             <button onClick={this.handleStepClick.bind(this)}>step</button>
             <RamViewComponent computer={this.state.computer}/>
-            <RegistersComponent compute={this.state.computer}/>
+            <RegistersComponent computer={this.state.computer}/>
         </div>;
     }
 }

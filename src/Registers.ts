@@ -68,7 +68,7 @@ export class Registers {
         return this._SP;
     }
 
-    get map():{} {
+    get map():Register[] {
         return this._map;
     }
 
