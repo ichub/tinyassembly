@@ -7,9 +7,9 @@ export class ScreenComponent extends React.Component<IComputerProps, any> {
     constructor(props:IComputerProps) {
         super(props);
 
-        this.props.computer.cpu.onStep = () => {
+        this.props.computer.cpu.on("draw", () => {
             this.forceUpdate();
-        }
+        });
     }
 
     public render() {

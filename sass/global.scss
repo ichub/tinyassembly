@@ -28,9 +28,9 @@ $screen-color: rgb(204, 204, 204);
 $ram-view-width: 500px;
 $ram-view-height: 500px;
 
-$static-range-color: rgb(151, 178, 245);
-$program-range-color: rgb(128, 216, 137);
-$stack-range-color: rgb(152, 93, 99);
+$static-range-color: rgb(205, 218, 255);
+$program-range-color: rgb(182, 216, 195);
+$stack-range-color: rgb(245, 230, 239);
 
 .ram-view {
   border: 1px solid black;
@@ -72,4 +72,13 @@ $stack-range-color: rgb(152, 93, 99);
       background-color: $stack-range-color;
     }
   }
+}
+
+$registers-view-width: 500px;
+$registers-view-height: 500px;
+
+.registers-view {
+  border: 1px solid black;
+  width: $registers-view-height;
+  height: $registers-view-height;
 }

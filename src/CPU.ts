@@ -4,8 +4,9 @@ import {Logger} from "./logger";
 import {InstructionSet} from "./InstructionSet";
 import {Flags} from "./Flags";
 import {Graphics} from "./Graphics";
+import {EventEmitter} from "events";
 
-export class CPU {
+export class CPU extends EventEmitter{
     private _registers:Registers;
     private _flags:Flags;
     private _ram:RAM;
@@ -14,9 +15,9 @@ export class CPU {
     private _instructionSet:InstructionSet;
     private _timeoutHandle:number;
 
-    public onStep:Function;
-
     constructor(ram:RAM, graphics:Graphics) {
+        super();
+
         this._registers = new Registers();
         this._ram = ram;
         this._graphics = graphics;
@@ -31,12 +32,12 @@ export class CPU {
         } else {
             this._registers.IP.incrementBy(4);
         }
-        if (this.onStep) {
-            if (this._flags.draw) {
-                this.onStep();
-                this._flags.draw = false;
-            }
+        if (this._flags.draw) {
+            this._flags.draw = false;
+            this.emit("draw");
         }
+
+        this.emit("step");
     }
 
     public runSynchronouslyUntilHalted():void {
