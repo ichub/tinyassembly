@@ -2,6 +2,7 @@ import * as React from "react";
 import {ScreenComponent} from "./ScreenComponent";
 import {RamViewComponent} from "./RamViewComponent";
 import {RegistersComponent} from "./RegistersComponent";
+import {FlagsComponent} from "./FlagsComponent";
 import {Computer} from "../Computer";
 import {TextInitializer} from "../TextInitializer";
 import {RAM} from "../RAM";
@@ -65,6 +66,7 @@ export class AppComponent extends React.Component<any, any> {
             <button onClick={this.handleStepClick.bind(this)}>step</button>
             <RamViewComponent computer={this.state.computer}/>
             <RegistersComponent computer={this.state.computer}/>
+            <FlagsComponent computer={this.state.computer}/>
         </div>;
     }
 }
