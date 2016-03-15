@@ -33,16 +33,19 @@ let tsGlob = "./src/**/*.@(ts|tsx)";
 
 let sassOutputGlob = './css/**/*.css';
 let tsOutputGlob = './dist/**/*.js';
+let tsWatchedGlob = './dist/bundle/bundle.js';
 let htmlGlob = './index.html';
 
 gulp.task("default", ["serve"]);
 
 gulp.task("browserfiy", ["ts"], function () {
-    gulp.src(["./dist/*.js", "!./dist/tests/*"])
+    gulp.src(["./dist/App.js", "!./dist/tests/*"])
         .pipe(browserify({
             insertGlobals: false,
-            debug:true
+            debug:true,
+            outfile: tsWatchedGlob
         }))
+        .pipe(rename("bundle.js"))
         .pipe(gulp.dest("dist/bundle"))
 });
 
@@ -76,7 +79,7 @@ gulp.task('serve', ["watch"], function () {
             livereload: {
                 enable: true,
                 filter: function (filePath, cb) {
-                    glob([tsOutputGlob, sassOutputGlob, htmlGlob], function (err, files) {
+                    glob([tsWatchedGlob, sassOutputGlob, htmlGlob], function (err, files) {
                         cb(files.map(function (file) {
                                 return path.resolve(file);
                             }).indexOf(filePath) > -1);
