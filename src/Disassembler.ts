@@ -15,7 +15,7 @@ export class Disassembler {
             case ParamType.None:
                 return "";
             case ParamType.Value:
-                return value.toString();
+                return "0x" + toHex(value, 4);
             case ParamType.Register:
                 return "%" + Registers.findRegisterNameByNumber(value);
         }
