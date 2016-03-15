@@ -38,7 +38,7 @@ let htmlGlob = './index.html';
 
 gulp.task("default", ["serve"]);
 
-gulp.task("browserfiy", ["ts"], function () {
+gulp.task("browserify", ["ts"], function () {
     gulp.src(["./dist/App.js", "!./dist/tests/*"])
         .pipe(browserify({
             insertGlobals: false,
@@ -99,13 +99,13 @@ gulp.task('lint', function () {
         }))
 });
 
-gulp.task("watch", ['sass', 'browserfiy'], function () {
+gulp.task("watch", ['sass', 'browserify'], function () {
     gulp.watch(sassGlob, ['sass']);
-    gulp.watch(tsGlob, ['browserfiy']);
+    gulp.watch(tsGlob, ['browserify']);
 });
 
 
-gulp.task("test", ["browserfiy"], function () {
+gulp.task("test", ["browserify"], function () {
     gulp.src("")
         .pipe(jasmine({
             config: JSON.parse(fs.readFileSync("./spec/support/jasmine.json", "utf8")),
