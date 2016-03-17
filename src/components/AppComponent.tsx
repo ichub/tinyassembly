@@ -60,7 +60,6 @@ export class AppComponent extends React.Component<any, any> {
 
     public render() {
         return <div className="app">
-            <TooltipComponent top={100} left={100}/>
             <ScreenComponent computer={this.state.computer}/>
             <button onClick={this.handleRunClick.bind(this)}>run</button>
             <button onClick={this.handleResetClick.bind(this)}>reset</button>

@@ -3,8 +3,18 @@ import * as classnames from "classnames";
 import {IRamRowProps} from "../props/IRamRowProps";
 import {MemoryRegion} from "../MemoryRegion";
 import {toHex} from "../Bits";
+import {TooltipComponent} from "./TooltipComponent";
+import {IRamRowState} from "../state/IRamRowState";
 
-export class RamRowComponent extends React.Component<IRamRowProps, any> {
+export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState> {
+    constructor(props:IRamRowProps) {
+        super(props);
+
+        this.state = {
+            showTooltip: false
+        }
+    }
+
     private regionToClass(region:MemoryRegion):string {
         switch (region) {
             case MemoryRegion.Program:
@@ -14,6 +24,20 @@ export class RamRowComponent extends React.Component<IRamRowProps, any> {
             case MemoryRegion.Static:
                 return "range-static"
         }
+    }
+
+    private handleClick() {
+        this.setState({showTooltip: true});
+
+        console.log("asdf");
+    }
+
+    private getTooltip() {
+        if (this.state.showTooltip) {
+            return <TooltipComponent/>;
+        }
+
+        return;
     }
 
     public render() {
@@ -34,10 +58,13 @@ export class RamRowComponent extends React.Component<IRamRowProps, any> {
             }
         );
 
-        return <div className={rowClass}>
+        return <div className={rowClass} onClick={this.handleClick.bind(this)}>
             <span className="offset">{"0x" + toHex(this.props.offset, 4)}</span>
             <span className={this.regionToClass(this.props.regionName)}>{values}</span>
-            <span className="disassembly">{this.props.disassembler.disassembleSingleInstruction(this.props.values)}</span>
+            <span
+                className="disassembly">{this.props.disassembler.disassembleSingleInstruction(this.props.values)}</span>
+
+            {this.getTooltip()}
         </div>;
     }
 }

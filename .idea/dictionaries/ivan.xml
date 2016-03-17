@@ -2,9 +2,12 @@
   <dictionary name="ivan">
     <words>
       <w>bindfn</w>
+      <w>classnames</w>
       <w>eventlistener</w>
       <w>multiline</w>
       <w>opcode</w>
+      <w>unmount</w>
+      <w>unmounting</w>
     </words>
   </dictionary>
 </component>
