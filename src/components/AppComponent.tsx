@@ -2,6 +2,7 @@ import * as React from "react";
 import {ScreenComponent} from "./ScreenComponent";
 import {RamViewComponent} from "./RamViewComponent";
 import {RegistersComponent} from "./RegistersComponent";
+import {TooltipComponent} from "./TooltipComponent";
 import {FlagsComponent} from "./FlagsComponent";
 import {Computer} from "../Computer";
 import {TextInitializer} from "../TextInitializer";
@@ -59,6 +60,7 @@ export class AppComponent extends React.Component<any, any> {
 
     public render() {
         return <div className="app">
+            <TooltipComponent top={100} left={100}/>
             <ScreenComponent computer={this.state.computer}/>
             <button onClick={this.handleRunClick.bind(this)}>run</button>
             <button onClick={this.handleResetClick.bind(this)}>reset</button>

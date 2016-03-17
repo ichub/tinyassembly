@@ -1,0 +1,15 @@
+$tooltip-back-color: rgb(233, 233, 233);
+$tooltip-border-color: rgb(50, 50, 50);
+$tooltip-text-color: rgb(40, 40, 40);
+
+.tooltip {
+  border: 1px solid $tooltip-border-color;
+  border-radius: 2px;
+  display: block;
+  min-width: 50px;
+  min-height: 10px;
+  position: absolute;
+  background-color: $tooltip-back-color;
+  padding: 10px;
+  color: $tooltip-text-color;
+}
