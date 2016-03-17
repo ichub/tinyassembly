@@ -6,6 +6,7 @@ import {TooltipComponent} from "./TooltipComponent";
 import {FlagsComponent} from "./FlagsComponent";
 import {Computer} from "../Computer";
 import {TextInitializer} from "../TextInitializer";
+import {AssemblyEditorComponent} from "./AssemblyEditorComponent";
 import {RAM} from "../RAM";
 
 export class AppComponent extends React.Component<any, any> {
@@ -65,6 +66,7 @@ export class AppComponent extends React.Component<any, any> {
             <button onClick={this.handleResetClick.bind(this)}>reset</button>
             <button onClick={this.handleStopClick.bind(this)}>stop</button>
             <button onClick={this.handleStepClick.bind(this)}>step</button>
+            <AssemblyEditorComponent computer={this.state.computer}/>
             <RamViewComponent computer={this.state.computer}/>
             <RegistersComponent computer={this.state.computer}/>
             <FlagsComponent computer={this.state.computer}/>
