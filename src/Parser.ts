@@ -2,7 +2,6 @@ import {InstructionSet} from "./InstructionSet";
 import {TokenStream} from "./TokenStream";
 import {Token} from "./Token";
 import {TokenType} from "./TokenType";
-import {Label} from "./Label";
 
 export class Parser {
     private _instructionSet:InstructionSet;
@@ -48,7 +47,7 @@ export class Parser {
     }
 
     private parseLabelLine(line:string):Token[] {
-        const labelPattern = /^\s*([a-zA-Z0-9]+):\s*$/;
+        const labelPattern = /^\s*([a-zA-Z0-9_]+):\s*$/;
 
         const result = line.match(labelPattern);
 
@@ -56,7 +55,7 @@ export class Parser {
     }
 
     private parseLine(line:string):Token[] {
-        const labelPattern = /^\s*([a-zA-Z0-9]+):\s*$/;
+        const labelPattern = /^\s*([a-zA-Z0-9_]+):\s*$/;
 
         if (labelPattern.test(line)) {
             return this.parseLabelLine(line);
@@ -68,7 +67,8 @@ export class Parser {
     private paramStringToToken(paramString:string):Token {
         const registerPattern = /^%[a-zA-Z]$/;
         const numberLiteralPattern = /^\d+$/;
-        const labelPattern = /^\$[a-zA-Z0-9]+$/;
+        const labelPattern = /^\$[a-zA-Z0-9_]+$/;
+        const constantPattern = /^#[a-zA-Z0-9_]+$/;
 
         let type;
 
@@ -78,6 +78,8 @@ export class Parser {
             type = TokenType.NumberLiteral;
         } else if (labelPattern.test(paramString)) {
             type = TokenType.LabelReference;
+        } else if (constantPattern.test(paramString)) {
+            type = TokenType.Constant;
         } else {
             type = TokenType.Unknown;
         }

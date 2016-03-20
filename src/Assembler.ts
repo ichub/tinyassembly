@@ -7,12 +7,31 @@ import {TokenType} from "./TokenType";
 import {Parser} from "./Parser";
 import {AssemblerContext} from "./AssemblerContext";
 import {RAM} from "./RAM";
+import {Graphics} from "./Graphics";
+import {TextInitializer} from "./TextInitializer";
 
 export class Assembler {
     private _instructionSet:InstructionSet;
+    private _constants:{[name:string]:number};
 
     constructor(instructionSet:InstructionSet) {
         this._instructionSet = instructionSet;
+
+        this._constants = {
+            "m_static_low": RAM.staticRange.low,
+            "m_static_high": RAM.staticRange.high,
+            "m_program_low": RAM.programRange.low,
+            "m_program_high": RAM.programRange.high,
+            "m_stack_low": RAM.stackRange.low,
+            "m_stack_high": RAM.stackRange.high,
+            "m_size": RAM.size,
+            "g_width": Graphics.width,
+            "g_height": Graphics.height,
+            "g_size": Graphics.memorySize,
+            "g_char_width": TextInitializer.charWidth,
+            "g_char_height": TextInitializer.charHeight,
+            "g_char_size": TextInitializer.charSize
+        };
     }
 
     public assembleString(program:string) {
@@ -78,6 +97,16 @@ export class Assembler {
         return Registers.findRegisterNumberByName(literal.substr(1));
     }
 
+    private constantToValue(constant:string):number {
+        const constantName = constant.substr(1);
+
+        if (this._constants.hasOwnProperty(constantName)) {
+            return this._constants[constantName];
+        } else {
+            throw `no constant with name ${constantName} exists`;
+        }
+    }
+
     private assembleSingleInstruction(tokenStream:TokenStream, context:AssemblerContext):number[] {
         const tokens = tokenStream.tokens;
 
@@ -101,6 +130,9 @@ export class Assembler {
                     break;
                 case TokenType.LabelReference:
                     value = this.labelReferenceToValue(tokens[i].value, context);
+                    break;
+                case TokenType.Constant:
+                    value = this.constantToValue(tokens[i].value);
                     break;
                 default:
                     throw `unexpected token at this time - value: "${tokens[i].value}" with type "${TokenType[tokens[i].type]}"`;

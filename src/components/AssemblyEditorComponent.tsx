@@ -1,8 +1,6 @@
 import * as React from "react";
 import {IAssemblyEditorProps} from "../props/IAssemblyEditorProps";
 import {IAssemblyEditorState} from "../state/IAssemblyEditorState";
-import {TextInitializer} from "../TextInitializer";
-import {RAM} from "../RAM";
 
 export class AssemblyEditorComponent extends React.Component<IAssemblyEditorProps, IAssemblyEditorState> {
     private refs:{
@@ -20,21 +18,26 @@ export class AssemblyEditorComponent extends React.Component<IAssemblyEditorProp
     private getProgramText() {
         return [
             "start:",
-            "LOAD " + RAM.staticRange.low + TextInitializer.charSize * 33 + " %C",
+            //"LOAD " + RAM.staticRange.low + TextInitializer.charSize * 33 + " %C",
+            "LOAD #g_char_size %C",
+            "MUL 33 %C",
+            "ADD #m_static_low %C",
             "LOAD 2 %A",
             "LOAD 2 %B",
             "loop:",
             "BLIT %C %A %B",
             "DRAW",
-            "ADD " + (TextInitializer.charWidth + 1) + " %A",
+            "ADD #g_char_width %A",
+            "INC %A",
             "CMP 60 %A",
             "JMPMEQ $else",
             "LOAD 2 %A",
-            "ADD " + (TextInitializer.charHeight + 1) + " %B",
+            "ADD #g_char_height %B",
+            "INC %B",
             "CMP 60 %B",
             "JMPLEQ $end",
             "else:",
-            "ADD " + TextInitializer.charSize + " %C",
+            "ADD #g_char_size %C",
             "JMP $loop",
             "end:",
             "HALT",
