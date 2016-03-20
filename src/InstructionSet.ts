@@ -4,8 +4,6 @@ import {instruction} from "./InstructionDecorator";
 import {CPU} from "./cpu";
 import {ParamType} from "./ParamType";
 import {ignoreCaseEquals} from "./Strings";
-import {RAM} from "./RAM";
-import {Param} from "./Param";
 
 export class InstructionSet {
     private _instructionLength:number = 4;

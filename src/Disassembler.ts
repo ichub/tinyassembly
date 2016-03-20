@@ -10,17 +10,6 @@ export class Disassembler {
         this.instructionSet = instructionSet;
     }
 
-    private disassembleParam(value: number, type:ParamType):string {
-        switch(type) {
-            case ParamType.None:
-                return "";
-            case ParamType.Value:
-                return "0x" + toHex(value, 4);
-            case ParamType.Register:
-                return "%" + Registers.findRegisterNameByNumber(value);
-        }
-    }
-
     public disassembleSingleInstruction(numbers:number[]):string {
         const opcode = numbers[0];
 
@@ -36,5 +25,16 @@ export class Disassembler {
         }
 
         return result;
+    }
+
+    private disassembleParam(value:number, type:ParamType):string {
+        switch (type) {
+            case ParamType.None:
+                return "";
+            case ParamType.Value:
+                return "0x" + toHex(value, 4);
+            case ParamType.Register:
+                return "%" + Registers.findRegisterNameByNumber(value);
+        }
     }
 }

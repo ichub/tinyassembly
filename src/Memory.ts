@@ -1,6 +1,5 @@
 import {Register} from "./register";
 import {clamp} from "./bits";
-import {MemoryRange} from "./MemoryRange";
 
 export class Memory {
     private _memory:number[];

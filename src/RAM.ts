@@ -14,9 +14,16 @@ export class RAM extends Memory {
         new TextInitializer().initText(this);
     }
 
-    public zeroOut() {
-        super.zeroOut();
-        new TextInitializer().initText(this);
+    public static getRangeName(offset:number):MemoryRegion {
+        if (offset >= RAM._staticRange.low && offset < RAM._staticRange.high) {
+            return MemoryRegion.Static;
+        } else if (offset >= RAM._programRange.low && offset < RAM._programRange.high) {
+            return MemoryRegion.Program;
+        } else if (offset >= RAM._stackRange.low && offset < RAM._stackRange.high) {
+            return MemoryRegion.Stack;
+        }
+
+        throw "no region found for offset " + offset;
     }
 
     public static get staticSize() {
@@ -35,27 +42,20 @@ export class RAM extends Memory {
         return Math.pow(2, 10);
     }
 
-    static get stackRange():MemoryRange {
+    public static get stackRange():MemoryRange {
         return this._stackRange;
     }
 
-    static get programRange():MemoryRange {
+    public static get programRange():MemoryRange {
         return this._programRange;
     }
 
-    static get staticRange():MemoryRange {
+    public static get staticRange():MemoryRange {
         return this._staticRange;
     }
 
-    public static getRangeName(offset:number):MemoryRegion {
-        if (offset >= RAM._staticRange.low && offset < RAM._staticRange.high) {
-            return MemoryRegion.Static
-        } else if (offset >= RAM._programRange.low && offset < RAM._programRange.high) {
-            return MemoryRegion.Program
-        } else if (offset >= RAM._stackRange.low && offset < RAM._stackRange.high) {
-            return MemoryRegion.Stack
-        }
-
-        throw "no region found for offset " + offset;
+    public zeroOut() {
+        super.zeroOut();
+        new TextInitializer().initText(this);
     }
 }

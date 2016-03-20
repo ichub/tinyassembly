@@ -2,8 +2,6 @@ import {RAM} from "./RAM";
 
 export class TextInitializer {
     public initText(ram:RAM) {
-        const firstVisibleAsciiChar = 33;
-
         // !
         let addr = ram.setMemory(
             RAM.staticRange.low + TextInitializer.firstVisibleCharCode * TextInitializer.charSize, [
@@ -138,7 +136,7 @@ export class TextInitializer {
                 0, 1, 0, 0, 1, 0,
                 0, 0, 1, 1, 0, 0,
                 0, 1, 1, 1, 1, 0,
-                0, 0, 1 ,1, 0, 0,
+                0, 0, 1, 1, 0, 0,
                 0, 1, 0, 0, 1, 0,
                 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0,

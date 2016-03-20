@@ -30,7 +30,7 @@ export class Assembler {
             "g_size": Graphics.memorySize,
             "g_char_width": TextInitializer.charWidth,
             "g_char_height": TextInitializer.charHeight,
-            "g_char_size": TextInitializer.charSize
+            "g_char_size": TextInitializer.charSize,
         };
     }
 

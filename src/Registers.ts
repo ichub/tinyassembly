@@ -28,7 +28,7 @@ export class Registers {
             this._F,
             this._G,
             this._IP,
-            this._SP
+            this._SP,
         ]);
     }
 
@@ -75,7 +75,7 @@ export class Registers {
     public static findRegisterNumberByName(name:string):number {
         for (let i = 0; i < Registers._registers.length; i++) {
             if (ignoreCaseEquals(Registers._registers[i], name)) {
-                return i
+                return i;
             }
         }
 

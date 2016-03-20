@@ -6,7 +6,7 @@ import {Flags} from "./Flags";
 import {Graphics} from "./Graphics";
 import {EventEmitter} from "events";
 
-export class CPU extends EventEmitter{
+export class CPU extends EventEmitter {
     private _registers:Registers;
     private _flags:Flags;
     private _ram:RAM;
@@ -59,14 +59,6 @@ export class CPU extends EventEmitter{
         }, this._stepInterval);
     }
 
-    private executeInstruction(opcode:number) {
-        Logger.log(`executing instruction ${opcode}`);
-
-        const instruction = this._instructionSet.findInstructionByOpcode(opcode);
-
-        instruction.operation(this);
-    }
-
     public reset():void {
         this._registers.zeroOut();
         this._flags.zeroOut();
@@ -85,15 +77,23 @@ export class CPU extends EventEmitter{
         return this._flags;
     }
 
-    get ram():RAM {
+    public get ram():RAM {
         return this._ram;
     }
 
-    get instructionSet():InstructionSet {
+    public get instructionSet():InstructionSet {
         return this._instructionSet;
     }
 
-    get graphics():Graphics {
+    public get graphics():Graphics {
         return this._graphics;
+    }
+
+    private executeInstruction(opcode:number) {
+        Logger.log(`executing instruction ${opcode}`);
+
+        const instruction = this._instructionSet.findInstructionByOpcode(opcode);
+
+        instruction.operation(this);
     }
 }
