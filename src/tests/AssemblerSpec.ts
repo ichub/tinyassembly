@@ -24,8 +24,9 @@ describe("assembler", function () {
         expect(numbers).toEqual([0, 0, 0, 0, 32, RAM.programRange.low + 4, 0, 0]);
     });
 
-    it("should assemble raw numbers", function() {
-        const numbers = assembler.assembleString("HALT\nlabel:\n");
+    it("should assemble constants", function () {
+        const numbers = assembler.assembleString("LOAD #m_static_high %C");
 
+        expect(numbers).toEqual([2, RAM.staticRange.high, 2, 0]);
     });
 });
