@@ -1,8 +1,8 @@
 import * as React from "react";
 import {IAssemblyEditorProps} from "../props/IAssemblyEditorProps";
-import {IAssemblyEditorState} from "../state/IAssemblyEditorState";
+import {AssemblyEditorState} from "../state/AssemblyEditorState";
 
-export class AssemblyEditorComponent extends React.Component<IAssemblyEditorProps, IAssemblyEditorState> {
+export class AssemblyEditorComponent extends React.Component<IAssemblyEditorProps, AssemblyEditorState> {
     public refs:{
         [str:string]:React.Component<any, any> | Element;
         program:HTMLTextAreaElement;
@@ -13,6 +13,8 @@ export class AssemblyEditorComponent extends React.Component<IAssemblyEditorProp
 
         this.props.computer.loadProgram(programText);
         this.props.didAssemble();
+
+        this.state = new AssemblyEditorState();
     }
 
     private getProgramText() {

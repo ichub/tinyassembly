@@ -4,15 +4,13 @@ import {IRamRowProps} from "../props/IRamRowProps";
 import {MemoryRegion} from "../MemoryRegion";
 import {toHex} from "../Bits";
 import {TooltipComponent} from "./TooltipComponent";
-import {IRamRowState} from "../state/IRamRowState";
+import {RamRowState} from "../state/RamRowState";
 
-export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState> {
+export class RamRowComponent extends React.Component<IRamRowProps, RamRowState> {
     constructor(props:IRamRowProps) {
         super(props);
 
-        this.state = {
-            showTooltip: false
-        }
+        this.state = new RamRowState();
     }
 
     private regionToClass(region:MemoryRegion):string {
