@@ -3,8 +3,8 @@ import {IAssemblyEditorProps} from "../props/IAssemblyEditorProps";
 import {IAssemblyEditorState} from "../state/IAssemblyEditorState";
 
 export class AssemblyEditorComponent extends React.Component<IAssemblyEditorProps, IAssemblyEditorState> {
-    private refs:{
-        [str:string]:string;
+    public refs:{
+        [str:string]:React.Component<any, any> | Element;
         program:HTMLTextAreaElement;
     };
 

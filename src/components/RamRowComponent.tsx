@@ -34,7 +34,7 @@ export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState>
 
     private getTooltip() {
         if (this.state.showTooltip) {
-            return <TooltipComponent/>;
+            return <TooltipComponent top={0} left={0}/>;
         }
 
         return;
