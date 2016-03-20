@@ -20,7 +20,6 @@ export class AssemblyEditorComponent extends React.Component<IAssemblyEditorProp
     private getProgramText() {
         return [
             "start:",
-            //"LOAD " + RAM.staticRange.low + TextInitializer.charSize * 33 + " %C",
             "LOAD #g_char_size %C",
             "MUL 33 %C",
             "ADD #m_static_low %C",
