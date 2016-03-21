@@ -1,10 +1,10 @@
 import * as React from "react";
 import {IComputerProps} from "../props/IComputerProps";
 import {RAM} from "../RAM";
-import {InstructionSet} from "../InstructionSet";
 import {RamRowComponent} from "./RamRowComponent";
+import {RamViewState} from "../state/RamViewState";
 
-export class RamViewComponent extends React.Component<IComputerProps, any> {
+export class RamViewComponent extends React.Component<IComputerProps, RamViewState> {
     private rowLength = 4;
 
     constructor(props:IComputerProps) {
@@ -13,9 +13,12 @@ export class RamViewComponent extends React.Component<IComputerProps, any> {
         props.computer.cpu.on("step", () => {
             this.forceUpdate();
         });
+
+        this.state = new RamViewState();
     }
 
     public render() {
+
         const ram = this.props.computer.ram;
         const values = [];
 
@@ -26,17 +29,21 @@ export class RamViewComponent extends React.Component<IComputerProps, any> {
         const rows = values.map((rowValues:number[], index:number) => {
             const region = RAM.getRangeName(index * this.rowLength);
 
-            return <RamRowComponent
-                key={index}
-                values={rowValues}
-                offset={this.rowLength * index}
-                regionName={region}
-                isCurrentInstruction={this.props.computer.cpu.registers.IP.value == index * 4}
-                disassembler={this.props.computer.disassembler}/>;
+            return (
+                <RamRowComponent
+                    key={index}
+                    values={rowValues}
+                    offset={this.rowLength * index}
+                    regionName={region}
+                    isCurrentInstruction={this.props.computer.cpu.registers.IP.value == index * 4}
+                    disassembler={this.props.computer.disassembler}/>
+            );
         });
 
-        return <div className="ram-view">
-            {rows}
-        </div>;
+        return (
+            <div className="ram-view">
+                {rows}
+            </div>
+        );
     }
 }

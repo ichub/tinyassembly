@@ -25,7 +25,9 @@ export class RamRowComponent extends React.Component<IRamRowProps, RamRowState> 
     }
 
     private handleClick() {
-        this.setState({showTooltip: true});
+        this.setState(this.state.mutate(state => {
+            state.showTooltip = true;
+        }));
 
         console.log("asdf");
     }
@@ -36,6 +38,27 @@ export class RamRowComponent extends React.Component<IRamRowProps, RamRowState> 
         }
 
         return;
+    }
+
+    private arrayEqual(lhs:number[], rhs:number[]):boolean {
+        if (lhs.length != rhs.length) {
+            return false;
+        }
+
+        for (let i = 0; i < lhs.length; i++) {
+            if (lhs[i] != rhs[i]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public shouldComponentUpdate(nextProps:IRamRowProps, nextState:RamRowState):boolean {
+        return (
+            this.props.isCurrentInstruction != nextProps.isCurrentInstruction
+            || !this.arrayEqual(this.props.values, nextProps.values)
+        );
     }
 
     public render() {
