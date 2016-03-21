@@ -28,7 +28,7 @@ let cli = commandLineArgs([
 
 let options = cli.parse();
 
-let sassGlob = './sass/**/*.scss';
+let sassGlob = './sass/everything.scss';
 let tsGlob = "./src/**/*.@(ts|tsx)";
 
 let sassOutputGlob = './css/**/*.css';

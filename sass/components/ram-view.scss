@@ -1,0 +1,57 @@
+$ram-view-width: 500px;
+$ram-view-height: 500px;
+
+$static-range-color: rgb(205, 218, 255);
+$program-range-color: rgb(182, 216, 195);
+$stack-range-color: rgb(245, 230, 239);
+
+.ram-view {
+  border: 1px solid black;
+  width: $ram-view-width;
+  height: $ram-view-height;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  .ram-row {
+    font-family: $font-monospace;
+    font-weight: bold;
+
+    $offset-back-color: rgb(196, 196, 196);
+
+    .offset {
+      width: 50px;
+      background-color: $offset-back-color;
+      display: inline-block;
+      text-align: right;
+      padding-right: 5px;
+      font-weight: bold;
+      color: darken($offset-back-color, 40);
+      height: 100%;
+    }
+
+    &.current {
+      color: red;
+    }
+
+    .zero {
+      font-weight: normal;
+    }
+
+    .range-static {
+      background-color: $static-range-color;
+    }
+
+    .range-program {
+      background-color: $program-range-color;
+    }
+
+    .range-stack {
+      background-color: $stack-range-color;
+    }
+
+    .disassembly {
+      padding-left: 10px;
+      font-weight: normal;
+    }
+  }
+}
