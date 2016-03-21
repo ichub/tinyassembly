@@ -1,6 +1,6 @@
-export class BaseState<T extends BaseState> {
-    public mutate(mutateFn:(state:T) => T):T {
-        mutateFn(this);
-        return this as T;
+export class BaseState<T extends BaseState<any>> {
+    public mutate(mutateFn:(state:T) => void):T {
+        mutateFn((this as any) as T);
+        return (this as any) as T;
     }
 }
