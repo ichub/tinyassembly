@@ -82,17 +82,21 @@ export class RamRowComponent extends React.Component<IRamRowProps, RamRowState> 
         let disassembly;
 
         if (this.props.regionName === MemoryRegion.Program) {
-            disassembly = <span className="disassembly">
-                {this.props.disassembler.disassembleSingleInstruction(this.props.values)}
-            </span>;
+            disassembly = (
+                <span className="disassembly">
+                    {this.props.disassembler.disassembleSingleInstruction(this.props.values)}
+                </span>
+            );
         }
 
 
-        return <div className={rowClass} onClick={this.handleClick.bind(this)}>
-            <span className="offset">{"0x" + toHex(this.props.offset, 4)}</span>
-            <span className={this.regionToClass(this.props.regionName)}>{values}</span>
-            {disassembly}
-            {this.getTooltip()}
-        </div>;
+        return (
+            <div className={rowClass} onClick={this.handleClick.bind(this)}>
+                <span className="offset">{"0x" + toHex(this.props.offset, 4)}</span>
+                <span className={this.regionToClass(this.props.regionName)}>{values}</span>
+                {disassembly}
+                {this.getTooltip()}
+            </div>
+        );
     }
 }

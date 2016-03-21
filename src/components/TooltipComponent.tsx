@@ -13,9 +13,11 @@ export class TooltipComponent extends React.Component<ITooltipProps, any> {
             left: this.props.left
         };
 
-        return <div ref="self" className="tooltip" style={style}>
-            {contents}
-        </div>;
+        return (
+            <div ref="self" className="tooltip" style={style}>
+                {contents}
+            </div>
+        );
     }
 
     public getTooltipContents() {

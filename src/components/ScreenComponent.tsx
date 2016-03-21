@@ -29,8 +29,10 @@ export class ScreenComponent extends React.Component<IComputerProps, any> {
                 return <div className={cssClasses} key={index}></div>;
             });
 
-        return <div className="screen">
-            {pixels}
-        </div>;
+        return (
+            <div className="screen">
+                {pixels}
+            </div>
+        );
     }
 }

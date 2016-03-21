@@ -46,17 +46,19 @@ export class AssemblyEditorComponent extends React.Component<IAssemblyEditorProp
     }
 
     render() {
-        return <div className="assembly-editor">
-            assembler
-            <br/>
-            <textarea
-                className="assembler-text"
-                ref="program"
-                cols="30"
-                rows="10"
-                defaultValue={this.getProgramText()}></textarea>
-            <br/>
-            <button onClick={this.handleAssembleButtonClick.bind(this)}>assemble</button>
-        </div>;
+        return (
+            <div className="assembly-editor">
+                assembler
+                <br/>
+                <textarea
+                    className="assembler-text"
+                    ref="program"
+                    cols="30"
+                    rows="10"
+                    defaultValue={this.getProgramText()}></textarea>
+                <br/>
+                <button onClick={this.handleAssembleButtonClick.bind(this)}>assemble</button>
+            </div>
+        );
     }
 }

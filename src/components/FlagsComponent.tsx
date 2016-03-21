@@ -27,8 +27,10 @@ export class FlagsComponent extends React.Component<IComputerProps, any> {
             }
         }
 
-        return <div className="flags-view">
-            {flags}
-        </div>;
+        return (
+            <div className="flags-view">
+                {flags}
+            </div>
+        );
     }
 }

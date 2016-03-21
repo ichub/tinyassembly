@@ -15,14 +15,18 @@ export class RegistersComponent extends React.Component<IComputerProps, any> {
 
     public render() {
         const registers = this.props.computer.cpu.registers.map.map((reg:Register) => {
-            return <div key={reg.name}>
-                <span>{reg.name}: </span>
-                <span>{toHex(reg.value, 4)}</span>
-            </div>;
+            return (
+                <div key={reg.name}>
+                    <span>{reg.name}: </span>
+                    <span>{toHex(reg.value, 4)}</span>
+                </div>
+            );
         });
 
-        return <div className="registers-view">
-            {registers}
-        </div>;
+        return (
+            <div className="registers-view">
+                {registers}
+            </div>
+        );
     }
 }
