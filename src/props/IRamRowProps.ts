@@ -1,5 +1,6 @@
 import {MemoryRegion} from "../MemoryRegion";
 import {Disassembler} from "../Disassembler";
+import {NumberRenderFormat} from "../NumberRenderFormat";
 
 export interface IRamRowProps {
     disassembler:Disassembler;
@@ -7,4 +8,5 @@ export interface IRamRowProps {
     offset:number;
     regionName:MemoryRegion;
     isCurrentInstruction:boolean;
+    numberRenderFormat:NumberRenderFormat;
 }

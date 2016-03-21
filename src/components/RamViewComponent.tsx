@@ -31,6 +31,7 @@ export class RamViewComponent extends React.Component<IComputerProps, RamViewSta
 
             return (
                 <RamRowComponent
+                    numberRenderFormat={this.state.numberRenderFormat}
                     key={index}
                     values={rowValues}
                     offset={this.rowLength * index}

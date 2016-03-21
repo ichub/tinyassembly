@@ -5,6 +5,7 @@ import {MemoryRegion} from "../MemoryRegion";
 import {toHex} from "../Bits";
 import {TooltipComponent} from "./TooltipComponent";
 import {RamRowState} from "../state/RamRowState";
+import {NumberRenderFormat} from "../NumberRenderFormat";
 
 export class RamRowComponent extends React.Component<IRamRowProps, RamRowState> {
     constructor(props:IRamRowProps) {
@@ -54,6 +55,14 @@ export class RamRowComponent extends React.Component<IRamRowProps, RamRowState> 
         return true;
     }
 
+    private renderNumber(num:number, prepend0x:boolean = false):string {
+        if (this.props.numberRenderFormat === NumberRenderFormat.Decimal) {
+            return num.toString();
+        } else {
+            return (prepend0x ? "0x" : "") + toHex(num, 4);
+        }
+    }
+
     public shouldComponentUpdate(nextProps:IRamRowProps, nextState:RamRowState):boolean {
         return (
             this.props.isCurrentInstruction != nextProps.isCurrentInstruction
@@ -69,7 +78,7 @@ export class RamRowComponent extends React.Component<IRamRowProps, RamRowState> 
                 }
             );
 
-            return <span className={valueClass} key={index}>{toHex(value, 4) + " "}</span>;
+            return <span className={valueClass} key={index}>{this.renderNumber(value, false) + " "}</span>;
         });
 
         const rowClass = classnames(
@@ -89,10 +98,9 @@ export class RamRowComponent extends React.Component<IRamRowProps, RamRowState> 
             );
         }
 
-
         return (
             <div className={rowClass} onClick={this.handleClick.bind(this)}>
-                <span className="offset">{"0x" + toHex(this.props.offset, 4)}</span>
+                <span className="offset">{this.renderNumber(this.props.offset, true)}</span>
                 <span className={this.regionToClass(this.props.regionName)}>{values}</span>
                 {disassembly}
                 {this.getTooltip()}
