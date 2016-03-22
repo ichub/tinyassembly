@@ -26,9 +26,9 @@ export class RamRowComponent extends React.Component<IRamRowProps, RamRowState> 
     }
 
     private handleClick() {
-        this.setState(this.state.mutate(state => {
-            state.showTooltip = true;
-        }));
+        this.setState({
+            showTooltip: true
+        });
 
         console.log("asdf");
     }
@@ -65,8 +65,9 @@ export class RamRowComponent extends React.Component<IRamRowProps, RamRowState> 
 
     public shouldComponentUpdate(nextProps:IRamRowProps, nextState:RamRowState):boolean {
         return (
-            this.props.isCurrentInstruction != nextProps.isCurrentInstruction
+            this.props.isCurrentInstruction !== nextProps.isCurrentInstruction
             || !this.arrayEqual(this.props.values, nextProps.values)
+            || this.props.numberRenderFormat !== nextProps.numberRenderFormat
         );
     }
 

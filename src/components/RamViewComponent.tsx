@@ -3,6 +3,7 @@ import {IComputerProps} from "../props/IComputerProps";
 import {RAM} from "../RAM";
 import {RamRowComponent} from "./RamRowComponent";
 import {RamViewState} from "../state/RamViewState";
+import {NumberRenderFormat} from "../NumberRenderFormat";
 
 export class RamViewComponent extends React.Component<IComputerProps, RamViewState> {
     private rowLength = 4;
@@ -17,8 +18,13 @@ export class RamViewComponent extends React.Component<IComputerProps, RamViewSta
         this.state = new RamViewState();
     }
 
-    public render() {
+    private onNumberMethodRenderChange(e:Event) {
+        this.setState({
+            numberRenderFormat: parseInt((e.target as HTMLSelectElement).value, 10)
+        });
+    }
 
+    public render() {
         const ram = this.props.computer.ram;
         const values = [];
 
@@ -44,9 +50,9 @@ export class RamViewComponent extends React.Component<IComputerProps, RamViewSta
         return (
             <div className="ram-view">
                 <div className="header">
-                    <select ref="number-render-method">
-                        <option value="hex">hex</option>
-                        <option value="decimal">decimal</option>
+                    <select ref="number-render-method" onChange={this.onNumberMethodRenderChange.bind(this)}>
+                        <option value={NumberRenderFormat.Hexadecimal}>hex</option>
+                        <option value={NumberRenderFormat.Decimal}>decimal</option>
                     </select>
                 </div>
 
