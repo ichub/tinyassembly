@@ -8,6 +8,7 @@ import {ignoreCaseEquals} from "./Strings";
 export class InstructionSet {
     private _instructionLength:number = 4;
     private _instructions:Instruction[];
+    private _opcodeToInstructionMap:Instruction[];
 
     @instruction("HALT", 0)
     public haltInstruction(cpu:CPU) {
@@ -232,10 +233,8 @@ export class InstructionSet {
     }
 
     public findInstructionByOpcode(opcode:number):Instruction {
-        for (let i = 0; i < this._instructions.length; i++) {
-            if (this._instructions[i].opcode === opcode) {
-                return this._instructions[i];
-            }
+        if (opcode >= 0 && opcode < this._opcodeToInstructionMap.length) {
+            return this._opcodeToInstructionMap[opcode];
         }
 
         throw "could not find matching instruction";

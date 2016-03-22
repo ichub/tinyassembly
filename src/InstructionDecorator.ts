@@ -36,13 +36,16 @@ export function instruction(name:string, opcode:number, ...params:ParamType[]) {
     }
 
     return function (target, key:string, descriptor:PropertyDescriptor):PropertyDescriptor {
+        const newInstruction = new Instruction(
+            name,
+            opcode,
+            wrapInstructionWithParams(target, params, target[key]),
+            params);
+
         target._instructions = target._instructions || [];
-        target._instructions.push(
-            new Instruction(
-                name,
-                opcode,
-                wrapInstructionWithParams(target, params, target[key]),
-                params));
+        target._instructions.push(newInstruction);
+        target._opcodeToInstructionMap = target._opcodeToInstructionMap || [];
+        target._opcodeToInstructionMap[newInstruction.opcode] = newInstruction;
 
         return descriptor;
     };
