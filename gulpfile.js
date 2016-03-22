@@ -28,7 +28,7 @@ let cli = commandLineArgs([
 
 let options = cli.parse();
 
-let sassGlob = './sass/everything.scss';
+let sassGlob = "./sass/everything.scss";
 let tsGlob = "./src/**/*.@(ts|tsx)";
 
 let sassOutputGlob = './css/**/*.css';
@@ -100,7 +100,7 @@ gulp.task('lint', function () {
 });
 
 gulp.task("watch", ['sass', 'browserify'], function () {
-    gulp.watch(sassGlob, ['sass']);
+    gulp.watch("./sass/**/*.scss", ['sass']);
     gulp.watch(tsGlob, ['browserify']);
 });
 

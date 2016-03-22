@@ -43,7 +43,16 @@ export class RamViewComponent extends React.Component<IComputerProps, RamViewSta
 
         return (
             <div className="ram-view">
-                {rows}
+                <div className="header">
+                    <select ref="number-render-method">
+                        <option value="hex">hex</option>
+                        <option value="decimal">decimal</option>
+                    </select>
+                </div>
+
+                <div className="rows">
+                    {rows}
+                </div>
             </div>
         );
     }
