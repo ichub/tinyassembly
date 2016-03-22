@@ -27,11 +27,13 @@ export class CPU extends EventEmitter {
 
     public step() {
         this.executeInstruction(this._ram.getCellValue(this._registers.IP.value));
+
         if (this._flags.jumped) {
             this._flags.jumped = false;
-        } else {
+        } else if (!this._flags.halt) {
             this._registers.IP.incrementBy(4);
         }
+
         if (this._flags.draw) {
             this._flags.draw = false;
             this.emit("draw");
