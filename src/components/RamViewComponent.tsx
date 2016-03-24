@@ -2,10 +2,10 @@ import * as React from "react";
 import {IComputerProps} from "../props/IComputerProps";
 import {RAM} from "../RAM";
 import {RamRowComponent} from "./RamRowComponent";
-import {RamViewState} from "../state/RamViewState";
+import {RamViewState, IRamViewState} from "../state/RamViewState";
 import {NumberRenderFormat} from "../NumberRenderFormat";
 
-export class RamViewComponent extends React.Component<IComputerProps, RamViewState> {
+export class RamViewComponent extends React.Component<IComputerProps, IRamViewState> {
     public refs:{
         [str:string]:React.Component<any, any> | Element;
         rowContainer:HTMLDivElement;

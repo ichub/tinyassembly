@@ -4,10 +4,10 @@ import {IRamRowProps} from "../props/IRamRowProps";
 import {MemoryRegion} from "../MemoryRegion";
 import {toHex} from "../Bits";
 import {TooltipComponent} from "./TooltipComponent";
-import {RamRowState} from "../state/RamRowState";
+import {RamRowState, IRamRowState} from "../state/RamRowState";
 import {NumberRenderFormat} from "../NumberRenderFormat";
 
-export class RamRowComponent extends React.Component<IRamRowProps, RamRowState> {
+export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState> {
     constructor(props:IRamRowProps) {
         super(props);
 
