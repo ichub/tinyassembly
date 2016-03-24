@@ -16,6 +16,7 @@ export class RamViewComponent extends React.Component<IComputerProps, RamViewSta
         });
 
         this.state = new RamViewState();
+        this.state.numberRenderFormat = NumberRenderFormat.Hexadecimal;
     }
 
     private onNumberMethodRenderChange(e:Event) {
@@ -50,7 +51,10 @@ export class RamViewComponent extends React.Component<IComputerProps, RamViewSta
         return (
             <div className="ram-view">
                 <div className="header">
-                    <select ref="number-render-method" onChange={this.onNumberMethodRenderChange.bind(this)}>
+                    <select
+                        ref="number-render-method"
+                        onChange={this.onNumberMethodRenderChange.bind(this)}
+                        value={this.state.numberRenderFormat}>
                         <option value={NumberRenderFormat.Hexadecimal}>hex</option>
                         <option value={NumberRenderFormat.Decimal}>decimal</option>
                     </select>
