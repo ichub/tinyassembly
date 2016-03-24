@@ -6,6 +6,11 @@ import {RamViewState} from "../state/RamViewState";
 import {NumberRenderFormat} from "../NumberRenderFormat";
 
 export class RamViewComponent extends React.Component<IComputerProps, RamViewState> {
+    public refs:{
+        [str:string]:React.Component<any, any> | Element;
+        rowContainer:HTMLDivElement;
+    };
+
     private rowLength = 4;
 
     constructor(props:IComputerProps) {
@@ -25,6 +30,12 @@ export class RamViewComponent extends React.Component<IComputerProps, RamViewSta
         });
     }
 
+    private onRamScroll(e:Event) {
+        this.setState({
+            scrollTop: this.refs.rowContainer.scrollTop
+        })
+    }
+
     public render() {
         const ram = this.props.computer.ram;
         const values = [];
@@ -38,7 +49,10 @@ export class RamViewComponent extends React.Component<IComputerProps, RamViewSta
 
             return (
                 <RamRowComponent
+                    scrollTop={this.state.scrollTop}
+                    index={index}
                     numberRenderFormat={this.state.numberRenderFormat}
+                    containerHeight={500}
                     key={index}
                     values={rowValues}
                     offset={this.rowLength * index}
@@ -60,7 +74,10 @@ export class RamViewComponent extends React.Component<IComputerProps, RamViewSta
                     </select>
                 </div>
 
-                <div className="rows">
+                <div
+                    ref="rowContainer"
+                    onScroll={this.onRamScroll.bind(this)}
+                    className="rows">
                     {rows}
                 </div>
             </div>

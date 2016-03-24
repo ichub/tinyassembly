@@ -23,7 +23,7 @@ $stack-range-color: rgb(245, 230, 239);
     .ram-row {
       font-family: $font-monospace;
       font-weight: bold;
-
+      height: 25px;
       $offset-back-color: rgb(196, 196, 196);
 
       .offset {
@@ -34,6 +34,10 @@ $stack-range-color: rgb(245, 230, 239);
         padding-right: 5px;
         font-weight: bold;
         color: darken($offset-back-color, 40);
+        height: 100%;
+      }
+
+      span {
         height: 100%;
       }
 

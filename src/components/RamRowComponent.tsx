@@ -63,12 +63,28 @@ export class RamRowComponent extends React.Component<IRamRowProps, RamRowState> 
         }
     }
 
-    public shouldComponentUpdate(nextProps:IRamRowProps, nextState:RamRowState):boolean {
+    private stateChanged(nextProps:IRamRowProps) {
         return (
-            this.props.isCurrentInstruction !== nextProps.isCurrentInstruction
-            || !this.arrayEqual(this.props.values, nextProps.values)
-            || this.props.numberRenderFormat !== nextProps.numberRenderFormat
-        );
+            this.props.isCurrentInstruction !== nextProps.isCurrentInstruction ||
+            !this.arrayEqual(this.props.values, nextProps.values) ||
+            this.props.numberRenderFormat !== nextProps.numberRenderFormat
+        )
+    }
+
+    private inViewport(nextProps:IRamRowProps) {
+        return nextProps.scrollTop < nextProps.index * 25 && nextProps.index * 25 < nextProps.containerHeight + nextProps.scrollTop;
+    }
+
+    public shouldComponentUpdate(nextProps:IRamRowProps, nextState:RamRowState):boolean {
+        const nowStateChanged = this.stateChanged(nextProps);
+
+        if ((nowStateChanged || this.state.valuesUpdated) && this.inViewport(nextProps)) {
+            this.state.valuesUpdated = nowStateChanged;
+            return true;
+        }
+
+        this.state.valuesUpdated = nowStateChanged;
+        return false;
     }
 
     public render() {
