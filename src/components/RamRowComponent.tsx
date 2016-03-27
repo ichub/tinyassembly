@@ -72,7 +72,7 @@ export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState>
     }
 
     private inViewport(nextProps:IRamRowProps) {
-        return nextProps.scrollTop < nextProps.index * 25 && nextProps.index * 25 < nextProps.containerHeight + nextProps.scrollTop;
+        return nextProps.scrollTop < nextProps.index * 20 && nextProps.index * 20 < nextProps.containerHeight + nextProps.scrollTop;
     }
 
     public shouldComponentUpdate(nextProps:IRamRowProps, nextState:RamRowState):boolean {
