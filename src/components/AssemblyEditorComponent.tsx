@@ -18,6 +18,8 @@ export class AssemblyEditorComponent extends React.Component<IAssemblyEditorProp
     }
 
     private getProgramText() {
+        // text printer
+        /*
         return [
             "start:",
             "LOAD #g_char_size %C",
@@ -42,6 +44,26 @@ export class AssemblyEditorComponent extends React.Component<IAssemblyEditorProp
             "JMP $loop",
             "end:",
             "HALT",
+        ].join("\n");
+        */
+
+        // bouncing ball
+
+        return [
+            "LOAD 0 %A",
+            "LOAD 0 %B",
+            "LOAD 5 %C",
+            "LOAD 3 %D",
+            "LOAD #g_char_size %E",
+            "MUL 33 %E",
+            "ADD #m_static_low %E",
+            "loop:",
+            "CLS",
+            "BLIT %E %A %B",
+            "ADD %C %A %A",
+            "ADD %D %B %B",
+            "DRAW",
+            "JMP $loop",
         ].join("\n");
     }
 
