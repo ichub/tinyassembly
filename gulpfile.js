@@ -22,12 +22,18 @@ const fs = require("fs");
 const jasmine = require('gulp-jasmine');
 const reporter = require("jasmine-spec-reporter");
 const benchmark = require('gulp-benchmark');
+const gutil = require('gulp-util');
 
 let cli = commandLineArgs([
     {name: 'production', alias: 'p', type: Boolean, defaultOption: false}
 ]);
 
 let options = cli.parse();
+
+if (options.production === true) {
+    process.env.NODE_ENV = 'production';
+    gutil.log("running in production mode");
+}
 
 let sassGlob = "./sass/everything.scss";
 let tsGlob = "./src/**/*.@(ts|tsx)";

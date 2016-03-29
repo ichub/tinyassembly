@@ -8,6 +8,7 @@
     "classnames": "^2.2.3",
     "enzyme": "^2.2.0",
     "gulp-benchmark": "^1.1.1",
+    "gulp-util": "^3.0.7",
     "jsdom": "^8.2.0",
     "microtime": "^2.0.0",
     "react": "^0.14.7",
