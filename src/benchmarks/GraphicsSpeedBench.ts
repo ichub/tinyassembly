@@ -1,7 +1,7 @@
 import * as benchmark from "benchmark";
 import {Computer} from "../Computer";
 
-const suite = new benchmark.Suite("graphics speed");
+const suite = new benchmark.Suite("program writing to graphics memory");
 
 const graphicsProgram = [
     "LOAD 0 %A",
