@@ -16,11 +16,15 @@ export class Instruction {
     }
 
     private verifySingleParam(type:ParamType, value:number):boolean {
+        if (typeof value !== "number" || isNaN(value)) {
+            return false;
+        }
+
         switch (type) {
             case ParamType.Value:
                 return true;
             case ParamType.Register:
-                return value <= Register.maxValue;
+                return value <= Register.maxValue && value >= 0;
             case ParamType.None:
                 return value === 0;
             default:
