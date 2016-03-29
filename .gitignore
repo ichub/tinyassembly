@@ -3,3 +3,4 @@ css
 dist
 src/typings
 .idea/workspace.xml
+benchmark-results.json
