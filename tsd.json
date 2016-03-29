@@ -16,6 +16,9 @@
     },
     "classnames/classnames.d.ts": {
       "commit": "441b647ef77afa221d898fa2a9de47d9501b44e3"
+    },
+    "benchmark/benchmark.d.ts": {
+      "commit": "4101b65a5b3e72b4a3e3b256d293e2fd11e40840"
     }
   }
 }

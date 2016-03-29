@@ -21,6 +21,7 @@ const rename = require("gulp-rename");
 const fs = require("fs");
 const jasmine = require('gulp-jasmine');
 const reporter = require("jasmine-spec-reporter");
+const benchmark = require('gulp-benchmark');
 
 let cli = commandLineArgs([
     {name: 'production', alias: 'p', type: Boolean, defaultOption: false}
@@ -42,7 +43,7 @@ gulp.task("browserify", ["ts"], function () {
     gulp.src(["./dist/App.js", "!./dist/tests/*"])
         .pipe(browserify({
             insertGlobals: false,
-            debug:true,
+            debug: true,
             outfile: tsWatchedGlob
         }))
         .pipe(rename("bundle.js"))
@@ -111,4 +112,15 @@ gulp.task("test", ["browserify"], function () {
             config: JSON.parse(fs.readFileSync("./spec/support/jasmine.json", "utf8")),
             reporter: new reporter()
         }));
+});
+
+gulp.task("bench", ["ts"], function () {
+    return gulp.src("./dist/benchmarks/**/*.js", {read: false})
+        .pipe(benchmark({
+            reporters: [
+                benchmark.reporters.etalon('RegExp#test'),
+                benchmark.reporters.json()
+            ]
+        }))
+        .pipe(gulp.dest('.'));
 });
