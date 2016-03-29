@@ -3,7 +3,7 @@ import {Computer} from "../Computer";
 
 const suite = new benchmark.Suite("speed");
 
-const program = [
+const fibProgram = [
     "LOAD 0 %A",
     "LOAD 1 %B",
     "LOAD 1 %C",
@@ -22,7 +22,7 @@ const program = [
 ].join("\n");
 
 const computer = new Computer();
-computer.loadProgram(program);
+computer.loadProgram(fibProgram);
 
 suite.add("fibonacci", () => {
     computer.cpu.registers.zeroOut();

@@ -48,6 +48,12 @@ export class CPU extends EventEmitter {
         }
     }
 
+    public runSynchronouslyFor(cycles:number):void {
+        for (let i = 0; i < cycles; i++) {
+            this.step();
+        }
+    }
+
     public run() {
         this.step();
 
