@@ -57,4 +57,8 @@ export class Memory {
     public get size() {
         return this._memory.length;
     }
+
+    public get raw() {
+        return this._memory;
+    }
 }

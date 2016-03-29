@@ -17,7 +17,7 @@ export class ScreenComponent extends React.Component<IComputerProps, any> {
             .props
             .computer
             .graphics
-            .getMemorySlice(0, Graphics.memorySize)
+            .raw
             .map((value:number, index:number) => {
                 let cssClasses = classnames(
                     "pixel",
