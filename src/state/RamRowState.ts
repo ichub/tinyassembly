@@ -1,6 +1,6 @@
 export interface IRamRowState {
     showTooltip?:boolean;
-    valuesUpdated?:boolean;
+    stateChanged?:boolean;
 }
 
 export class RamRowState implements IRamRowState {
