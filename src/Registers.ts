@@ -102,6 +102,7 @@ export class Registers {
         }
 
         this._IP.value = RAM.programRange.low;
+        this._SP.value = RAM.stackRange.low;
     }
 
     public static get registers() {
