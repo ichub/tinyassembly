@@ -52,7 +52,7 @@ export class AssemblyEditorComponent extends React.Component<IAssemblyEditorProp
         return [
             "LOAD 0 %A",
             "LOAD 0 %B",
-            "LOAD 3 %C",
+            "LOAD 7 %C",
             "LOAD 3 %D",
             "LOAD #g_char_size %E",
             "MUL 33 %E",
