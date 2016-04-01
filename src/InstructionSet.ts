@@ -6,6 +6,7 @@ import {ParamType} from "./ParamType";
 import {ignoreCaseEquals} from "./Strings";
 import {CachedBlitEvent} from "./CachedBlitEvent";
 import {Graphics} from "./Graphics";
+import {CachedClearEvent} from "./CachedClearEvent";
 
 export class InstructionSet {
     private _instructionLength:number = 4;
@@ -207,6 +208,8 @@ export class InstructionSet {
     @instruction("CLS", 36)
     public clearScreen(cpu:CPU) {
         cpu.graphics.zeroOut();
+
+        cpu.graphics.drawCache.addEvent(new CachedClearEvent());
     }
 
     @instruction("DRAW", 37)
