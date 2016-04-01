@@ -4,6 +4,7 @@ import {instruction} from "./InstructionDecorator";
 import {CPU} from "./cpu";
 import {ParamType} from "./ParamType";
 import {ignoreCaseEquals} from "./Strings";
+import {CachedBlitEvent} from "./CachedBlitEvent";
 
 export class InstructionSet {
     private _instructionLength:number = 4;
@@ -230,6 +231,8 @@ export class InstructionSet {
         for (let i = 0; i < height; i++) {
             cpu.ram.copy(origin.value + width * i + 2, width, x.value + (y.value + i) * 64, cpu.graphics);
         }
+        
+        cpu.graphics.drawCache.addEvent(new CachedBlitEvent(x.value, y.value, width, height));
     }
 
     public findInstructionByOpcode(opcode:number):Instruction {
