@@ -4,6 +4,7 @@ import {IComputerProps} from "../props/IComputerProps";
 import {Graphics} from "../Graphics";
 import {ICachedDrawEvent} from "../CachedDrawEvent";
 import {DrawCache} from "../DrawCache";
+import {DrawEventContext} from "../DrawEventContext";
 
 export class ScreenComponent extends React.Component<IComputerProps, any> {
     public refs:{
@@ -67,7 +68,7 @@ export class ScreenComponent extends React.Component<IComputerProps, any> {
             }
         }*/
 
-        this.drawCache.draw(this.ctx, this.rawGraphicsMem, this.pixelSize);
+        this.drawCache.apply(new DrawEventContext(this.ctx, Graphics.width, Graphics.height, this.pixelSize, this.rawGraphicsMem));
     }
 
     public render() {
