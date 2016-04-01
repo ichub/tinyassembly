@@ -13,8 +13,6 @@ export class DrawCache {
 
     public addEvent(event:ICachedDrawEvent) {
         this.cachedDrawEvents.push(event);
-
-        console.log(this.cachedDrawEvents);
     }
 
     public iterateOverEvents(processor:(evt:ICachedDrawEvent) => void) {

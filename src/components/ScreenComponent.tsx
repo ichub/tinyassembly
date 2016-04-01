@@ -2,6 +2,7 @@ import * as React from "react";
 import * as classnames from "classnames";
 import {IComputerProps} from "../props/IComputerProps";
 import {Graphics} from "../Graphics";
+import {ICachedDrawEvent} from "../CachedDrawEvent";
 
 export class ScreenComponent extends React.Component<IComputerProps, any> {
     public refs:{
@@ -45,6 +46,7 @@ export class ScreenComponent extends React.Component<IComputerProps, any> {
     }
 
     private updateCanvas() {
+        /*
         for (let i = 0; i < Graphics.width; i++) {
             for (let j = 0; j < Graphics.height; j++) {
                 if (this.rawGraphicsMem[i * Graphics.width + j] === 0) {
@@ -62,7 +64,13 @@ export class ScreenComponent extends React.Component<IComputerProps, any> {
                         this.pixelSize);
                 }
             }
-        }
+        }*/
+
+        this.props.computer.cpu.graphics.drawCache.iterateOverEvents((evt:ICachedDrawEvent) => {
+            evt.draw(this.ctx, this.rawGraphicsMem, this.pixelSize);
+
+            console.log(evt);
+        });
     }
 
     public render() {
