@@ -12,6 +12,7 @@ export class CPU extends EventEmitter {
     private _ram:RAM;
     private _graphics:Graphics;
     private _stepInterval = 0;
+    private _stepsPerInterval = 10;
     private _instructionSet:InstructionSet;
     private _timeoutHandle:number;
 
@@ -50,12 +51,16 @@ export class CPU extends EventEmitter {
 
     public runSynchronouslyFor(cycles:number):void {
         for (let i = 0; i < cycles; i++) {
+            if (this._flags.halt) {
+                break;
+            }
+
             this.step();
         }
     }
 
     public run() {
-        this.step();
+        this.runSynchronouslyFor(this._stepsPerInterval);
 
         if (this._flags.halt) {
             Logger.log(`halt instruction encountered`);
