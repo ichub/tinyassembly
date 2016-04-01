@@ -19,7 +19,9 @@ export class ScreenComponent extends React.Component<IComputerProps, any> {
         this.rawGraphicsMem = this.props.computer.graphics.raw;
 
         this.props.computer.cpu.on("draw", () => {
-            this.updateCanvas();
+            requestAnimationFrame(() => {
+                this.updateCanvas();
+            });
         });
     }
 
