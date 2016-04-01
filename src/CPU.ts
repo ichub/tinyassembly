@@ -37,7 +37,6 @@ export class CPU extends EventEmitter {
         if (this._flags.draw) {
             this._flags.draw = false;
             this.emit("draw");
-            this._graphics.drawCache.clearEvents();
         }
 
         this.emit("step");

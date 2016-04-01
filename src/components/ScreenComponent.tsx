@@ -3,6 +3,7 @@ import * as classnames from "classnames";
 import {IComputerProps} from "../props/IComputerProps";
 import {Graphics} from "../Graphics";
 import {ICachedDrawEvent} from "../CachedDrawEvent";
+import {DrawCache} from "../DrawCache";
 
 export class ScreenComponent extends React.Component<IComputerProps, any> {
     public refs:{
@@ -10,6 +11,7 @@ export class ScreenComponent extends React.Component<IComputerProps, any> {
         canvas:HTMLCanvasElement;
     };
 
+    private drawCache:DrawCache;
     private rawGraphicsMem:number[];
     private ctx:CanvasRenderingContext2D;
     private pixelSize:number = 5;
@@ -18,11 +20,10 @@ export class ScreenComponent extends React.Component<IComputerProps, any> {
         super(props);
 
         this.rawGraphicsMem = this.props.computer.graphics.raw;
+        this.drawCache = this.props.computer.graphics.drawCache;
 
         this.props.computer.cpu.on("draw", () => {
-            requestAnimationFrame(() => {
-                this.updateCanvas();
-            });
+            this.updateCanvas();
         });
     }
 
@@ -66,11 +67,7 @@ export class ScreenComponent extends React.Component<IComputerProps, any> {
             }
         }*/
 
-        this.props.computer.cpu.graphics.drawCache.iterateOverEvents((evt:ICachedDrawEvent) => {
-            evt.draw(this.ctx, this.rawGraphicsMem, this.pixelSize);
-
-            console.log(evt);
-        });
+        this.drawCache.draw(this.ctx, this.rawGraphicsMem, this.pixelSize);
     }
 
     public render() {

@@ -5,6 +5,7 @@ import {CPU} from "./cpu";
 import {ParamType} from "./ParamType";
 import {ignoreCaseEquals} from "./Strings";
 import {CachedBlitEvent} from "./CachedBlitEvent";
+import {Graphics} from "./Graphics";
 
 export class InstructionSet {
     private _instructionLength:number = 4;
@@ -229,7 +230,7 @@ export class InstructionSet {
         const height = cpu.ram.getCellValue(origin.value + 1);
 
         for (let i = 0; i < height; i++) {
-            cpu.ram.copy(origin.value + width * i + 2, width, x.value + (y.value + i) * 64, cpu.graphics);
+            cpu.ram.copy(origin.value + width * i + 2, width, (x.value % Graphics.width) + ((y.value % Graphics.height) + i) * 64, cpu.graphics);
         }
         
         cpu.graphics.drawCache.addEvent(new CachedBlitEvent(x.value, y.value, width, height));

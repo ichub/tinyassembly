@@ -1,13 +1,9 @@
 import {ICachedDrawEvent} from "./CachedDrawEvent";
 
-export class DrawCache {
+export class DrawCache implements ICachedDrawEvent {
     private cachedDrawEvents:ICachedDrawEvent[];
 
     constructor() {
-        this.cachedDrawEvents = [];
-    }
-
-    public clearEvents() {
         this.cachedDrawEvents = [];
     }
 
@@ -15,7 +11,11 @@ export class DrawCache {
         this.cachedDrawEvents.push(event);
     }
 
-    public iterateOverEvents(processor:(evt:ICachedDrawEvent) => void) {
-        this.cachedDrawEvents.forEach(processor);
+    draw(ctx:CanvasRenderingContext2D, graphicsMem:number[], pixelSize:number):void {
+        this.cachedDrawEvents.forEach((cachedEvent) => {
+            cachedEvent.draw(ctx, graphicsMem, pixelSize);
+        });
+
+        this.cachedDrawEvents = [];
     }
 }
