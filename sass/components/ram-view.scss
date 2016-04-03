@@ -4,12 +4,23 @@ $ram-view-height: 500px;
 $static-range-color: rgb(205, 218, 255);
 $program-range-color: rgb(182, 216, 195);
 $stack-range-color: rgb(245, 230, 239);
+$cover-color: rgba(53, 93, 173, 0.5);
 
 .ram-view {
   border: 1px solid black;
   width: $ram-view-width;
   height: $ram-view-height;
   overflow: hidden;
+  position:relative;
+
+  .cover {
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $cover-color;
+  }
 
   .header {
     float: left;

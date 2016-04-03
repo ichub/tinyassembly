@@ -61,6 +61,10 @@ export class CPU extends EventEmitter {
     }
 
     public run() {
+        if (this._timeoutHandle === null) {
+            this.emit("run");
+        }
+
         this.runSynchronouslyFor(this._stepsPerInterval);
 
         if (this._flags.halt) {
@@ -81,6 +85,8 @@ export class CPU extends EventEmitter {
 
     public stop():void {
         clearTimeout(this._timeoutHandle);
+        this._timeoutHandle = null;
+        this.emit("stop");
     }
 
     public get registers():Registers {

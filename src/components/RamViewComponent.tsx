@@ -20,6 +20,14 @@ export class RamViewComponent extends React.Component<IComputerProps, IRamViewSt
             this.setState({});
         });
 
+        props.computer.cpu.on("run", () => {
+            this.forceUpdate();
+        });
+
+        props.computer.cpu.on("stop", () => {
+            this.forceUpdate();
+        });
+
         this.state = new RamViewState();
         this.state.numberRenderFormat = NumberRenderFormat.Hexadecimal;
     }
@@ -66,6 +74,16 @@ export class RamViewComponent extends React.Component<IComputerProps, IRamViewSt
             );
         });
 
+        let cover;
+
+        if (this.props.computer.cpu.isRunning) {
+            cover = (
+                <div className="cover">
+
+                </div>
+            );
+        }
+
         return (
             <div className="ram-view">
                 <div className="header">
@@ -84,6 +102,8 @@ export class RamViewComponent extends React.Component<IComputerProps, IRamViewSt
                     className="rows">
                     {rows}
                 </div>
+
+                {cover}
             </div>
         );
     }
