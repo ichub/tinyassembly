@@ -9,6 +9,8 @@ $cover-color: rgba(53, 93, 173, 0.5);
 $ram-row-height: 20px;
 $ram-range-padding-left-right: 10px;
 $ram-range-padding-top-bottom: 3px;
+$offset-padding-left: 3px;
+$offset-padding-right: 5px;
 
 .ram-view {
   border: 1px solid black;
@@ -40,19 +42,18 @@ $ram-range-padding-top-bottom: 3px;
 
     .ram-row {
       font-family: $font-monospace;
-      font-weight: bold;
       height: $ram-row-height;
-      $offset-back-color: rgb(196, 196, 196);
+      $offset-back-color: rgb(67, 67, 67);
 
       .offset {
         width: 50px;
         background-color: $offset-back-color;
         display: inline-block;
         text-align: right;
-        padding-right: 5px;
-        font-weight: bold;
-        color: darken($offset-back-color, 40);
-        height: $ram-row-height;
+        color: lighten($offset-back-color, 30);
+        height: 100%
+        padding-left: $offset-padding-left;
+        padding-right: $offset-padding-right;
       }
 
       &.current {
