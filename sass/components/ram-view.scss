@@ -43,6 +43,7 @@ $offset-padding-right: 5px;
     .ram-row {
       font-family: $font-monospace;
       height: $ram-row-height;
+      position: relative;
       $offset-back-color: rgb(67, 67, 67);
 
       .offset {

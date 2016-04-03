@@ -42,20 +42,12 @@ export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState>
         this.forceUpdate();
     }
 
-    private getOffsetTop() {
-        return this.refs.container.offsetTop;
-    }
-
-    private getOffsetLeft() {
-        return this.refs.container.offsetLeft;
-    }
-
     private getTooltip() {
         if (this.state.showTooltip) {
             return (
                 <TooltipComponent
-                    top={this.getOffsetTop()}
-                    left={this.getOffsetLeft()}/>
+                    top={0}
+                    left={0}/>
             );
         }
 
