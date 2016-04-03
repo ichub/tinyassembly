@@ -24,6 +24,7 @@ export class CPU extends EventEmitter {
         this._graphics = graphics;
         this._instructionSet = new InstructionSet();
         this._flags = new Flags();
+        this._timeoutHandle = null;
     }
 
     public step() {
@@ -100,6 +101,10 @@ export class CPU extends EventEmitter {
 
     public get graphics():Graphics {
         return this._graphics;
+    }
+
+    public get isRunning():boolean {
+        return this._timeoutHandle !== null;
     }
 
     private executeInstruction(opcode:number) {

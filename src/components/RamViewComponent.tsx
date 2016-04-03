@@ -17,7 +17,7 @@ export class RamViewComponent extends React.Component<IComputerProps, IRamViewSt
         super(props);
 
         props.computer.cpu.on("step", () => {
-            this.forceUpdate();
+            this.setState({});
         });
 
         this.state = new RamViewState();
@@ -34,6 +34,10 @@ export class RamViewComponent extends React.Component<IComputerProps, IRamViewSt
         this.setState({
             scrollTop: this.refs.rowContainer.scrollTop
         })
+    }
+
+    public shouldComponentUpdate(nextProps:IComputerProps, nextState:IRamViewState):boolean {
+        return !this.props.computer.cpu.isRunning;
     }
 
     public render() {
