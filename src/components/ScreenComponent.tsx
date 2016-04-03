@@ -16,6 +16,7 @@ export class ScreenComponent extends React.Component<IComputerProps, any> {
     private rawGraphicsMem:number[];
     private ctx:CanvasRenderingContext2D;
     private pixelSize:number = 5;
+    private mounted = false;
 
     constructor(props:IComputerProps) {
         super(props);
@@ -40,6 +41,11 @@ export class ScreenComponent extends React.Component<IComputerProps, any> {
         this.ctx = this.refs.canvas.getContext("2d");
 
         this.setupCanvas();
+        this.mounted = true;
+    }
+
+    private componentWillUnmount() {
+        this.mounted = false;
     }
 
     private setupCanvas() {
@@ -72,6 +78,10 @@ export class ScreenComponent extends React.Component<IComputerProps, any> {
     }
 
     public render() {
+        if (this.mounted) {
+            this.updateCanvas();
+        }
+
         return (
             <div className="screen">
                 <canvas

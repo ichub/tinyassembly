@@ -3,6 +3,7 @@ import {RAM} from "./ram";
 import {Assembler} from "./Assembler";
 import {Graphics} from "./Graphics";
 import {Disassembler} from "./Disassembler";
+import {CachedClearEvent} from "./CachedClearEvent";
 
 export class Computer {
     private _cpu:CPU;
@@ -37,6 +38,7 @@ export class Computer {
         this._ram.zeroOut();
         this._cpu.reset();
         this._graphics.zeroOut();
+        this._graphics.drawCache.addEvent(new CachedClearEvent());
     }
 
     public stop():void {
