@@ -8,6 +8,11 @@ import {RamRowState, IRamRowState} from "../state/RamRowState";
 import {NumberRenderFormat} from "../NumberRenderFormat";
 
 export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState> {
+    public refs:{
+        [str:string]:React.Component<any, any> | Element;
+        container:HTMLDivElement;
+    };
+
     constructor(props:IRamRowProps) {
         super(props);
 
@@ -23,6 +28,10 @@ export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState>
             case MemoryRegion.Static:
                 return "range-static"
         }
+    }
+
+    private getElementHeight() {
+        return this.refs.container.clientHeight;
     }
 
     private handleClick() {
@@ -71,7 +80,8 @@ export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState>
     }
 
     private inViewport(nextProps:IRamRowProps) {
-        return nextProps.scrollTop < nextProps.index * 20 && nextProps.index * 20 < nextProps.containerHeight + nextProps.scrollTop;
+        return nextProps.scrollTop < nextProps.index * this.getElementHeight()
+            && nextProps.index * this.getElementHeight() < nextProps.containerHeight + nextProps.scrollTop;
     }
 
     public shouldComponentUpdate(nextProps:IRamRowProps, nextState:RamRowState):boolean {
@@ -129,7 +139,7 @@ export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState>
         );
 
         return (
-            <div className={rowClass} onClick={this.handleClick.bind(this)}>
+            <div ref="container" className={rowClass} onClick={this.handleClick.bind(this)}>
                 <span className="offset">{this.renderNumber(this.props.offset, true)}</span>
                 <span className={rangeClass}>{values}</span>
                 {disassembly}

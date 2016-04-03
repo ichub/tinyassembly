@@ -7,6 +7,8 @@ $stack-range-color: rgb(245, 230, 239);
 $cover-color: rgba(53, 93, 173, 0.5);
 
 $ram-row-height: 20px;
+$ram-range-padding-left-right: 10px;
+$ram-range-padding-top-bottom: 3px;
 
 .ram-view {
   border: 1px solid black;
@@ -63,6 +65,7 @@ $ram-row-height: 20px;
 
       .range {
         height: 100%;
+        padding: $ram-range-padding-top-bottom $ram-range-padding-left-right;;
         display: inline-block;
 
         &.range-static {
