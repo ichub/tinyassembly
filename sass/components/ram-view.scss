@@ -1,20 +1,25 @@
-$ram-view-width: 500px;
-$ram-view-height: 500px;
+$ram-view-width: 400px;
+$ram-view-height: 100vh;
 
 $static-range-color: rgb(205, 218, 255);
 $program-range-color: rgb(182, 216, 195);
 $stack-range-color: rgb(245, 230, 239);
 $cover-color: rgba(53, 93, 173, 0.5);
 
+$ram-row-height: 20px;
+
 .ram-view {
   border: 1px solid black;
   width: $ram-view-width;
   height: $ram-view-height;
+  max-height: $ram-view-height;
   overflow: hidden;
-  position:relative;
+  display: inline-block;
+
+  position: relative;
 
   .cover {
-    position:absolute;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -34,7 +39,7 @@ $cover-color: rgba(53, 93, 173, 0.5);
     .ram-row {
       font-family: $font-monospace;
       font-weight: bold;
-      height: 20px;
+      height: $ram-row-height;
       $offset-back-color: rgb(196, 196, 196);
 
       .offset {
@@ -45,11 +50,7 @@ $cover-color: rgba(53, 93, 173, 0.5);
         padding-right: 5px;
         font-weight: bold;
         color: darken($offset-back-color, 40);
-        height: 100%;
-      }
-
-      span {
-        height: 100%;
+        height: $ram-row-height;
       }
 
       &.current {
@@ -60,16 +61,21 @@ $cover-color: rgba(53, 93, 173, 0.5);
         font-weight: normal;
       }
 
-      .range-static {
-        background-color: $static-range-color;
-      }
+      .range {
+        height: 100%;
+        display: inline-block;
 
-      .range-program {
-        background-color: $program-range-color;
-      }
+        &.range-static {
+          background-color: $static-range-color;
+        }
 
-      .range-stack {
-        background-color: $stack-range-color;
+        &.range-program {
+          background-color: $program-range-color;
+        }
+
+        &.range-stack {
+          background-color: $stack-range-color;
+        }
       }
 
       .disassembly {

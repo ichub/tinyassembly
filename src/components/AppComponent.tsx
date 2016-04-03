@@ -44,13 +44,13 @@ export class AppComponent extends React.Component<any, any> {
     public render() {
         return (
             <div className="app">
+                <RamViewComponent computer={this.state.computer}/>
                 <ScreenComponent computer={this.state.computer}/>
                 <button onClick={this.handleRunClick.bind(this)}>run</button>
                 <button onClick={this.handleResetClick.bind(this)}>reset</button>
                 <button onClick={this.handleStopClick.bind(this)}>stop</button>
                 <button onClick={this.handleStepClick.bind(this)}>step</button>
                 <AssemblyEditorComponent computer={this.state.computer} didAssemble={this.onAssemble.bind(this)}/>
-                <RamViewComponent computer={this.state.computer}/>
                 <RegistersComponent computer={this.state.computer}/>
                 <FlagsComponent computer={this.state.computer}/>
             </div>

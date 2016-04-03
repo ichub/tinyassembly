@@ -123,10 +123,15 @@ export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState>
             );
         }
 
+        const rangeClass = classnames(
+            "range",
+            this.regionToClass(this.props.regionName)
+        );
+
         return (
             <div className={rowClass} onClick={this.handleClick.bind(this)}>
                 <span className="offset">{this.renderNumber(this.props.offset, true)}</span>
-                <span className={this.regionToClass(this.props.regionName)}>{values}</span>
+                <span className={rangeClass}>{values}</span>
                 {disassembly}
                 {this.getTooltip()}
             </div>

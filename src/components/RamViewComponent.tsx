@@ -64,7 +64,7 @@ export class RamViewComponent extends React.Component<IComputerProps, IRamViewSt
                     scrollTop={this.state.scrollTop}
                     index={index}
                     numberRenderFormat={this.state.numberRenderFormat}
-                    containerHeight={500}
+                    containerHeight={window.innerHeight}
                     key={index}
                     values={rowValues}
                     offset={this.rowLength * index}
@@ -86,16 +86,6 @@ export class RamViewComponent extends React.Component<IComputerProps, IRamViewSt
 
         return (
             <div className="ram-view">
-                <div className="header">
-                    <select
-                        ref="number-render-method"
-                        onChange={this.onNumberMethodRenderChange.bind(this)}
-                        value={this.state.numberRenderFormat}>
-                        <option value={NumberRenderFormat.Hexadecimal}>hex</option>
-                        <option value={NumberRenderFormat.Decimal}>decimal</option>
-                    </select>
-                </div>
-
                 <div
                     ref="rowContainer"
                     onScroll={this.onRamScroll.bind(this)}
