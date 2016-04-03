@@ -39,12 +39,24 @@ export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState>
             showTooltip: true
         });
 
-        console.log("asdf");
+        this.forceUpdate();
+    }
+
+    private getOffsetTop() {
+        return this.refs.container.offsetTop;
+    }
+
+    private getOffsetLeft() {
+        return this.refs.container.offsetLeft;
     }
 
     private getTooltip() {
         if (this.state.showTooltip) {
-            return <TooltipComponent top={0} left={0}/>;
+            return (
+                <TooltipComponent
+                    top={this.getOffsetTop()}
+                    left={this.getOffsetLeft()}/>
+            );
         }
 
         return;
