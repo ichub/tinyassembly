@@ -2,15 +2,31 @@ $tooltip-back-color: rgb(233, 233, 233);
 $tooltip-border-color: rgb(50, 50, 50);
 $tooltip-text-color: rgb(40, 40, 40);
 
+$tooltip-height: 100px;
+
+@keyframes pop-out {
+  0% {
+    height: 5px;
+    opacity: 0.3;
+  }
+
+  100% {
+    height: $tooltip-height;
+    opacity: 1;
+  }
+}
+
 .tooltip {
   border: 1px solid $tooltip-border-color;
   border-radius: 2px;
   display: block;
-  min-width: 50px;
-  min-height: 10px;
   position: absolute;
   background-color: $tooltip-back-color;
   padding: 10px;
   color: $tooltip-text-color;
-  z-index:100;
+  z-index: 100;
+  height: $tooltip-height;
+  max-height: $tooltip-height;
+  animation-name: pop-out;
+  animation-duration: 0.3s;
 }
