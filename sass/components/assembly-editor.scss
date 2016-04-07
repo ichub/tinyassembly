@@ -1,4 +1,14 @@
 .assembly-editor {
   border: 1px solid black;
-  display: inline-block;
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-grow: 1;
+  align-self: flex-end;
+  flex-direction: column;
+
+  textarea {
+    width: 100%;
+    flex-grow: 1;
+  }
 }

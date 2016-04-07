@@ -70,15 +70,12 @@ export class AssemblyEditorComponent extends React.Component<IAssemblyEditorProp
     render() {
         return (
             <div className="assembly-editor">
-                assembler
-                <br/>
                 <textarea
                     className="assembler-text"
                     ref="program"
                     cols="50"
                     rows="25"
                     defaultValue={this.getProgramText()}></textarea>
-                <br/>
                 <button onClick={this.handleAssembleButtonClick.bind(this)}>assemble</button>
             </div>
         );

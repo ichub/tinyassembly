@@ -1,13 +1,25 @@
-#app {
+.app {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  align-content: flex-start;
-  flex-wrap: wrap;
+  overflow: hidden;
+
+  .sidebar {
+    display: inline-block;
+    float: left;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100%;
+
+    .computer-status {
+      width: 100%;
+    }
+  }
 }
