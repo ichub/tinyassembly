@@ -43,6 +43,7 @@ $offset-padding-right: 5px;
       height: $ram-row-height;
       position: relative;
       $offset-back-color: rgb(67, 67, 67);
+      overflow: hidden;
 
       .offset {
         width: 50px;
@@ -57,6 +58,10 @@ $offset-padding-right: 5px;
 
       &.current {
         color: red;
+      }
+
+      .non-zero {
+        font-weight: bold;
       }
 
       .zero {

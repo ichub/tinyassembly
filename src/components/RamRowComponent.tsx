@@ -113,7 +113,8 @@ export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState>
         const values = this.props.values.map((value, index) => {
             const valueClass = classnames(
                 {
-                    "zero": value === 0
+                    "zero": value === 0,
+                    "non-zero": value !== 0
                 }
             );
 

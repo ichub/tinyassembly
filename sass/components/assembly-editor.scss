@@ -1,14 +1,25 @@
+$editor-back-color: rgb(61, 61, 61);
+$editor-text-color: rgb(134, 180, 227);
+
 .assembly-editor {
-  border: 1px solid black;
   display: flex;
   width: 100%;
   height: auto;
   flex-grow: 1;
   align-self: flex-end;
   flex-direction: column;
+  border: none;
+  box-sizing: border-box;
 
   textarea {
+    padding: 20px;
+    background-color: $editor-back-color;
+    color: $editor-text-color;
+    font-size: 12pt;
     width: 100%;
     flex-grow: 1;
+    border: none;
+    outline: none;
+    font-family: $font-monospace;
   }
 }
