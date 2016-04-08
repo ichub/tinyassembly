@@ -6,7 +6,6 @@ import {toHex} from "../Bits";
 import {TooltipComponent} from "./TooltipComponent";
 import {RamRowState, IRamRowState} from "../state/RamRowState";
 import {NumberRenderFormat} from "../NumberRenderFormat";
-
 export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState> {
     public refs:{
         [str:string]:React.Component<any, any> | Element;
@@ -42,7 +41,9 @@ export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState>
         this.forceUpdate();
     }
 
-    private getTooltip() {
+    private getTooltip():Element|React.Component {
+        return undefined;
+        /*
         if (this.state.showTooltip) {
             return (
                 <TooltipComponent
@@ -51,7 +52,7 @@ export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState>
             );
         }
 
-        return;
+        return;*/
     }
 
     private arrayEqual(lhs:number[], rhs:number[]):boolean {

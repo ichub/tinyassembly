@@ -1,10 +1,11 @@
 $ram-view-width: 400px;
 $ram-view-height: 100vh;
 
-$static-range-color: rgb(205, 218, 255);
-$program-range-color: rgb(182, 216, 195);
-$stack-range-color: rgb(245, 230, 239);
+$static-range-color: rgb(67, 67, 67);
+$program-range-color: rgb(67, 67, 67);
+$stack-range-color: rgb(67, 67, 67);
 $cover-color: rgba(53, 93, 173, 0.5);
+$offset-back-color: rgb(67, 67, 67);
 
 $ram-row-height: 20px;
 $ram-range-padding-left-right: 10px;
@@ -42,8 +43,8 @@ $offset-padding-right: 5px;
       font-family: $font-monospace;
       height: $ram-row-height;
       position: relative;
-      $offset-back-color: rgb(67, 67, 67);
       overflow: hidden;
+      background-color: $offset-back-color;
 
       .offset {
         width: 50px;
