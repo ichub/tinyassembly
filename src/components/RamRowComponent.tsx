@@ -41,18 +41,18 @@ export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState>
         this.forceUpdate();
     }
 
-    private getTooltip():Element|React.Component {
+    private getTooltip():Element|React.Component<any, any> {
         return undefined;
         /*
-        if (this.state.showTooltip) {
-            return (
-                <TooltipComponent
-                    top={0}
-                    left={0}/>
-            );
-        }
+         if (this.state.showTooltip) {
+         return (
+         <TooltipComponent
+         top={0}
+         left={0}/>
+         );
+         }
 
-        return;*/
+         return;*/
     }
 
     private arrayEqual(lhs:number[], rhs:number[]):boolean {

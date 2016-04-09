@@ -5,6 +5,7 @@ import {InstructionSet} from "./InstructionSet";
 import {Flags} from "./Flags";
 import {Graphics} from "./Graphics";
 import {EventEmitter} from "events";
+import Timer = NodeJS.Timer;
 
 export class CPU extends EventEmitter {
     private _registers:Registers;
@@ -14,7 +15,7 @@ export class CPU extends EventEmitter {
     private _stepInterval = 0;
     private _stepsPerInterval = 10;
     private _instructionSet:InstructionSet;
-    private _timeoutHandle:number;
+    private _timeoutHandle:Timer;
 
     constructor(ram:RAM, graphics:Graphics) {
         super();

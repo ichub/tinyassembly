@@ -6,31 +6,31 @@
   "bundle": "src/typings/tsd.d.ts",
   "installed": {
     "jasmine/jasmine.d.ts": {
-      "commit": "dade4414712ce84e3c63393f1aae407e9e7e6af7"
+      "commit": "ec9eb4b28c74665a602c22db3457f0a76fa0fa23"
     },
     "react/react.d.ts": {
-      "commit": "4101b65a5b3e72b4a3e3b256d293e2fd11e40840"
+      "commit": "ec9eb4b28c74665a602c22db3457f0a76fa0fa23"
     },
     "react/react-dom.d.ts": {
-      "commit": "d22516f9f089de107d7e7d5938566377370631f6"
+      "commit": "ec9eb4b28c74665a602c22db3457f0a76fa0fa23"
     },
     "classnames/classnames.d.ts": {
-      "commit": "441b647ef77afa221d898fa2a9de47d9501b44e3"
+      "commit": "ec9eb4b28c74665a602c22db3457f0a76fa0fa23"
     },
     "benchmark/benchmark.d.ts": {
-      "commit": "4101b65a5b3e72b4a3e3b256d293e2fd11e40840"
+      "commit": "ec9eb4b28c74665a602c22db3457f0a76fa0fa23"
     },
     "enzyme/enzyme.d.ts": {
-      "commit": "4101b65a5b3e72b4a3e3b256d293e2fd11e40840"
+      "commit": "ec9eb4b28c74665a602c22db3457f0a76fa0fa23"
     },
     "jsdom/jsdom.d.ts": {
-      "commit": "4101b65a5b3e72b4a3e3b256d293e2fd11e40840"
+      "commit": "ec9eb4b28c74665a602c22db3457f0a76fa0fa23"
     },
     "jquery/jquery.d.ts": {
-      "commit": "4101b65a5b3e72b4a3e3b256d293e2fd11e40840"
+      "commit": "ec9eb4b28c74665a602c22db3457f0a76fa0fa23"
     },
     "node/node.d.ts": {
-      "commit": "4101b65a5b3e72b4a3e3b256d293e2fd11e40840"
+      "commit": "ec9eb4b28c74665a602c22db3457f0a76fa0fa23"
     }
   }
 }
