@@ -1,5 +1,5 @@
-import {listToHex} from "./bits";
-import {clamp} from "./bits";
+import {listToHex} from "./Bits";
+import {clamp} from "./Bits";
 
 export class Register {
     private _name:string;

@@ -1,5 +1,5 @@
-import {CPU} from "./cpu";
-import {RAM} from "./ram";
+import {CPU} from "./CPU";
+import {RAM} from "./RAM";
 import {Assembler} from "./Assembler";
 import {Graphics} from "./Graphics";
 import {Disassembler} from "./Disassembler";

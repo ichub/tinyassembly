@@ -1,4 +1,4 @@
-import {Instruction} from "./instruction";
+import {Instruction} from "./Instruction";
 import {ParamType} from "./ParamType";
 import {CPU} from "./CPU";
 import {InstructionSet} from "./InstructionSet";

@@ -1,5 +1,5 @@
-import {Register} from "./register";
-import {clamp} from "./bits";
+import {Register} from "./Register";
+import {clamp} from "./Bits";
 
 export class Memory {
     private _memory:number[];
