@@ -1,4 +1,4 @@
-import {Computer} from "../../computer";
+import {Computer} from "../../Computer";
 import {RAM} from "../../RAM";
 
 describe("the R_AND instruction", function () {

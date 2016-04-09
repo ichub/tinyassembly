@@ -1,4 +1,4 @@
-import {Register} from "../register";
+import {Register} from "../Register";
 
 describe("cpu register", function () {
     it("should handle overflows gracefully", function () {

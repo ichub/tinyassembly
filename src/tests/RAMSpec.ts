@@ -1,4 +1,4 @@
-import {RAM} from "../ram";
+import {RAM} from "../RAM";
 
 describe("RAM", function () {
     it("should be initialized with zeroes in non-data ranges", function () {

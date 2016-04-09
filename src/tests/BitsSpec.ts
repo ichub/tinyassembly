@@ -1,4 +1,4 @@
-import {clamp} from "../bits";
+import {clamp} from "../Bits";
 
 describe("clamp", function () {
     it("should work with small numbers", function () {
