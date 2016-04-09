@@ -12,5 +12,4 @@ addons:
 install: ./install-dependencies.sh
 script:
   - gulp ts
-  - gulp lint
   - tslint -c ./tslint.json "./src/**/*.@(ts|tsx)"
