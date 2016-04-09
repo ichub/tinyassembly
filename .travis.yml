@@ -13,3 +13,4 @@ install: ./install-dependencies.sh
 script:
   - gulp ts-strict
   - tslint -c ./tslint.json "./src/**/*.@(ts|tsx)"
+  - jasmine
