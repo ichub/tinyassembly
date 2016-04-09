@@ -27,13 +27,14 @@ export class CachedBlitEvent implements ICachedDrawEvent {
                         actualPixelY * context.pixelSizeInScreenPixels,
                         context.pixelSizeInScreenPixels,
                         context.pixelSizeInScreenPixels
-                    )
+                    );
                 } else {
                     context.ctx.fillRect(
                         actualPixelX * context.pixelSizeInScreenPixels,
                         actualPixelY * context.pixelSizeInScreenPixels,
                         context.pixelSizeInScreenPixels,
-                        context.pixelSizeInScreenPixels);
+                        context.pixelSizeInScreenPixels
+                    );
                 }
             }
         }

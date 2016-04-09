@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import {ITooltipProps} from "../props/ITooltipProps";
 
 export class TooltipComponent extends React.Component<ITooltipProps, any> {
@@ -9,8 +8,8 @@ export class TooltipComponent extends React.Component<ITooltipProps, any> {
 
     public getTooltipContainer(contents) {
         const style = {
+            left: this.props.left,
             top: this.props.top,
-            left: this.props.left
         };
 
         return (

@@ -8,6 +8,20 @@ export class AssemblyEditorComponent extends React.Component<IAssemblyEditorProp
         program:HTMLTextAreaElement;
     };
 
+    public render() {
+        return (
+            <div className="assembly-editor">
+                <textarea
+                    className="assembler-text"
+                    ref="program"
+                    cols="50"
+                    rows="25"
+                    defaultValue={this.getProgramText()}></textarea>
+                <button onClick={this.handleAssembleButtonClick.bind(this)}>assemble</button>
+            </div>
+        );
+    }
+
     private handleAssembleButtonClick() {
         const programText = this.refs.program.value;
 
@@ -65,19 +79,5 @@ export class AssemblyEditorComponent extends React.Component<IAssemblyEditorProp
             "DRAW",
             "JMP $loop",
         ].join("\n");
-    }
-
-    render() {
-        return (
-            <div className="assembly-editor">
-                <textarea
-                    className="assembler-text"
-                    ref="program"
-                    cols="50"
-                    rows="25"
-                    defaultValue={this.getProgramText()}></textarea>
-                <button onClick={this.handleAssembleButtonClick.bind(this)}>assemble</button>
-            </div>
-        );
     }
 }

@@ -12,7 +12,7 @@ export class AppComponent extends React.Component<any, any> {
         const computer = new Computer();
 
         this.state = {
-            computer: computer
+            computer: computer,
         };
     }
 
@@ -49,7 +49,7 @@ export class AppComponent extends React.Component<any, any> {
                 </div>
                 <div className="content">
                     <ScreenComponent computer={this.state.computer}/>
-                    
+
                     <div className="computer-status">
                         <RegistersComponent computer={this.state.computer}/>
                         <FlagsComponent computer={this.state.computer}/>

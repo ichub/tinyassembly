@@ -34,7 +34,7 @@ describe("finonacci number", function () {
             "LOAD %C %E",
             "JMP $loop",
             "halt:",
-            "HALT"
+            "HALT",
         ].join("\n");
 
         const computer = new Computer();

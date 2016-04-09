@@ -233,9 +233,13 @@ export class InstructionSet {
         const height = cpu.ram.getCellValue(origin.value + 1);
 
         for (let i = 0; i < height; i++) {
-            cpu.ram.copy(origin.value + width * i + 2, width, (x.value % Graphics.width) + ((y.value % Graphics.height) + i) * 64, cpu.graphics);
+            cpu.ram.copy(
+                origin.value + width * i + 2,
+                width,
+                (x.value % Graphics.width) + ((y.value % Graphics.height) + i) * 64,
+                cpu.graphics);
         }
-        
+
         cpu.graphics.drawCache.addEvent(new CachedBlitEvent(x.value, y.value, width, height));
     }
 

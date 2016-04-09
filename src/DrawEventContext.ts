@@ -5,7 +5,11 @@ export class DrawEventContext {
     private _pixelSizeInScreenPixels:number;
     private _graphicsMemory:number[];
 
-    constructor(ctx:CanvasRenderingContext2D, widthInVirtualPixels:number, heightInVirtualPixels:number, pixelSizeInScreenPixels:number, graphicsMemory:number[]) {
+    constructor(ctx:CanvasRenderingContext2D,
+                widthInVirtualPixels:number,
+                heightInVirtualPixels:number,
+                pixelSizeInScreenPixels:number,
+                graphicsMemory:number[]) {
         this._ctx = ctx;
         this._widthInVirtualPixels = widthInVirtualPixels;
         this._heightInVirtualPixels = heightInVirtualPixels;

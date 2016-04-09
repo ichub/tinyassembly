@@ -1,7 +1,5 @@
 import * as React from "react";
-import * as classnames from "classnames";
 import {IComputerProps} from "../props/IComputerProps";
-import {toHex} from "../Bits";
 
 export class FlagsComponent extends React.Component<IComputerProps, any> {
     constructor(props:IComputerProps) {

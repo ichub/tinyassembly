@@ -4,8 +4,8 @@ export interface IRamRowState {
 }
 
 export class RamRowState implements IRamRowState {
-    showTooltip:boolean;
-    valuesUpdated:boolean;
+    public showTooltip:boolean;
+    public valuesUpdated:boolean;
 
     constructor() {
         this.showTooltip = false;

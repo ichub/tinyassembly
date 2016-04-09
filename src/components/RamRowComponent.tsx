@@ -3,7 +3,6 @@ import * as classnames from "classnames";
 import {IRamRowProps} from "../props/IRamRowProps";
 import {MemoryRegion} from "../MemoryRegion";
 import {toHex} from "../Bits";
-import {TooltipComponent} from "./TooltipComponent";
 import {RamRowState, IRamRowState} from "../state/RamRowState";
 import {NumberRenderFormat} from "../NumberRenderFormat";
 export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState> {
@@ -16,77 +15,6 @@ export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState>
         super(props);
 
         this.state = new RamRowState();
-    }
-
-    private regionToClass(region:MemoryRegion):string {
-        switch (region) {
-            case MemoryRegion.Program:
-                return "range-program";
-            case MemoryRegion.Stack:
-                return "range-stack";
-            case MemoryRegion.Static:
-                return "range-static"
-        }
-    }
-
-    private getElementHeight() {
-        return this.refs.container.clientHeight;
-    }
-
-    private handleClick() {
-        this.setState({
-            showTooltip: true
-        });
-
-        this.forceUpdate();
-    }
-
-    private getTooltip():Element|React.Component<any, any> {
-        return undefined;
-        /*
-         if (this.state.showTooltip) {
-         return (
-         <TooltipComponent
-         top={0}
-         left={0}/>
-         );
-         }
-
-         return;*/
-    }
-
-    private arrayEqual(lhs:number[], rhs:number[]):boolean {
-        if (lhs.length != rhs.length) {
-            return false;
-        }
-
-        for (let i = 0; i < lhs.length; i++) {
-            if (lhs[i] != rhs[i]) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    private renderNumber(num:number, prepend0x:boolean = false):string {
-        if (this.props.numberRenderFormat === NumberRenderFormat.Decimal) {
-            return num.toString();
-        } else {
-            return (prepend0x ? "0x" : "") + toHex(num, 4);
-        }
-    }
-
-    private stateChanged(nextProps:IRamRowProps) {
-        return (
-            this.props.isCurrentInstruction !== nextProps.isCurrentInstruction || !this.arrayEqual(this.props.values, nextProps.values) ||
-            this.props.numberRenderFormat !== nextProps.numberRenderFormat
-        )
-    }
-
-    private inViewport(nextProps:IRamRowProps) {
-        return nextProps.scrollTop < nextProps.index * this.getElementHeight()
-            && nextProps.index * this.getElementHeight() < nextProps.containerHeight + nextProps.scrollTop;
     }
 
     public shouldComponentUpdate(nextProps:IRamRowProps, nextState:RamRowState):boolean {
@@ -115,7 +43,7 @@ export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState>
             const valueClass = classnames(
                 {
                     "zero": value === 0,
-                    "non-zero": value !== 0
+                    "non-zero": value !== 0,
                 }
             );
 
@@ -125,7 +53,7 @@ export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState>
         const rowClass = classnames(
             "ram-row",
             {
-                "current": this.props.isCurrentInstruction
+                "current": this.props.isCurrentInstruction,
             }
         );
 
@@ -152,5 +80,76 @@ export class RamRowComponent extends React.Component<IRamRowProps, IRamRowState>
                 {this.getTooltip()}
             </div>
         );
+    }
+
+    private regionToClass(region:MemoryRegion):string {
+        switch (region) {
+            case MemoryRegion.Program:
+                return "range-program";
+            case MemoryRegion.Stack:
+                return "range-stack";
+            case MemoryRegion.Static:
+                return "range-static";
+        }
+    }
+
+    private getElementHeight() {
+        return this.refs.container.clientHeight;
+    }
+
+    private handleClick() {
+        this.setState({
+            showTooltip: true,
+        });
+
+        this.forceUpdate();
+    }
+
+    private getTooltip():Element|React.Component<any, any> {
+        return undefined;
+        /*
+         if (this.state.showTooltip) {
+         return (
+         <TooltipComponent
+         top={0}
+         left={0}/>
+         );
+         }
+
+         return;*/
+    }
+
+    private arrayEqual(lhs:number[], rhs:number[]):boolean {
+        if (lhs.length !== rhs.length) {
+            return false;
+        }
+
+        for (let i = 0; i < lhs.length; i++) {
+            if (lhs[i] !== rhs[i]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private renderNumber(num:number, prepend0x = false):string {
+        if (this.props.numberRenderFormat === NumberRenderFormat.Decimal) {
+            return num.toString();
+        } else {
+            return (prepend0x ? "0x" : "") + toHex(num, 4);
+        }
+    }
+
+    private stateChanged(nextProps:IRamRowProps) {
+        return (
+            this.props.isCurrentInstruction !== nextProps.isCurrentInstruction || !this.arrayEqual(this.props.values, nextProps.values) ||
+            this.props.numberRenderFormat !== nextProps.numberRenderFormat
+        );
+    }
+
+    private inViewport(nextProps:IRamRowProps) {
+        return nextProps.scrollTop < nextProps.index * this.getElementHeight()
+            && nextProps.index * this.getElementHeight() < nextProps.containerHeight + nextProps.scrollTop;
     }
 }

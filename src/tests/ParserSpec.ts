@@ -17,7 +17,8 @@ describe("parser", function () {
             TokenType.NumberLiteral,
             TokenType.RegisterReference,
             TokenType.StatementEnding,
-            TokenType.End]);
+            TokenType.End,
+        ]);
 
         expect(values).toEqual([
             jasmine.anything(),
@@ -25,7 +26,8 @@ describe("parser", function () {
             "100",
             "%A",
             jasmine.anything(),
-            jasmine.anything()]);
+            jasmine.anything(),
+        ]);
     });
 
     it("should parse multiple lines", function () {
@@ -44,7 +46,8 @@ describe("parser", function () {
             TokenType.RegisterReference,
             TokenType.RegisterReference,
             TokenType.StatementEnding,
-            TokenType.End]);
+            TokenType.End,
+        ]);
 
         expect(values).toEqual([
             jasmine.anything(),
@@ -56,7 +59,8 @@ describe("parser", function () {
             "%B",
             "%C",
             jasmine.anything(),
-            jasmine.anything()]);
+            jasmine.anything(),
+        ]);
     });
 
     it("should ignore irregular whitespace", function () {
@@ -75,7 +79,8 @@ describe("parser", function () {
             TokenType.RegisterReference,
             TokenType.RegisterReference,
             TokenType.StatementEnding,
-            TokenType.End]);
+            TokenType.End,
+        ]);
 
         expect(values).toEqual([
             jasmine.anything(),
@@ -87,7 +92,8 @@ describe("parser", function () {
             "%B",
             "%C",
             jasmine.anything(),
-            jasmine.anything()]);
+            jasmine.anything(),
+        ]);
     });
 
     it("should handle unknown patterns", function () {
@@ -105,7 +111,8 @@ describe("parser", function () {
             TokenType.Unknown,
             TokenType.NumberLiteral,
             TokenType.StatementEnding,
-            TokenType.End]);
+            TokenType.End,
+        ]);
 
         expect(values).toEqual([
             jasmine.anything(),
@@ -116,8 +123,8 @@ describe("parser", function () {
             "-100",
             "0",
             jasmine.anything(),
-            jasmine.anything()
-        ])
+            jasmine.anything(),
+        ]);
     });
 
     it("should parse empty programs", function () {
@@ -144,7 +151,8 @@ describe("parser", function () {
             TokenType.StatementEnding,
             TokenType.InstructionName,
             TokenType.StatementEnding,
-            TokenType.End]);
+            TokenType.End,
+        ]);
 
         expect(values).toEqual([
             jasmine.anything(),
@@ -154,7 +162,7 @@ describe("parser", function () {
             jasmine.anything(),
             "HALT",
             jasmine.anything(),
-            jasmine.anything()
+            jasmine.anything(),
         ]);
     });
 });

@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as classnames from "classnames";
 import {IComputerProps} from "../props/IComputerProps";
 import {Register} from "../Register";
 import {toHex} from "../Bits";

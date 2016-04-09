@@ -32,18 +32,6 @@ export class RamViewComponent extends React.Component<IComputerProps, IRamViewSt
         this.state.numberRenderFormat = NumberRenderFormat.Hexadecimal;
     }
 
-    private onNumberMethodRenderChange(e:Event) {
-        this.setState({
-            numberRenderFormat: parseInt((e.target as HTMLSelectElement).value, 10)
-        });
-    }
-
-    private onRamScroll(e:Event) {
-        this.setState({
-            scrollTop: this.refs.rowContainer.scrollTop
-        })
-    }
-
     public shouldComponentUpdate(nextProps:IComputerProps, nextState:IRamViewState):boolean {
         return !this.props.computer.cpu.isRunning;
     }
@@ -69,7 +57,7 @@ export class RamViewComponent extends React.Component<IComputerProps, IRamViewSt
                     values={rowValues}
                     offset={this.rowLength * index}
                     regionName={region}
-                    isCurrentInstruction={this.props.computer.cpu.registers.IP.value == index * 4}
+                    isCurrentInstruction={this.props.computer.cpu.registers.IP.value === index * 4}
                     disassembler={this.props.computer.disassembler}/>
             );
         });
@@ -97,4 +85,11 @@ export class RamViewComponent extends React.Component<IComputerProps, IRamViewSt
             </div>
         );
     }
+
+    private onRamScroll(e:Event) {
+        this.setState({
+            scrollTop: this.refs.rowContainer.scrollTop,
+        });
+    }
+
 }

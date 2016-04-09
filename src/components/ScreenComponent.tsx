@@ -1,8 +1,6 @@
 import * as React from "react";
-import * as classnames from "classnames";
 import {IComputerProps} from "../props/IComputerProps";
 import {Graphics} from "../Graphics";
-import {ICachedDrawEvent} from "../CachedDrawEvent";
 import {DrawCache} from "../DrawCache";
 import {DrawEventContext} from "../DrawEventContext";
 
@@ -29,54 +27,6 @@ export class ScreenComponent extends React.Component<IComputerProps, any> {
         });
     }
 
-    private getCanvasWidth() {
-        return this.pixelSize * Graphics.width;
-    }
-
-    private getCanvasHeight() {
-        return this.pixelSize * Graphics.height;
-    }
-
-    private componentDidMount() {
-        this.ctx = this.refs.canvas.getContext("2d");
-
-        this.setupCanvas();
-        this.mounted = true;
-    }
-
-    private componentWillUnmount() {
-        this.mounted = false;
-    }
-
-    private setupCanvas() {
-        this.refs.canvas.width = this.getCanvasWidth();
-        this.refs.canvas.height = this.getCanvasHeight();
-    }
-
-    private updateCanvas() {
-        /*
-        for (let i = 0; i < Graphics.width; i++) {
-            for (let j = 0; j < Graphics.height; j++) {
-                if (this.rawGraphicsMem[i * Graphics.width + j] === 0) {
-                    this.ctx.clearRect(
-                        i * this.pixelSize,
-                        j * this.pixelSize,
-                        this.pixelSize,
-                        this.pixelSize
-                    )
-                } else {
-                    this.ctx.fillRect(
-                        i * this.pixelSize,
-                        j * this.pixelSize,
-                        this.pixelSize,
-                        this.pixelSize);
-                }
-            }
-        }*/
-
-        this.drawCache.apply(new DrawEventContext(this.ctx, Graphics.width, Graphics.height, this.pixelSize, this.rawGraphicsMem));
-    }
-
     public render() {
         if (this.mounted) {
             this.updateCanvas();
@@ -90,5 +40,39 @@ export class ScreenComponent extends React.Component<IComputerProps, any> {
                     height={this.getCanvasHeight()}></canvas>
             </div>
         );
+    }
+
+    private getCanvasWidth() {
+        return this.pixelSize * Graphics.width;
+    }
+
+    private getCanvasHeight() {
+        return this.pixelSize * Graphics.height;
+    }
+
+    /* tslint:disable:no-unused-variable */
+    private componentDidMount() {
+        /* tslint:enable:no-unused-variable */
+
+        this.ctx = this.refs.canvas.getContext("2d");
+
+        this.setupCanvas();
+        this.mounted = true;
+    }
+
+    /* tslint:disable:no-unused-variable */
+    private componentWillUnmount() {
+        /* tslint:enable:no-unused-variable */
+        this.mounted = false;
+    }
+
+
+    private setupCanvas() {
+        this.refs.canvas.width = this.getCanvasWidth();
+        this.refs.canvas.height = this.getCanvasHeight();
+    }
+
+    private updateCanvas() {
+        this.drawCache.apply(new DrawEventContext(this.ctx, Graphics.width, Graphics.height, this.pixelSize, this.rawGraphicsMem));
     }
 }

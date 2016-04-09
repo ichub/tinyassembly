@@ -86,5 +86,4 @@ describe("CMP instruction", function () {
         expect(comp.cpu.flags.more).toBe(false);
         expect(comp.cpu.flags.equal).toBe(true);
     });
-
 });

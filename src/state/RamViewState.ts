@@ -6,8 +6,8 @@ export interface IRamViewState {
 }
 
 export class RamViewState implements IRamViewState {
-    numberRenderFormat:NumberRenderFormat;
-    scrollTop:number;
+    public numberRenderFormat:NumberRenderFormat;
+    public scrollTop:number;
 
     constructor() {
         this.numberRenderFormat = NumberRenderFormat.Hexadecimal;
