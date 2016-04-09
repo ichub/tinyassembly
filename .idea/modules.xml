@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/webchip.iml" filepath="$PROJECT_DIR$/.idea/webchip.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/tinyassembly.iml" filepath="$PROJECT_DIR$/.idea/tinyassembly.iml" />
     </modules>
   </component>
 </project>
