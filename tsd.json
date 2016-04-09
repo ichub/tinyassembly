@@ -30,7 +30,19 @@
       "commit": "ec9eb4b28c74665a602c22db3457f0a76fa0fa23"
     },
     "node/node.d.ts": {
-      "commit": "ec9eb4b28c74665a602c22db3457f0a76fa0fa23"
+      "commit": "8d44da84eb10cdcd2f7ea133f289caef817cb2b9"
+    },
+    "serve-static/serve-static.d.ts": {
+      "commit": "8d44da84eb10cdcd2f7ea133f289caef817cb2b9"
+    },
+    "express/express.d.ts": {
+      "commit": "8d44da84eb10cdcd2f7ea133f289caef817cb2b9"
+    },
+    "express-serve-static-core/express-serve-static-core.d.ts": {
+      "commit": "8d44da84eb10cdcd2f7ea133f289caef817cb2b9"
+    },
+    "mime/mime.d.ts": {
+      "commit": "8d44da84eb10cdcd2f7ea133f289caef817cb2b9"
     }
   }
 }
