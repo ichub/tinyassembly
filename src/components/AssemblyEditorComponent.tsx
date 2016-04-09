@@ -7,7 +7,6 @@ export class AssemblyEditorComponent extends React.Component<IAssemblyEditorProp
         [str:string]:React.Component<any, any> | Element;
         program:HTMLTextAreaElement;
     };
-
     public render() {
         return (
             <div className="assembly-editor">

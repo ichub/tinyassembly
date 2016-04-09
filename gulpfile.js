@@ -44,6 +44,10 @@ let tsOutputGlob = "./dist/**/*.js";
 let tsWatchedGlob = "./dist/bundle/bundle.js";
 let htmlGlob = "./index.html";
 
+const exitOnError = function (level, error) {
+    process.exit(1);
+};
+
 gulp.task("default", ["serve"]);
 
 gulp.task("browserify", ["ts"], function () {
@@ -55,6 +59,24 @@ gulp.task("browserify", ["ts"], function () {
         }))
         .pipe(rename("bundle.js"))
         .pipe(gulp.dest("dist/bundle"))
+});
+
+gulp.task("ts-strict", function () {
+    return gulp.src([tsGlob, typingsGlob])
+        .pipe(ts({
+            declaration: false,
+            module: "commonjs",
+            target: "es6",
+            experimentalDecorators: true,
+            jsx: "react"
+        }))
+        .on("error", exitOnError)
+        .js
+        .pipe(babel({
+            presets: ["es2015"]
+        }))
+        .on("error", exitOnError)
+        .pipe(gulp.dest("dist"))
 });
 
 gulp.task("ts", function () {
@@ -71,7 +93,6 @@ gulp.task("ts", function () {
             presets: ["es2015"]
         }))
         .pipe(gulp.dest("dist"))
-
 });
 
 gulp.task("sass", function () {
