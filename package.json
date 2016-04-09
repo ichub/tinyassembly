@@ -47,7 +47,7 @@
     "tslint": "^3.4.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node dist/server/Server.js"
   },
   "repository": {
     "type": "git",

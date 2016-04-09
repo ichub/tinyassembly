@@ -1,16 +1,21 @@
 language: node_js
 node_js:
-  - 4
+- 4
 env:
-  - CXX=g++-4.8
+- CXX=g++-4.8
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+    - ubuntu-toolchain-r-test
     packages:
-      - g++-4.8
+    - g++-4.8
 install: ./install-dependencies.sh
 script:
-  - gulp ts-strict
-  - tslint -c ./tslint.json "./src/**/*.@(ts|tsx)"
-  - jasmine
+- gulp ts-strict
+- tslint -c ./tslint.json "./src/**/*.@(ts|tsx)"
+- jasmine
+deploy:
+  skip_cleanup: true
+  app: tinyassembly
+  api_key:
+    secure: gf3FHCV3oFvPt9iI3yma8qGkNMV62F/pttpSJ37jq9shbCIPR8FJFvC36VeCVIljVaSE7bhiJZEB/XRNhRe1mFS1jDw9+moKVoI6sgC7phmCFayUBiwYllaUSp0OygKvhn1LjtOJAuWo5l3JeFYL6tvGK6HJjzKujrppydt6FNph8TAd1d6Dy75JPiy0kkhNYVYHnaePfraItk2lKlEOKuX8N7dmvOkyXsC1njF0CXKkMdFOGIZxqmtIop5d43wAa1BZY38Jv7/Az2DhKpr/8bq45N77RwueVv7nVoXFQTLklfYq/ASD2XYpdSDAnCRE83jN8XnV3zUaN3DfBkkdDwwPJKjTKyE1p7l6G1vDmwSOLpIjjlNG0sM0wU622XFYTY+u46BsqjLxc9OUgNGYvARCB+qCV0CRCkWbUPp7hQDrHyfB0hu5/J9PH9vx/OEBishwqhxFX6ooaSAL64o7H/glXUNYLzRPQ5F0rp9LL+roVhM1wvMnaZBHUEZtfZMBmQxmv/aC36q8kHiWBjIine2lOzJdyJp18aDQ+0Y/2yMKWe8TYI87LjtVKPWhpWCydJ/5vm1fdKnF/2+rNB4oCJcewTd0bp1gkLrTedWUI+jFVuzBBzwCCWqg1YR/qDXFwVq7porKUUUz09fpX5hukt+ee+xuijFeSCHyLhgNdys=
