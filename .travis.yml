@@ -1,0 +1,5 @@
+install: ./install-dependencies.sh
+script:
+  - gulp ts
+  - gulp lint
+  - gulp test
