@@ -1,4 +1,4 @@
-import {Register} from "./register";
+import {Register} from "./Register";
 import {ignoreCaseEquals} from "./Strings";
 import {RAM} from "./RAM";
 
