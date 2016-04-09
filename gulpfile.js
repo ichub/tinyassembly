@@ -2,46 +2,47 @@
 
 const gulp = require("gulp");
 const sass = require("gulp-sass");
-const server = require('gulp-server-livereload');
+const server = require("gulp-server-livereload");
 const watch = require("gulp-watch");
-const browserify = require('gulp-browserify');
+const browserify = require("gulp-browserify");
 const glob = require("multi-glob").glob;
 const path = require("path");
-const commandLineArgs = require('command-line-args');
-const gulpif = require('gulp-if');
-const uglify = require('gulp-uglify');
-const cssnano = require('gulp-cssnano');
-const ts = require('gulp-typescript');
-const merge = require('merge2');
+const commandLineArgs = require("command-line-args");
+const gulpif = require("gulp-if");
+const uglify = require("gulp-uglify");
+const cssnano = require("gulp-cssnano");
+const ts = require("gulp-typescript");
+const merge = require("merge2");
 const tslint = require("gulp-tslint");
 const tsfmt = require("gulp-tsfmt");
 const changedInPlace = require("gulp-changed-in-place");
-const babel = require('gulp-babel');
+const babel = require("gulp-babel");
 const rename = require("gulp-rename");
 const fs = require("fs");
-const jasmine = require('gulp-jasmine');
+const jasmine = require("gulp-jasmine");
 const reporter = require("jasmine-spec-reporter");
-const benchmark = require('gulp-benchmark');
-const gutil = require('gulp-util');
+const benchmark = require("gulp-benchmark");
+const gutil = require("gulp-util");
 
 let cli = commandLineArgs([
-    {name: 'production', alias: 'p', type: Boolean, defaultOption: false}
+    {name: "production", alias: "p", type: Boolean, defaultOption: false}
 ]);
 
 let options = cli.parse();
 
 if (options.production === true) {
-    process.env.NODE_ENV = 'production';
+    process.env.NODE_ENV = "production";
     gutil.log("running in production mode");
 }
 
 let sassGlob = "./sass/everything.scss";
 let tsGlob = "./src/**/*.@(ts|tsx)";
+let typingsGlob = "./typings/**/*.ts";
 
-let sassOutputGlob = './css/**/*.css';
-let tsOutputGlob = './dist/**/*.js';
-let tsWatchedGlob = './dist/bundle/bundle.js';
-let htmlGlob = './index.html';
+let sassOutputGlob = "./css/**/*.css";
+let tsOutputGlob = "./dist/**/*.js";
+let tsWatchedGlob = "./dist/bundle/bundle.js";
+let htmlGlob = "./index.html";
 
 gulp.task("default", ["serve"]);
 
@@ -56,8 +57,8 @@ gulp.task("browserify", ["ts"], function () {
         .pipe(gulp.dest("dist/bundle"))
 });
 
-gulp.task('ts', function () {
-    return gulp.src(tsGlob)
+gulp.task("ts", function () {
+    return gulp.src([tsGlob, typingsGlob])
         .pipe(ts({
             declaration: false,
             module: "commonjs",
@@ -67,21 +68,21 @@ gulp.task('ts', function () {
         }))
         .js
         .pipe(babel({
-            presets: ['es2015']
+            presets: ["es2015"]
         }))
-        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest("dist"))
 
 });
 
-gulp.task('sass', function () {
+gulp.task("sass", function () {
     gulp.src(sassGlob)
-        .pipe(sass().on('error', sass.logError))
+        .pipe(sass().on("error", sass.logError))
         .pipe(gulpif(options.production, cssnano()))
-        .pipe(gulp.dest('./css'));
+        .pipe(gulp.dest("./css"));
 });
 
-gulp.task('serve', ["watch"], function () {
-    gulp.src('./')
+gulp.task("serve", ["watch"], function () {
+    gulp.src("./")
         .pipe(server({
             livereload: {
                 enable: true,
@@ -98,17 +99,17 @@ gulp.task('serve', ["watch"], function () {
         }));
 });
 
-gulp.task('lint', function () {
-    return gulp.src('./src/*.ts')
+gulp.task("lint", function () {
+    return gulp.src(["./src/**/*.ts", "./src/**/*.tsx"])
         .pipe(tslint())
         .pipe(tslint.report("verbose", {
             emitError: false
         }))
 });
 
-gulp.task("watch", ['sass', 'browserify'], function () {
-    gulp.watch("./sass/**/*.scss", ['sass']);
-    gulp.watch(tsGlob, ['browserify']);
+gulp.task("watch", ["sass", "browserify"], function () {
+    gulp.watch("./sass/**/*.scss", ["sass"]);
+    gulp.watch(tsGlob, ["browserify"]);
 });
 
 
@@ -124,9 +125,9 @@ gulp.task("bench", ["ts"], function () {
     return gulp.src("./dist/benchmarks/**/*.js", {read: false})
         .pipe(benchmark({
             reporters: [
-                benchmark.reporters.etalon('RegExp#test'),
+                benchmark.reporters.etalon("RegExp#test"),
                 benchmark.reporters.json()
             ]
         }))
-        .pipe(gulp.dest('.'));
+        .pipe(gulp.dest("."));
 });
