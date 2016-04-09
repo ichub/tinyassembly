@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo npm install gulp
-sudo npm install tsd
+npm install -g gulp
+npm install -g tsd
 npm install
 tsd install
