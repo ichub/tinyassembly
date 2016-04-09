@@ -12,6 +12,8 @@ addons:
 install: ./install-dependencies.sh
 script:
 - gulp ts-strict
+- gulp browserify
+- gulp sass
 - tslint -c ./tslint.json "./src/**/*.@(ts|tsx)"
 - jasmine
 deploy:
