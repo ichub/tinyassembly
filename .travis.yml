@@ -17,6 +17,8 @@ script:
 - tslint -c ./tslint.json "./src/**/*.@(ts|tsx)"
 - jasmine
 deploy:
+  on:
+    branch: master
   provider: heroku
   skip_cleanup: true
   app: tinyassembly
