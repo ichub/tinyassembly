@@ -8,5 +8,6 @@ export enum TokenType {
     NumberLiteral,
     RegisterReference,
     LabelReference,
-    Constant
+    Constant,
+    DataLiteral
 }

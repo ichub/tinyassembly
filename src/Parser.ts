@@ -56,9 +56,12 @@ export class Parser {
 
     private parseLine(line:string):Token[] {
         const labelPattern = /^\s*([a-zA-Z0-9_]+):\s*$/;
+        const dataPattern = /^\s*\{\s*\d+(\s+\d+)*\s*}\s*$/;
 
         if (labelPattern.test(line)) {
             return this.parseLabelLine(line);
+        } else if (dataPattern.test(line)) {
+            return this.parseDataLine(line);
         }
 
         return this.parseInstructionLine(line);
@@ -85,5 +88,16 @@ export class Parser {
         }
 
         return new Token(type, paramString);
+    }
+
+    private parseDataLine(line:string):Token[] {
+        let cleanedLine = line.replace(/[\{}]/g, "");
+        let values = cleanedLine.split(/\s+/).filter((item) => {
+            return !/^\s*$/.test(item);
+        });
+
+        return values.map((item) => {
+            return new Token(TokenType.DataLiteral, item);
+        });
     }
 }

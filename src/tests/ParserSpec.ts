@@ -165,4 +165,31 @@ describe("parser", function () {
             jasmine.anything(),
         ]);
     });
+
+    it("should parse data literals", function () {
+        const stream = parser.parse("{0 100 20 5}");
+
+        const types = stream.tokens.map(token => token.type);
+        const values = stream.tokens.map(token => token.value);
+
+        expect(types).toEqual([
+            TokenType.Begin,
+            TokenType.DataLiteral,
+            TokenType.DataLiteral,
+            TokenType.DataLiteral,
+            TokenType.DataLiteral,
+            TokenType.StatementEnding,
+            TokenType.End,
+        ]);
+
+        expect(values).toEqual([
+            jasmine.anything(),
+            "0",
+            "100",
+            "20",
+            "5",
+            jasmine.anything(),
+            jasmine.anything(),
+        ]);
+    });
 });
