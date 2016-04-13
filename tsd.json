@@ -43,6 +43,9 @@
     },
     "mime/mime.d.ts": {
       "commit": "8d44da84eb10cdcd2f7ea133f289caef817cb2b9"
+    },
+    "express-handlebars/express-handlebars.d.ts": {
+      "commit": "641df27e73ca67fa7199a3deedae104198d41a17"
     }
   }
 }
