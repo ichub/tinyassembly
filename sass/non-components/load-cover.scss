@@ -16,6 +16,18 @@ $spinner-size: 40px;
   align-items: center;
   flex-direction: column;
 
+  &.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 500ms linear;
+  }
+
+  &.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 500ms, opacity 500ms linear;
+  }
+
   .spinner {
     display: flex;
     width: $spinner-size;
