@@ -103,21 +103,7 @@ gulp.task("sass", function () {
 });
 
 gulp.task("serve", ["watch"], function () {
-    gulp.src("./")
-        .pipe(server({
-            livereload: {
-                enable: true,
-                filter: function (filePath, cb) {
-                    glob([tsWatchedGlob, sassOutputGlob, htmlGlob], function (err, files) {
-                        cb(files.map(function (file) {
-                                return path.resolve(file);
-                            }).indexOf(filePath) > -1);
-                    });
-                }
-            },
-            open: true,
-            port: 8001
-        }));
+    
 });
 
 gulp.task("lint", function () {
