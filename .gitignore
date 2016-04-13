@@ -4,3 +4,4 @@ dist
 typings
 .idea/workspace.xml
 benchmark-results.json
+*.log

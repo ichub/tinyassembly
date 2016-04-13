@@ -7,6 +7,8 @@ const app = express();
 const prod = process.env.NODE_ENV === "production";
 const dev = process.env.NODE_ENV === "development";
 
+app.locals.production = prod;
+
 console.log(`starting in "${process.env.NODE_ENV}" mode`);
 
 app.set('view engine', '.ejs');

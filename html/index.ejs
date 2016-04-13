@@ -5,4 +5,9 @@
     </div>
     <div class="cover-text">Loading</div>
 </div>
+
+<% if (production) { %>
+<script src="dist/bundle/bundle.min.js"></script>
+<% } else { %>
 <script src="dist/bundle/bundle.js"></script>
+<% } %>
