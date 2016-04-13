@@ -51,7 +51,7 @@
     "watchify": "^3.7.0"
   },
   "scripts": {
-    "start": "node dist/server/Server.js"
+    "start": "NODE_ENV='production' node ./dist/server/Server.js"
   },
   "repository": {
     "type": "git",
