@@ -60,9 +60,7 @@ gulp.task("browserify", ["ts"], function () {
         }))
         .pipe(rename("bundle.js"))
         .pipe(gulp.dest("dist/bundle"))
-        .pipe(uglify({
-
-        }))
+        .pipe(uglify({}))
         .pipe(rename("bundle.min.js"))
         .pipe(gulp.dest("dist/bundle"));
 });
@@ -104,7 +102,10 @@ gulp.task("ts", function () {
 gulp.task("sass", function () {
     gulp.src(sassGlob)
         .pipe(sass().on("error", sass.logError))
-        .pipe(gulpif(options.production, cssnano()))
+        .pipe(rename("bundle.css"))
+        .pipe(gulp.dest("./css"))
+        .pipe(cssnano())
+        .pipe(rename("bundle.min.css"))
         .pipe(gulp.dest("./css"));
 });
 
