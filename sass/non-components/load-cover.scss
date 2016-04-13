@@ -1,0 +1,56 @@
+$load-cover-background-color: rgb(34, 37, 77);
+$load-cover-text-color: rgb(88, 97, 186);
+$spinner-background-color: rgb(38, 6, 33);
+$spinner-size: 40px;
+
+.load-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background-color: $load-cover-background-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .spinner {
+    display: flex;
+    width: $spinner-size;
+    height: $spinner-size;
+    background-color: $spinner-background-color;
+    animation-name: spinner;
+    animation-duration: 900ms;
+    animation-iteration-count: infinite;
+    animation-delay: 400ms;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .inner-spinner {
+    @extend .spinner;
+    width: $spinner-size / 2;
+    height: $spinner-size / 2;
+    background-color: lighten($spinner-background-color, 10);
+  }
+
+  .cover-text {
+    margin-top: 20px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: $load-cover-text-color;
+    font-family: $font-monospace;
+  }
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(90deg);
+  }
+}
