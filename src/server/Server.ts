@@ -1,6 +1,6 @@
 import * as express from "express";
 import * as path from "path";
-import * as hbs from "express-handlebars";
+import * as expressLayouts from 'express-ejs-layouts';
 
 const app = express();
 
@@ -9,14 +9,11 @@ const dev = process.env.NODE_ENV === "development";
 
 console.log(`starting in "${process.env.NODE_ENV}" mode`);
 
-app.engine(".hbs", hbs({
-    extname: ".hbs",
-    layoutsDir: path.join(__dirname, "../../html/layouts/"),
-    defaultLayout: "main"
-}));
-
-app.set("view engine", ".hbs");
+app.set('view engine', '.ejs');
 app.set('views', path.join(__dirname, '../../html'));
+app.set('layout', 'layouts/main');
+
+app.use(expressLayouts);
 
 if (dev) {
     app.use(require("connect-livereload")({
