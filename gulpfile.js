@@ -23,6 +23,7 @@ const jasmine = require("gulp-jasmine");
 const reporter = require("jasmine-spec-reporter");
 const benchmark = require("gulp-benchmark");
 const gutil = require("gulp-util");
+const nodemon = require("gulp-nodemon");
 
 let cli = commandLineArgs([
     {name: "production", alias: "p", type: Boolean, defaultOption: false}
@@ -103,7 +104,10 @@ gulp.task("sass", function () {
 });
 
 gulp.task("serve", ["watch"], function () {
-    
+    nodemon({
+        script: "./dist/server/Server.js",
+        env: {"NODE_ENV": "development"}
+    });
 });
 
 gulp.task("lint", function () {

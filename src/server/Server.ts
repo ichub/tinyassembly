@@ -4,7 +4,10 @@ import * as hbs from "express-handlebars";
 
 const app = express();
 
-const isProduction = process.env.NODE_ENV === "production";
+const prod = process.env.NODE_ENV === "production";
+const dev = process.env.NODE_ENV === "development";
+
+console.log(`starting in "${process.env.NODE_ENV}" mode`);
 
 app.engine(".hbs", hbs({
     extname: ".hbs",
@@ -15,9 +18,7 @@ app.engine(".hbs", hbs({
 app.set("view engine", ".hbs");
 app.set('views', path.join(__dirname, '../../html'));
 
-if (!isProduction) {
-    console.log("starting with development");
-
+if (dev) {
     app.use(require("connect-livereload")({
         port: 35729
     }));
