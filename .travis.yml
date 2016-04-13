@@ -16,6 +16,7 @@ script:
 - gulp sass
 - tslint -c ./tslint.json "./src/**/*.@(ts|tsx)"
 - jasmine
+- ./clean-dev-files.sh
 deploy:
   on:
     branch: master

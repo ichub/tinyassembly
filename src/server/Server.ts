@@ -31,7 +31,7 @@ if (dev) {
 }
 
 app.use("/css", express.static(path.join(__dirname, "../../css")));
-app.use("/dist", express.static(path.join(__dirname, "../../dist")));
+app.use("/js", express.static(path.join(__dirname, "../../dist/bundle")));
 
 app.get("/", function (req, res) {
     res.render("index");
