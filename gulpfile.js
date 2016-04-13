@@ -60,6 +60,11 @@ gulp.task("browserify", ["ts"], function () {
         }))
         .pipe(rename("bundle.js"))
         .pipe(gulp.dest("dist/bundle"))
+        .pipe(uglify({
+
+        }))
+        .pipe(rename("bundle.min.js"))
+        .pipe(gulp.dest("dist/bundle"));
 });
 
 gulp.task("ts-strict", function () {
