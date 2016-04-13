@@ -9,3 +9,9 @@ declare module "livereload" {
         watch(dir:string);
     }
 }
+
+declare let a:any;
+
+declare module "express-ejs-layouts" {
+    export = a;
+}
