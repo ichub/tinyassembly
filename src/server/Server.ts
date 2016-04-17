@@ -17,6 +17,10 @@ app.set("layout", "layouts/main");
 
 app.use(expressLayouts);
 
+app.get("/.well-known/acme-challenge/-iVd3peEcp9aAZ1QpFOrwlcL2XLv8QhSnSy4VQMYNZg", (req:express.Request, res:express.Response) => {
+    res.send("-iVd3peEcp9aAZ1QpFOrwlcL2XLv8QhSnSy4VQMYNZg.Z1bYZnBt1AQp0QnCDgDyYZsOg4kZCHj49TYfJ6ydl2g");
+});
+
 if (dev) {
     app.use(require("connect-livereload")({
         port: 35729,
