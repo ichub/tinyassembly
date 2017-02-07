@@ -4,6 +4,8 @@
 
 **Live Demo:** [http://tinyassembly.io/](http://tinyassembly.io/).
 
+![demo](./demo.gif)
+
 ## Introduction
 
 This project is meant to be an emulator for a very simple computer architecture that runs in the browser. It has a compact instruction set, a graphics interface to push pixels around on a virtual screen, an assembler and disassembler, and a very basic debugger.
