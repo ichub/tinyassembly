@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/ichub/tinyassembly.svg?branch=master)](https://travis-ci.org/ichub/tinyassembly)
 
-**Live Demo:** [http://tinyassembly.io/](http://tinyassembly.io/).
+**Live Demo:** [https://tinyassembly.herokuapp.com/](https://tinyassembly.herokuapp.com/).
 
 ![demo](./demo.gif)
 
